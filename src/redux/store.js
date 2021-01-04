@@ -1,15 +1,7 @@
-import { createStore } from "redux"
-export { Provider} from "react-redux"
+import { createStore, combineReducers } from "redux"
+export { Provider } from "react-redux"
+import audio from "src/redux/audio"
 
-const initialState = {
-  gameCode: null
-}
+const rootReducer = combineReducers({ audio })
 
-function reducer(state, action) {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
-
-export default createStore(reducer, initialState)
+export default createStore(rootReducer)
