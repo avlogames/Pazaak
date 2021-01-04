@@ -4,7 +4,7 @@ import { StyleSheet, View, Text } from "react-native"
 export default function HomeScreenFooter() {
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.copyright}>{`© 2021 Haytrix Games`}</Text>
+      <Text style={styles.copyright}>{`© ${new Date().getFullYear()} Haytrix Games`}</Text>
     </View>
   )
 }
