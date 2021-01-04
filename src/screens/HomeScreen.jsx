@@ -1,12 +1,15 @@
 import React from "react"
-import { View } from "react-native"
-import { Link } from "@react-navigation/native"
+import HomeScreenBackground from "src/components/HomeScreenBackground"
+import HomeScreenLogo from "src/components/HomeScreenLogo"
+import HomeScreenGameLinks from "src/components/HomeScreenGameLinks"
+import HomeScreenFooter from "src/components/HomeScreenFooter"
 
 export default function HomeScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Link to="/NewGame">New Game</Link>
-      <Link to="/JoinGame">Join Game</Link>
-    </View>
+    <HomeScreenBackground>
+      <HomeScreenLogo />
+      <HomeScreenGameLinks />
+      <HomeScreenFooter />
+    </HomeScreenBackground>
   )
 }
