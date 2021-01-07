@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
 import avatar from "src/assets/opponent-avatar.png"
 
-export default function OpponentDetails({ active = false }) {
+export default function OpponentDetails({ active = true }) {
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   detailsContainer: {
-    marginTop: -25,
+    marginTop: -20,
     width: `100%`,
     alignItems: `center`,
   },
@@ -78,12 +78,11 @@ const styles = StyleSheet.create({
     fontWeight: `900`,
     fontSize: 16,
     textTransform: `uppercase`,
-    paddingTop: 7,
   },
   creditsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingBottom: 7,
+    paddingBottom: 5,
   },
   icon: {
     marginRight: 5,

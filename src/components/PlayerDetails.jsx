@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     fontWeight: `900`,
     fontSize: 16,
     textTransform: `uppercase`,
-    paddingTop: 7,
+    paddingTop: 5,
   },
   creditsContainer: {
     flexDirection: "row",

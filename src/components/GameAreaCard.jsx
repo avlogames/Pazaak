@@ -49,11 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: `column`,
     alignItems: `center`,
     justifyContent: `flex-start`,
-    shadowColor: "#000",
-    shadowOffset: { width: 2, height: 3 },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 2,
+    overflow: `hidden`
   },
   topRound: {
     marginTop: `10%`,

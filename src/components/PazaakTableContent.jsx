@@ -1,5 +1,7 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
+import GameAreaPlaceholder from "src/components/GameAreaPlaceholder"
+import GameAreaTotalScore from "src/components/GameAreaTotalScore"
 import GameAreaCard from "src/components/GameAreaCard"
 import SideDeckCard from "src/components/SideDeckCard"
 
@@ -22,32 +24,32 @@ export default function PazaakTableContent() {
       {/* Opponent Game Area */}
       <View style={styles.opponentGameArea}>
         <View style={styles.opponentCards}>
-          <GameAreaCard color="green" value="3" />
+          <GameAreaTotalScore score={10} />
           <GameAreaCard color="green" value="2" />
           <GameAreaCard color="green" value="4" />
-          <GameAreaCard color="green" value="3" />
           <GameAreaCard color="blue" value="+4" />
-          <GameAreaCard color="red" value="-3" />
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="green" value="3" />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
         </View>
       </View>
 
       {/* Player Game Area */}
       <View style={styles.playerGameArea}>
         <View style={styles.playerCards}>
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="green" value="2" />
+          <GameAreaTotalScore score={9} />
+          <GameAreaCard color="green" value="8" />
           <GameAreaCard color="green" value="4" />
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="blue" value="+4" />
           <GameAreaCard color="red" value="-3" />
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="green" value="3" />
-          <GameAreaCard color="green" value="3" />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
+          <GameAreaPlaceholder />
         </View>
       </View>
 
