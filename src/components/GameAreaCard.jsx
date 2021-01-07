@@ -9,31 +9,41 @@ const c = {
   gray: ["#CCCCCC", "#999999", "#777777", "#555555"],
 }
 
-export default function PlayingCard({ color = "green", value = "+1" }) {
+export default function GameAreaCard({ color = "green", value = "+1" }) {
   return (
-    <View style={styles.paper}>
-      <View style={styles.topRound}>
-        <LinearGradient colors={[c[color][0], c[color][1]]} style={styles.gradient}>
-          <View style={styles.topArrow} />
-        </LinearGradient>
-        <View style={styles.numberStripe}>
-          <Text style={styles.numberText}>{value}</Text>
+    <View style={styles.container}>
+      <View style={styles.paper}>
+        <View style={styles.topRound}>
+          <LinearGradient colors={[c[color][0], c[color][1]]} style={styles.gradient}>
+            <View style={styles.topArrow} />
+          </LinearGradient>
+          <View style={styles.numberStripe}>
+            <Text style={styles.numberText}>{value}</Text>
+          </View>
+          <LinearGradient colors={[c[color][1], c[color][2]]} style={styles.gradient}>
+            <View style={styles.bottomArrow} />
+          </LinearGradient>
         </View>
-        <LinearGradient colors={[c[color][1], c[color][2]]} style={styles.gradient}>
-          <View style={styles.bottomArrow} />
-        </LinearGradient>
-      </View>
-      <View style={styles.bottomRound}>
-        <LinearGradient colors={[c[color][2], c[color][3]]} style={styles.gradient} />
+        <View style={styles.bottomRound}>
+          <LinearGradient colors={[c[color][2], c[color][3]]} style={styles.gradient} />
+        </View>
       </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    flexBasis: 40,
+    marginLeft: 4,
+    marginRight: 4,
+    marginTop: 5,
+    marginBottom: 5,
+  },
   paper: {
-    height: 70,
-    width: 50,
+    height: 50,
+    width: 40,
     borderRadius: 10,
     backgroundColor: `#FFF`,
     flexDirection: `column`,
@@ -44,7 +54,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 2,
-    margin: 5,
   },
   topRound: {
     marginTop: `10%`,
@@ -66,6 +75,9 @@ const styles = StyleSheet.create({
   },
   numberText: {
     fontWeight: `900`,
+    fontSize: 10,
+    marginTop: -1,
+    marginRight: -1,
   },
   bottomRound: {
     flex: 1,

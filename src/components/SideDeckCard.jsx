@@ -9,7 +9,7 @@ const c = {
   gray: ["#CCCCCC", "#999999", "#777777", "#555555"],
 }
 
-export default function PlayingCard({ color = "green", value = "+1" }) {
+export default function SideDeckCard({ color = "green", value = "+1" }) {
   return (
     <View style={styles.paper}>
       <View style={styles.topRound}>

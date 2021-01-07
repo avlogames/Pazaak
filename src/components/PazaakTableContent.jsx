@@ -1,13 +1,63 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
+import GameAreaCard from "src/components/GameAreaCard"
+import SideDeckCard from "src/components/SideDeckCard"
 
 export default function PazaakTableContent() {
   return (
     <View style={styles.container}>
+      {/* Inner Ring */}
       <View style={styles.innerRingWrapper}>
         <View style={styles.innerRing}></View>
       </View>
-      {/* <View style={styles.playerStripe}></View> */}
+
+      {/* Opponent Side Deck */}
+      <View style={styles.opponentStripe}>
+        <SideDeckCard color="gray" value="" />
+        <SideDeckCard color="gray" value="" />
+        <SideDeckCard color="gray" value="" />
+        <SideDeckCard color="gray" value="" />
+      </View>
+
+      {/* Opponent Game Area */}
+      <View style={styles.opponentGameArea}>
+        <View style={styles.opponentCards}>
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="2" />
+          <GameAreaCard color="green" value="4" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="blue" value="+4" />
+          <GameAreaCard color="red" value="-3" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="3" />
+        </View>
+      </View>
+
+      {/* Player Game Area */}
+      <View style={styles.playerGameArea}>
+        <View style={styles.playerCards}>
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="2" />
+          <GameAreaCard color="green" value="4" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="blue" value="+4" />
+          <GameAreaCard color="red" value="-3" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="3" />
+          <GameAreaCard color="green" value="3" />
+        </View>
+      </View>
+
+      {/* Player Side Deck */}
+      <View style={styles.playerStripe}>
+        <SideDeckCard color="blue" value="+1" />
+        <SideDeckCard color="red" value="-3" />
+        <SideDeckCard color="red" value="-1" />
+        <SideDeckCard color="blue" value="+5" />
+      </View>
     </View>
   )
 }
@@ -15,6 +65,7 @@ export default function PazaakTableContent() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "space-between",
   },
   innerRingWrapper: {
     height: `100%`,
@@ -29,8 +80,46 @@ const styles = StyleSheet.create({
     borderColor: `rgba(255, 255, 255, 0.05)`,
   },
   playerStripe: {
-    backgroundColor: `rgba(255, 255, 255, 0.3)`,
+    flexDirection: `row`,
+    justifyContent: `center`,
+    backgroundColor: `#2E385A`,
     width: `100%`,
-    height: 100,
+    paddingTop: `2%`,
+    paddingBottom: `2%`,
+    marginBottom: `15%`,
+  },
+  playerGameArea: {
+    flex: 1,
+    borderTopWidth: 2.5,
+    borderTopColor: `#2E385A`,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  playerCards: {
+    width: 240,
+    flexDirection: `row`,
+    flexWrap: `wrap`,
+  },
+
+  opponentGameArea: {
+    flex: 1,
+    borderBottomWidth: 2.5,
+    borderBottomColor: `#2E385A`,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  opponentCards: {
+    width: 240,
+    flexDirection: `row`,
+    flexWrap: `wrap`,
+  },
+  opponentStripe: {
+    flexDirection: `row`,
+    justifyContent: `center`,
+    backgroundColor: `#2E385A`,
+    width: `100%`,
+    paddingTop: `1%`,
+    paddingBottom: `1%`,
+    marginTop: `15%`,
   },
 })
