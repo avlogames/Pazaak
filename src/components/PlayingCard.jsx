@@ -10,33 +10,26 @@ const c = {
 
 export default function PlayingCard({ color = "green", value = "+1" }) {
   return (
-    <View style={styles.container}>
-      <View style={styles.paper}>
-        <View style={styles.topRound}>
-          <LinearGradient colors={[c[color][0], c[color][1]]} style={styles.gradient}>
-            <View style={styles.topArrow} />
-          </LinearGradient>
-          <View style={styles.numberStripe}>
-            <Text style={styles.numberText}>{value}</Text>
-          </View>
-          <LinearGradient colors={[c[color][1], c[color][2]]} style={styles.gradient}>
-            <View style={styles.bottomArrow} />
-          </LinearGradient>
+    <View style={styles.paper}>
+      <View style={styles.topRound}>
+        <LinearGradient colors={[c[color][0], c[color][1]]} style={styles.gradient}>
+          <View style={styles.topArrow} />
+        </LinearGradient>
+        <View style={styles.numberStripe}>
+          <Text style={styles.numberText}>{value}</Text>
         </View>
-        <View style={styles.bottomRound}>
-          <LinearGradient colors={[c[color][2], c[color][3]]} style={styles.gradient} />
-        </View>
+        <LinearGradient colors={[c[color][1], c[color][2]]} style={styles.gradient}>
+          <View style={styles.bottomArrow} />
+        </LinearGradient>
+      </View>
+      <View style={styles.bottomRound}>
+        <LinearGradient colors={[c[color][2], c[color][3]]} style={styles.gradient} />
       </View>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: `center`,
-    justifyContent: `center`,
-  },
   paper: {
     height: 80,
     width: 60,
@@ -50,6 +43,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 2,
+    margin: 5
   },
   topRound: {
     marginTop: `10%`,
