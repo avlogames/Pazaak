@@ -15,9 +15,9 @@ export default function Pazzak() {
 
   return (
     <Provider store={store}>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
-        <Navigator initialRouteName="SideDeckStory">
+        <Navigator initialRouteName="Pazaak">
           {/* Screens */}
           <Screen name="Home" component={HomeScreen} options={options.noHeader} />
           <Screen name="NewGame" component={NewGameScreen} />
