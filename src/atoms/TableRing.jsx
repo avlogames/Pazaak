@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 
-export default function PazaakTable({ children }) {
+export default function TableRing({ children }) {
   return (
     <View style={styles.container}>
       <View style={styles.tableShadow}>
@@ -10,7 +10,12 @@ export default function PazaakTable({ children }) {
           <LinearGradient style={styles.tableRing} colors={["#008EFE", "#004187"]}>
             <View style={styles.fabricWrapper}>
               <LinearGradient style={styles.tableFabric} colors={["#24305B", "#1A244B"]}>
-                <View style={styles.tableContent}>{children}</View>
+                <View style={styles.tableContent}>
+                  <View style={styles.innerRingWrapper}>
+                    <View style={styles.innerRing}></View>
+                  </View>
+                  {children}
+                </View>
               </LinearGradient>
             </View>
           </LinearGradient>
@@ -57,5 +62,17 @@ const styles = StyleSheet.create({
   tableContent: {
     flex: 1,
     overflow: "hidden",
+  },
+  innerRingWrapper: {
+    height: `100%`,
+    width: `100%`,
+    position: `absolute`,
+  },
+  innerRing: {
+    flex: 1,
+    margin: 20,
+    borderRadius: 200,
+    borderWidth: 5,
+    borderColor: `rgba(255, 255, 255, 0.05)`,
   },
 })

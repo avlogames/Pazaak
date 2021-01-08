@@ -2,11 +2,8 @@ import "react-native-gesture-handler"
 import React from "react"
 import { StatusBar } from "expo-status-bar"
 import store, { Provider } from "src/redux/store"
-import HomeScreen from "src/screens/HomeScreen"
-import NewGameScreen from "src/screens/NewGameScreen"
-import JoinGameScreen from "src/screens/JoinGameScreen"
 import PazaakScreen from "src/screens/PazaakScreen"
-import AllCardsStory from "src/stories/AllCardsStory"
+import SmallCardsStory from "src/stories/SmallCardsStory"
 import SideDeckStory from "src/stories/SideDeckStory"
 import useStackNavigator from "src/hooks/useStackNavigator"
 
@@ -19,13 +16,10 @@ export default function Pazzak() {
       <NavigationContainer>
         <Navigator initialRouteName="Pazaak">
           {/* Screens */}
-          <Screen name="Home" component={HomeScreen} options={options.noHeader} />
-          <Screen name="NewGame" component={NewGameScreen} />
-          <Screen name="JoinGame" component={JoinGameScreen} />
           <Screen name="Pazaak" component={PazaakScreen} options={options.noHeader} />
 
           {/* Stories */}
-          <Screen name="AllCardsStory" component={AllCardsStory} options={options.noHeader} />
+          <Screen name="SmallCardsStory" component={SmallCardsStory} options={options.noHeader} />
           <Screen name="SideDeckStory" component={SideDeckStory} options={options.noHeader} />
         </Navigator>
       </NavigationContainer>

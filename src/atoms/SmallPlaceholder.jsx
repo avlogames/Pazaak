@@ -1,7 +1,7 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
 
-export default function GameAreaPlaceholder() {
+export default function SmallPlaceholder() {
   return (
     <View style={styles.container}>
       <View style={styles.paper}></View>
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   paper: {
-    height: 50,
+    height: 55,
     width: 40,
     borderRadius: 10,
     backgroundColor: `#141B36`,

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
-import PlayingCard from "src/components/PlayingCard"
+import BigCard from "src/atoms/BigCard"
 import getSideDeck from "src/library/getSideDeck"
 
 export default function SideDeckStory() {
@@ -12,7 +12,7 @@ export default function SideDeckStory() {
       <Text>Player</Text>
       <View style={styles.cards}>
         {sideDecks.player.map((card) => (
-          <PlayingCard key={`player${card.value}`} {...card} />
+          <BigCard key={`player${card.value}`} {...card} />
         ))}
       </View>
 
@@ -20,7 +20,7 @@ export default function SideDeckStory() {
       <Text>Opponent</Text>
       <View style={styles.cards}>
         {sideDecks.opponent.map((card) => (
-          <PlayingCard key={`opponent${card.value}`} {...card} />
+          <BigCard key={`opponent${card.value}`} {...card} />
         ))}
       </View>
     </View>

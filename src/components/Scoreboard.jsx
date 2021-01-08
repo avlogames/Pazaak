@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 
-export default function GameAreaTotalScore({ score = 9, wins = 1 }) {
+export default function Scoreboard({ score = 9, wins = 1 }) {
   return (
     <View style={styles.container}>
       <View style={styles.paper}>
