@@ -15,10 +15,10 @@ export default function PazaakTableContent() {
 
       {/* Opponent Side Deck */}
       <View style={styles.opponentStripe}>
-        <SideDeckCard color="gray" value="" />
-        <SideDeckCard color="gray" value="" />
-        <SideDeckCard color="gray" value="" />
-        <SideDeckCard color="gray" value="" />
+        <GameAreaCard color="gray" value="" />
+        <GameAreaCard color="gray" value="" />
+        <GameAreaPlaceholder />
+        <GameAreaPlaceholder />
       </View>
 
       {/* Opponent Game Area */}
@@ -120,6 +120,8 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
     backgroundColor: `#2E385A`,
     width: `100%`,
+    paddingLeft: 50,
+    paddingRight: 50,
     paddingTop: `1%`,
     paddingBottom: `1%`,
     marginTop: `15%`,

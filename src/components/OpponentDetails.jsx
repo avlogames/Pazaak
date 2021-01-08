@@ -4,7 +4,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
 import avatar from "src/assets/opponent-avatar.png"
 
-export default function OpponentDetails({ active = true }) {
+export default function OpponentDetails({ active = false }) {
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>

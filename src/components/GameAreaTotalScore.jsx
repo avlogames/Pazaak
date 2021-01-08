@@ -7,7 +7,7 @@ export default function GameAreaTotalScore({ score = 9, wins = 1 }) {
     <View style={styles.container}>
       <View style={styles.paper}>
         <View style={styles.gradientWrapper}>
-          <LinearGradient colors={["#FF0047", "#0090FF"]} style={styles.gradient}>
+          <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient}>
             <View style={styles.innerCircle}>
               <Text style={styles.score}>{score}</Text>
             </View>
@@ -15,13 +15,13 @@ export default function GameAreaTotalScore({ score = 9, wins = 1 }) {
         </View>
         <View style={styles.winRow}>
           <View style={styles.winWrapper}>
-            <LinearGradient colors={["#FF0047", "#0090FF"]} style={styles.gradient} />
+            <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} />
           </View>
           <View style={styles.winWrapper}>
-            {/* <LinearGradient colors={["#FF0047", "#0090FF"]} style={styles.gradient} /> */}
+            <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} />
           </View>
           <View style={styles.winWrapper}>
-            {/* <LinearGradient colors={["#FF0047", "#0090FF"]} style={styles.gradient} /> */}
+            {/* <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} /> */}
           </View>
         </View>
       </View>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     flexDirection: `column`,
     alignItems: `center`,
-    justifyContent: `flex-start`,
+    justifyContent: `center`,
     overflow: `hidden`,
   },
   gradientWrapper: {
@@ -71,13 +71,13 @@ const styles = StyleSheet.create({
   },
   winRow: {
     flexDirection: `row`,
-    flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 5,
   },
   winWrapper: {
-    height: 5,
-    width: 5,
+    height: 7,
+    width: 7,
     backgroundColor: `#141B36`,
     borderRadius: 5,
     overflow: "hidden",
