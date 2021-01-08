@@ -3,15 +3,15 @@ import { useSelector } from "react-redux"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
-import avatar from "src/assets/player-avatar.png"
+import avatar from "src/assets/fat-man.jpg"
 
 export default function PlayerDetails() {
-  const { currentMove, playerUserId } = useSelector((s) => s.pazaak)
+  const { activeTurn, playerUserId, playerName } = useSelector((s) => s.pazaak)
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
         <View style={styles.activeWrapper}>
-          {currentMove === playerUserId && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
+          {activeTurn === playerUserId && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
           <View style={styles.profileBorderWrapper}>
             <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
             <View style={styles.profileImageWrapper}>
@@ -19,7 +19,7 @@ export default function PlayerDetails() {
             </View>
           </View>
         </View>
-        <Text style={styles.name}>Haytherecharlie</Text>
+        <Text style={styles.name}>{playerName}</Text>
         <View style={styles.creditsContainer}>
           <Image style={styles.icon} source={creditIcon} />
           <Text style={styles.creditsText}>2,756</Text>

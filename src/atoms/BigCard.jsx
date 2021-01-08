@@ -1,6 +1,8 @@
 import React from "react"
+import { useDispatch, useSelector } from "react-redux"
 import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native"
+import { PLACEHOLDER } from "src/constants"
 
 const colors = {
   red: ["#FF6D3A", "#FF573F", "#FF4342", "#FD0043"],
@@ -9,9 +11,20 @@ const colors = {
   gray: ["#CCCCCC", "#999999", "#777777", "#555555"],
 }
 
-export default function BigCard({ type = "green", value = "+1" }) {
+export default function BigCard({ type = "green", value = "+1", index }) {
+  const dispatch = useDispatch()
+  const { playerStack, playerSideDeck } = useSelector((s) => s.pazaak)
+
+  const playCard = () => {
+    const sideDeck = playerSideDeck
+    const stack = playerStack
+    sideDeck[index] = PLACEHOLDER
+    stack[playerStack.indexOf(PLACEHOLDER)] = { type, value }
+    dispatch({ type: "player-play-card", sideDeck, stack })
+  }
+
   return (
-    <TouchableOpacity style={styles.paper} onPress={() => {}}>
+    <TouchableOpacity style={styles.paper} onPress={playCard}>
       <View style={styles.topRound}>
         <LinearGradient colors={[colors[type][0], colors[type][1]]} style={styles.gradient}>
           <View style={styles.topArrow} />
