@@ -2,29 +2,29 @@ import React from "react"
 import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native"
 
-const c = {
+const colors = {
   red: ["#FF6D3A", "#FF573F", "#FF4342", "#FD0043"],
   blue: ["#008EFD", "#0070D0", "#0059AD", "#004086"],
   green: ["#9FDD00", "#A5D600", "#97BD41", "#92B059"],
   gray: ["#CCCCCC", "#999999", "#777777", "#555555"],
 }
 
-export default function BigCard({ color = "green", value = "+1" }) {
+export default function BigCard({ type = "green", value = "+1" }) {
   return (
     <TouchableOpacity style={styles.paper} onPress={() => {}}>
       <View style={styles.topRound}>
-        <LinearGradient colors={[c[color][0], c[color][1]]} style={styles.gradient}>
+        <LinearGradient colors={[colors[type][0], colors[type][1]]} style={styles.gradient}>
           <View style={styles.topArrow} />
         </LinearGradient>
         <View style={styles.numberStripe}>
           <Text style={styles.numberText}>{value}</Text>
         </View>
-        <LinearGradient colors={[c[color][1], c[color][2]]} style={styles.gradient}>
+        <LinearGradient colors={[colors[type][1], colors[type][2]]} style={styles.gradient}>
           <View style={styles.bottomArrow} />
         </LinearGradient>
       </View>
       <View style={styles.bottomRound}>
-        <LinearGradient colors={[c[color][2], c[color][3]]} style={styles.gradient} />
+        <LinearGradient colors={[colors[type][2], colors[type][3]]} style={styles.gradient} />
       </View>
     </TouchableOpacity>
   )

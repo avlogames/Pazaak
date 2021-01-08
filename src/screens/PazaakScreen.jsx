@@ -1,16 +1,25 @@
 import React from "react"
 import { StyleSheet } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
-import PazaakTable from "src/entities/PazaakTable"
-import OpponentDetails from "src/entities/OpponentDetails"
-import PlayerDetails from "src/entities/PlayerDetails"
-import EndTurnStand from "src/entities/EndTurnStand"
+import TableRing from "src/atoms/TableRing"
+import OpponentSideDeck from "src/components/OpponentSideDeck"
+import OpponentStack from "src/components/OpponentStack"
+import PlayerStack from "src/components/PlayerStack"
+import PlayerSideDeck from "src/components/PlayerSideDeck"
+import OpponentDetails from "src/components/OpponentDetails"
+import PlayerDetails from "src/components/PlayerDetails"
+import EndTurnStand from "src/components/EndTurnStand"
 
 export default function PazaakScreen() {
   return (
     <LinearGradient colors={["#131935", "#222E58", "#131935"]} style={styles.container}>
       <OpponentDetails />
-      <PazaakTable />
+      <TableRing>
+        <OpponentSideDeck />
+        <OpponentStack />
+        <PlayerStack />
+        <PlayerSideDeck />
+      </TableRing>
       <PlayerDetails />
       <EndTurnStand />
     </LinearGradient>

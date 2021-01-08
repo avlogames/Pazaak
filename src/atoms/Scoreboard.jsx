@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 
-export default function Scoreboard({ score = 9, wins = 1 }) {
+export default function Scoreboard({ score = 0, wins = 0 }) {
   return (
     <View style={styles.container}>
       <View style={styles.paper}>
@@ -15,13 +15,13 @@ export default function Scoreboard({ score = 9, wins = 1 }) {
         </View>
         <View style={styles.winRow}>
           <View style={styles.winWrapper}>
-            <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} />
+            {wins > 0 && <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} />}
           </View>
           <View style={styles.winWrapper}>
-            <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} />
+            {wins > 1 && <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} />}
           </View>
           <View style={styles.winWrapper}>
-            {/* <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} /> */}
+            {wins > 2 && <LinearGradient colors={["#FF0044", "#FF623C"]} style={styles.gradient} />}
           </View>
         </View>
       </View>

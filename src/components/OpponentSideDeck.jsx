@@ -1,15 +1,18 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import { StyleSheet, View } from "react-native"
 import SmallCard from "src/atoms/SmallCard"
 import SmallPlaceholder from "src/atoms/SmallPlaceholder"
 
 export default function OpponentSideDeck() {
+  const { opponentSideDeck } = useSelector((s) => s.pazaak)
+
   return (
     <View style={styles.container}>
-      <SmallCard color="gray" value="" />
-      <SmallCard color="gray" value="" />
-      <SmallPlaceholder />
-      <SmallPlaceholder />
+      {opponentSideDeck.map((val, i) => {
+        if (val.type === "placeholder") return <SmallPlaceholder key={`o-place-${i}`} />
+        return <SmallCard key={`o-card-${i}`} type="gray" value="" />
+      })}
     </View>
   )
 }

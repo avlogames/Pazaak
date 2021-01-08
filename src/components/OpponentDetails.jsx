@@ -1,10 +1,12 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
 import avatar from "src/assets/opponent-avatar.png"
 
-export default function OpponentDetails({ active = false }) {
+export default function OpponentDetails() {
+  const { currentMove, opponentUserId } = useSelector((s) => s.pazaak)
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
@@ -14,7 +16,9 @@ export default function OpponentDetails({ active = false }) {
           <Text style={styles.creditsText}>1,326</Text>
         </View>
         <View style={styles.activeWrapper}>
-          {active && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
+          {currentMove === opponentUserId && (
+            <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />
+          )}
           <View style={styles.profileBorderWrapper}>
             <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
             <View style={styles.profileImageWrapper}>

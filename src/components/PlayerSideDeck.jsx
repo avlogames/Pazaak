@@ -1,14 +1,17 @@
 import React from "react"
+import { useSelector } from "react-redux"
 import { StyleSheet, View } from "react-native"
 import BigCard from "src/atoms/BigCard"
 
 export default function Name() {
+  const { playerSideDeck } = useSelector((s) => s.pazaak)
+
   return (
     <View style={styles.container}>
-      <BigCard color="blue" value="+1" />
-      <BigCard color="red" value="-3" />
-      <BigCard color="red" value="-1" />
-      <BigCard color="blue" value="+5" />
+      {playerSideDeck.map((val, i) => {
+        if (val.type === "placeholder") return <SmallPlaceholder key={`o-place-${i}`} />
+        return <BigCard key={`o-card-${i}`} {...val} />
+      })}
     </View>
   )
 }
