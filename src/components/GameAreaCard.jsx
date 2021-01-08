@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   paper: {
-    height: 50,
+    height: 55,
     width: 40,
     borderRadius: 10,
     backgroundColor: `#FFF`,

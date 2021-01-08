@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
     backgroundColor: `#2E385A`,
     width: `100%`,
-    paddingTop: `2%`,
-    paddingBottom: `2%`,
+    paddingTop: `1%`,
+    paddingBottom: `1%`,
     marginBottom: `15%`,
   },
   playerGameArea: {
