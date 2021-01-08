@@ -11,7 +11,6 @@ export default function GameAreaPlaceholder() {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
     flexBasis: 40,
     marginLeft: 4,
     marginRight: 4,

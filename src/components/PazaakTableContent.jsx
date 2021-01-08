@@ -124,6 +124,6 @@ const styles = StyleSheet.create({
     paddingRight: 50,
     paddingTop: `1%`,
     paddingBottom: `1%`,
-    marginTop: `15%`,
+    marginTop: `12%`,
   },
 })

@@ -34,7 +34,6 @@ export default function GameAreaCard({ color = "green", value = "+1" }) {
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
     flexBasis: 40,
     marginLeft: 4,
     marginRight: 4,

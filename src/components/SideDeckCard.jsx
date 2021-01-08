@@ -1,6 +1,6 @@
 import React from "react"
 import { LinearGradient } from "expo-linear-gradient"
-import { StyleSheet, View, Text } from "react-native"
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native"
 
 const c = {
   red: ["#FF6D3A", "#FF573F", "#FF4342", "#FD0043"],
@@ -11,7 +11,7 @@ const c = {
 
 export default function SideDeckCard({ color = "green", value = "+1" }) {
   return (
-    <View style={styles.paper}>
+    <TouchableOpacity style={styles.paper} onPress={() => {}}>
       <View style={styles.topRound}>
         <LinearGradient colors={[c[color][0], c[color][1]]} style={styles.gradient}>
           <View style={styles.topArrow} />
@@ -26,7 +26,7 @@ export default function SideDeckCard({ color = "green", value = "+1" }) {
       <View style={styles.bottomRound}>
         <LinearGradient colors={[c[color][2], c[color][3]]} style={styles.gradient} />
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
