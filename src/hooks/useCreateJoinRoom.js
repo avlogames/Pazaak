@@ -8,9 +8,12 @@ export default function useCreateJoinRoom() {
   const [code, setCode] = useState("")
 
   const handleSubmit = async () => {
-    await createJoinRoom(code)
-    setAsyncStorage("code", code)
-    navigate("Pazaak")
+    const success = await createJoinRoom(code)
+    if (success) {
+      setAsyncStorage("code", code)
+      return navigate("Pazaak")
+    }
+    return navigate("Join Error")
   }
 
   return [code, setCode, handleSubmit]

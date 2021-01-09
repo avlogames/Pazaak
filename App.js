@@ -4,6 +4,7 @@ import { StatusBar } from "expo-status-bar"
 import useUuid from "src/hooks/useUuid"
 import useStackNavigator from "src/hooks/useStackNavigator"
 import store, { Provider } from "src/redux/store"
+import JoinErrorScreen from "src/screens/JoinErrorScreen"
 import LandingScreen from "src/screens/LandingScreen"
 import PazaakScreen from "src/screens/PazaakScreen"
 
@@ -18,6 +19,7 @@ export default function Pazzak() {
         <Navigator initialRouteName="Landing" screenOptions={{ headerShown: false, gestureEnabled: false }}>
           <Screen name="Landing" component={LandingScreen} />
           <Screen name="Pazaak" component={PazaakScreen} />
+          <Screen name="Join Error" component={JoinErrorScreen} />
         </Navigator>
       </NavigationContainer>
     </Provider>

@@ -1,5 +1,4 @@
 import React from "react"
-import { useSelector } from "react-redux"
 import Background from "src/atoms/Background"
 import TableRing from "src/atoms/TableRing"
 import OpponentSideDeck from "src/components/OpponentSideDeck"
@@ -12,8 +11,7 @@ import EndTurnStand from "src/components/EndTurnStand"
 import useOnSnapshot from "src/hooks/useOnSnapshot"
 
 export default function PazaakScreen() {
-  useOnSnapshot()
-  const pazaak = useSelector((s) => s.pazaak)
+  const [pazaak] = useOnSnapshot()
 
   return (
     <Background>

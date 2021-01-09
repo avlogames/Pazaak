@@ -7,17 +7,28 @@ export default async function createJoinRoom(code) {
   const uuid = await getAsyncStorage("uuid")
   const roomDoc = await db.doc(`ROOMS/${code}`).get()
 
+  // Create Room if no other players.
   if (!roomDoc.exists) {
     const room = newRoomModel(code, uuid)
     room.players.push(newPlayerModel("src/assets/fat-man.jpg", "Dr. Sex", uuid))
-    return await db.doc(`ROOMS/${code}`).set(room)
+    await db.doc(`ROOMS/${code}`).set(room)
+    return true
   }
 
-  // What if there is already two people?
+  // Join room if one other player.
   if (roomDoc.exists) {
     const room = roomDoc.data()
-    room.players.push(newPlayerModel("src/assets/fat-woman.jpg", "Madame Burger", uuid))
-    room.waitingForOpponent = false
-    return await db.doc(`ROOMS/${code}`).set(room)
+    if (room.players.length === 1) {
+      // Ensure the player isn't already me.
+      if (room.players[0].uuid !== uuid) {
+        room.players.push(newPlayerModel("src/assets/fat-woman.jpg", "Madame Burger", uuid))
+        room.waitingForOpponent = false
+        await db.doc(`ROOMS/${code}`).set(room)
+      }
+      return true
+    }
   }
+
+  // Fail if room is full.
+  return false
 }
