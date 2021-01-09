@@ -3,25 +3,27 @@ import types from "prop-types"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
+import fatMan from "src/assets/fat-man.jpg"
+import fatWoman from "src/assets/fat-woman.jpg"
 
-export default function OpponentDetails({ turn, uuid, name, avatar, credits }) {
+export default function OpponentDetails({ turn, name, avatar, credits }) {
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
-        {name && <Text style={styles.name}>{name}</Text>}
-        {credits && (
+        {name.length && <Text style={styles.name}>{name}</Text>}
+        {credits > -1 && (
           <View style={styles.creditsContainer}>
             <Image style={styles.icon} source={creditIcon} />
-            <Text style={styles.creditsText}>1,326</Text>
+            <Text style={styles.creditsText}>{credits}</Text>
           </View>
         )}
         <View style={styles.activeWrapper}>
-          {turn === uuid && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
-          {avatar && (
+          {turn && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
+          {avatar.length && (
             <View style={styles.profileBorderWrapper}>
               <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
               <View style={styles.profileImageWrapper}>
-                <Image style={styles.profileImageAvatar} source={avatar} />
+                <Image style={styles.profileImageAvatar} source={avatar === "fatman" ? fatMan : fatWoman} />
               </View>
             </View>
           )}
@@ -35,16 +37,14 @@ OpponentDetails.defaultProps = {
   avatar: null,
   credits: null,
   name: null,
-  turn: "00",
-  uuid: "0",
+  turn: false,
 }
 
 OpponentDetails.propTypes = {
   avatar: types.string,
-  credits: types.string,
+  credits: types.number,
   name: types.string,
-  turn: types.string,
-  uuid: types.string,
+  turn: types.bool,
 }
 
 const styles = StyleSheet.create({

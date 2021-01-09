@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { db } from "src/api/firebase"
 import getAsyncStorage from "src/helpers/getAsyncStorage"
 
 export default function useOnSnapshot() {
+  const dispatch = useDispatch()
   const pazaak = useSelector((s) => s.pazaak)
   const [code, setCode] = useState(null)
   const [uuid, setUuid] = useState(null)
@@ -21,12 +22,17 @@ export default function useOnSnapshot() {
   useEffect(() => {
     getCode()
     getUuid()
-  })
+  }, [])
 
   useEffect(() => {
     if (code) {
-      const unsubscribe = db.doc(`ROOMS/${code}`).onSnapshot((snapshot) => {
-        console.log(snapshot.data())
+      let last = {}
+      const unsubscribe = db.doc(`ROOMS/${code}`).onSnapshot((doc) => {
+        const value = doc.data()
+        if (value !== last) {
+          last = value
+          dispatch({ type: "hydrate", value })
+        }
       })
       return () => unsubscribe()
     }

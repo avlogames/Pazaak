@@ -3,11 +3,11 @@ import types from "prop-types"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 
-export default function EndTurnStand({ activePlayer, stand }) {
+export default function EndTurnStand({ turn, stand }) {
   return (
     <View style={styles.container}>
       {/* End Turn */}
-      <TouchableOpacity style={styles.button} onPress={() => {}} disabled={!activePlayer || stand}>
+      <TouchableOpacity style={styles.button} onPress={() => {}} disabled={!turn || stand}>
         <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
           <Text style={styles.text}>END TURN</Text>
         </LinearGradient>
@@ -24,12 +24,12 @@ export default function EndTurnStand({ activePlayer, stand }) {
 }
 
 EndTurnStand.defaultProps = {
-  activePlayer: false,
+  turn: false,
   stand: false,
 }
 
 EndTurnStand.propTypes = {
-  activePlayer: types.bool,
+  turn: types.bool,
   stand: types.bool,
 }
 

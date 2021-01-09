@@ -1,10 +1,11 @@
 import React from "react"
 import types from "prop-types"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, ActivityIndicator, Text, View } from "react-native"
 
 export default function LoadingSpinner({ label }) {
   return (
     <View style={styles.container}>
+      <ActivityIndicator style={styles.spinner} size="large" color="#FFF" />
       <Text style={styles.text}>{label}</Text>
     </View>
   )
@@ -28,5 +29,8 @@ const styles = StyleSheet.create({
     color: `#FFF`,
     fontSize: 20,
     fontWeight: `700`,
+  },
+  spinner: {
+    marginBottom: 20,
   },
 })
