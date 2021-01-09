@@ -1,9 +1,10 @@
 import React from "react"
+import types from "prop-types"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
 
-export default function PlayerDetails({ turn = "00", uuid = "0", name = null, avatar = null, credits = null }) {
+export default function PlayerDetails({ turn, uuid, name, avatar, credits }) {
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
@@ -28,6 +29,22 @@ export default function PlayerDetails({ turn = "00", uuid = "0", name = null, av
       </View>
     </View>
   )
+}
+
+PlayerDetails.defaultProps = {
+  avatar: null,
+  credits: null,
+  name: null,
+  turn: "00",
+  uuid: "0",
+}
+
+PlayerDetails.propTypes = {
+  avatar: types.string,
+  credits: types.string,
+  name: types.string,
+  turn: types.string,
+  uuid: types.string,
 }
 
 const styles = StyleSheet.create({

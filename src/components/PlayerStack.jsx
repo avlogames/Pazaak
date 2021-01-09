@@ -1,10 +1,11 @@
 import React from "react"
+import types from "prop-types"
 import { StyleSheet, View } from "react-native"
 import SmallCard from "src/atoms/SmallCard"
 import SmallPlaceholder from "src/atoms/SmallPlaceholder"
 import Scoreboard from "src/atoms/Scoreboard"
 
-export default function PlayerStack({ stack = [], score = null }) {
+export default function PlayerStack({ score, stack }) {
   return (
     <View style={styles.container}>
       <View style={styles.playerCards}>
@@ -16,6 +17,21 @@ export default function PlayerStack({ stack = [], score = null }) {
       </View>
     </View>
   )
+}
+
+PlayerStack.defaultProps = {
+  score: null,
+  stack: [],
+}
+
+PlayerStack.propTypes = {
+  score: types.number,
+  stack: types.arrayOf(
+    types.exact({
+      type: types.string.isRequired,
+      value: types.number.isRequired,
+    })
+  ),
 }
 
 const styles = StyleSheet.create({

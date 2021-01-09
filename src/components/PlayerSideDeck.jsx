@@ -1,10 +1,10 @@
 import React from "react"
+import types from "prop-types"
 import { StyleSheet, View } from "react-native"
 import BigCard from "src/atoms/BigCard"
 import BigPlaceholder from "src/atoms/BigPlaceholder"
 
-export default function Name({ sideDeck = [] }) {
-
+export default function PlayerSideDeck({ sideDeck }) {
   return (
     <View style={styles.container}>
       {sideDeck.map((val, i) => {
@@ -13,6 +13,19 @@ export default function Name({ sideDeck = [] }) {
       })}
     </View>
   )
+}
+
+PlayerSideDeck.defaultProps = {
+  sideDeck: [],
+}
+
+PlayerSideDeck.propTypes = {
+  sideDeck: types.arrayOf(
+    types.exact({
+      type: types.string.isRequired,
+      value: types.number.isRequired,
+    })
+  ),
 }
 
 const styles = StyleSheet.create({

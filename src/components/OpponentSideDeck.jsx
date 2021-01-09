@@ -1,9 +1,10 @@
 import React from "react"
+import types from "prop-types"
 import { StyleSheet, View } from "react-native"
 import SmallCard from "src/atoms/SmallCard"
 import SmallPlaceholder from "src/atoms/SmallPlaceholder"
 
-export default function OpponentSideDeck({ sideDeck = [] }) {
+export default function OpponentSideDeck({ sideDeck }) {
   return (
     <View style={styles.container}>
       {sideDeck.map((val, i) => {
@@ -12,6 +13,19 @@ export default function OpponentSideDeck({ sideDeck = [] }) {
       })}
     </View>
   )
+}
+
+OpponentSideDeck.defaultProps = {
+  sideDeck: [],
+}
+
+OpponentSideDeck.propTypes = {
+  sideDeck: types.arrayOf(
+    types.exact({
+      type: types.string.isRequired,
+      value: types.number.isRequired,
+    })
+  ),
 }
 
 const styles = StyleSheet.create({
