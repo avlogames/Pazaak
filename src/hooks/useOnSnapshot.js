@@ -32,5 +32,5 @@ export default function useOnSnapshot() {
     }
   }, [code])
 
-  return [pazaak]
+  return [code, pazaak, uuid]
 }
