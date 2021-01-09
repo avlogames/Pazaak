@@ -3,24 +3,25 @@ import types from "prop-types"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
-
-export default function PlayerDetails({ turn, uuid, name, avatar, credits }) {
+import fatMan from "src/assets/fat-man.jpg"
+import fatWoman from "src/assets/fat-woman.jpg"
+export default function PlayerDetails({ turn, name, avatar, credits }) {
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
         <View style={styles.activeWrapper}>
-          {turn === uuid && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
-          {avatar && (
+          {turn && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
+          {avatar.length && (
             <View style={styles.profileBorderWrapper}>
               <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
               <View style={styles.profileImageWrapper}>
-                <Image style={styles.profileImageAvatar} source={avatar} />
+                <Image style={styles.profileImageAvatar} source={avatar === "fatman" ? fatMan : fatWoman} />
               </View>
             </View>
           )}
         </View>
-        {name && <Text style={styles.name}>{name}</Text>}
-        {credits && (
+        {name.length && <Text style={styles.name}>{name}</Text>}
+        {credits > -1 && (
           <View style={styles.creditsContainer}>
             <Image style={styles.icon} source={creditIcon} />
             <Text style={styles.creditsText}>2,756</Text>
@@ -36,15 +37,13 @@ PlayerDetails.defaultProps = {
   credits: null,
   name: null,
   turn: "00",
-  uuid: "0",
 }
 
 PlayerDetails.propTypes = {
   avatar: types.string,
-  credits: types.string,
+  credits: types.number,
   name: types.string,
-  turn: types.string,
-  uuid: types.string,
+  turn: types.bool,
 }
 
 const styles = StyleSheet.create({

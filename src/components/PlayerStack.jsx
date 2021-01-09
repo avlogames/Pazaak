@@ -9,7 +9,7 @@ export default function PlayerStack({ score, stack }) {
   return (
     <View style={styles.container}>
       <View style={styles.playerCards}>
-        {score && <Scoreboard score={score} />}
+        {score > -1 && <Scoreboard score={score} />}
         {stack.map((val, i) => {
           if (val.type === "placeholder") return <SmallPlaceholder key={`o-place-${i}`} />
           return <SmallCard key={`o-card-${i}`} {...val} />

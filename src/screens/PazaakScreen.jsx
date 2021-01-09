@@ -40,17 +40,18 @@ export default function PazaakScreen() {
     const opponent = pazaak.players[index === 1 ? 0 : 1]
     const playerTurn = pazaak.activePlayer === player.uuid
     const opponentTurn = pazaak.activePlayer === opponent.uuid
+    
     return (
       <Background>
-        <OpponentDetails turn={opponentTurn} uuid={opponent.uuid} name={opponent.name} avatar={opponent.avatar} credits={opponent.credits} />
-        {/* <TableRing>
+        <OpponentDetails turn={opponentTurn} name={opponent.name} avatar={opponent.avatar} credits={opponent.credits} />
+        <TableRing>
           <OpponentSideDeck sideDeck={opponent.sideDeck} />
           <OpponentStack stack={opponent.stack} score={opponent.score} />
-          <PlayerStack  stack={player.stack} score={player.score} />
+          <PlayerStack stack={player.stack} score={player.score} />
           <PlayerSideDeck sideDeck={player.sideDeck} />
         </TableRing>
-        <PlayerDetails turn={playerTurn} uuid={player.uuid} name={player.name} avatar={player.avatar} credits={player.credits} />
-        <EndTurnStand turn={playerTurn} stand={player.stand} /> */}
+        <PlayerDetails turn={playerTurn} name={player.name} avatar={player.avatar} credits={player.credits} />
+        <EndTurnStand turn={playerTurn} stand={player.stand} />
       </Background>
     )
   }
