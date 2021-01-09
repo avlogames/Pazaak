@@ -1,10 +1,10 @@
 import { db } from "src/api/firebase"
 import newRoomModel from "src/models/newRoomModel"
 import newPlayerModel from "src/models/newPlayerModel"
-import getUuidFromAsyncStorage from "src/helpers/getUuidFromAsyncStorage"
+import getAsyncStorage from "src/helpers/getAsyncStorage"
 
 export default async function createJoinRoom(code) {
-  const uuid = await getUuidFromAsyncStorage()
+  const uuid = await getAsyncStorage("uuid")
   const roomDoc = await db.doc(`ROOMS/${code}`).get()
 
   if (!roomDoc.exists) {

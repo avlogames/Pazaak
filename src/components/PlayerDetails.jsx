@@ -1,29 +1,30 @@
 import React from "react"
-import { useSelector } from "react-redux"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
-import avatar from "src/assets/fat-man.jpg"
 
-export default function PlayerDetails() {
-  const { activeTurn, playerUserId, playerName } = useSelector((s) => s.pazaak)
+export default function PlayerDetails({ turn = "00", uuid = "0", name = null, avatar = null, credits = null }) {
   return (
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
         <View style={styles.activeWrapper}>
-          {activeTurn === playerUserId && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
-          <View style={styles.profileBorderWrapper}>
-            <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
-            <View style={styles.profileImageWrapper}>
-              <Image style={styles.profileImageAvatar} source={avatar} />
+          {turn === uuid && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
+          {avatar && (
+            <View style={styles.profileBorderWrapper}>
+              <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
+              <View style={styles.profileImageWrapper}>
+                <Image style={styles.profileImageAvatar} source={avatar} />
+              </View>
             </View>
+          )}
+        </View>
+        {name && <Text style={styles.name}>{name}</Text>}
+        {credits && (
+          <View style={styles.creditsContainer}>
+            <Image style={styles.icon} source={creditIcon} />
+            <Text style={styles.creditsText}>2,756</Text>
           </View>
-        </View>
-        <Text style={styles.name}>{playerName}</Text>
-        <View style={styles.creditsContainer}>
-          <Image style={styles.icon} source={creditIcon} />
-          <Text style={styles.creditsText}>2,756</Text>
-        </View>
+        )}
       </View>
     </View>
   )
