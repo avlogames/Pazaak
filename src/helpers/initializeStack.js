@@ -1,4 +1,4 @@
-import dealCard from "src/library/dealCard"
+import dealCard from "src/helpers/dealCard"
 import { PLACEHOLDER } from "src/constants"
 
 export default function initializeStack(draw = false) {

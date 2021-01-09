@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import BigCard from "src/atoms/BigCard"
-import getSideDeck from "src/library/getSideDeck"
+import initializeSideDeck from "src/helpers/initializeSideDeck"
 
 export default function SideDeckStory() {
-  const [sideDecks] = useState(getSideDeck())
+  const [sideDecks] = useState(initializeSideDeck())
 
   return (
     <View style={styles.container}>

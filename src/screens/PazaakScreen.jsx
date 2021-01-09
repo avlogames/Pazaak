@@ -1,6 +1,5 @@
 import React from "react"
-import { StyleSheet } from "react-native"
-import { LinearGradient } from "expo-linear-gradient"
+import Background from "src/atoms/Background"
 import TableRing from "src/atoms/TableRing"
 import OpponentSideDeck from "src/components/OpponentSideDeck"
 import OpponentStack from "src/components/OpponentStack"
@@ -12,7 +11,7 @@ import EndTurnStand from "src/components/EndTurnStand"
 
 export default function PazaakScreen() {
   return (
-    <LinearGradient colors={["#131935", "#222E58", "#131935"]} style={styles.container}>
+    <Background>
       <OpponentDetails />
       <TableRing>
         <OpponentSideDeck />
@@ -22,16 +21,6 @@ export default function PazaakScreen() {
       </TableRing>
       <PlayerDetails />
       <EndTurnStand />
-    </LinearGradient>
+    </Background>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    display: "flex",
-    flexDirection: `column`,
-    alignItems: "stretch",
-    paddingTop: 60,
-  },
-})

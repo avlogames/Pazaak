@@ -1,4 +1,4 @@
-export default function getSideDeck() {
+export default function initializeSideDeck() {
   const cards = []
   const allValues = [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]
   for (let x = 0; x < 4; x++) {
