@@ -5,14 +5,14 @@ import BigCard from "src/atoms/BigCard"
 import BigPlaceholder from "src/atoms/BigPlaceholder"
 import usePlayCard from "src/hooks/usePlayCard"
 
-export default function PlayerSideDeck({ sideDeck }) {
-  const [playCard] = usePlayCard()
+export default function PlayerSideDeck({ sideDeck, turn, uoid }) {
+  const [playCard] = usePlayCard(uoid)
 
   return (
     <View style={styles.container}>
       {sideDeck.map((val, i) => {
         if (val.type === "placeholder") return <BigPlaceholder key={`o-place-${i}`} />
-        return <BigCard playCard={playCard} key={`o-card-${i}`} {...val} index={i} />
+        return <BigCard playCard={playCard} key={`o-card-${i}`} {...val} turn={turn} index={i} />
       })}
     </View>
   )
@@ -20,6 +20,8 @@ export default function PlayerSideDeck({ sideDeck }) {
 
 PlayerSideDeck.defaultProps = {
   sideDeck: [],
+  turn: false,
+  uoid: null
 }
 
 PlayerSideDeck.propTypes = {
@@ -29,6 +31,8 @@ PlayerSideDeck.propTypes = {
       value: types.number.isRequired,
     })
   ),
+  turn: types.bool,
+  uoid: types.string
 }
 
 const styles = StyleSheet.create({

@@ -48,15 +48,15 @@ export default function PazaakScreen() {
 
     return (
       <Background>
-        <OpponentDetails turn={opponentTurn} name={opponent.name} avatar={opponent.avatar} credits={opponent.credits} />
+        <OpponentDetails turn={opponentTurn} name={opponent.name} avatar={opponent.avatar} credits={opponent.credits} cancel={cancel} />
         <TableRing>
           <OpponentSideDeck sideDeck={opponent.sideDeck} />
-          <OpponentStack stack={opponent.stack} score={opponent.score} standing={opponentStanding} />
-          <PlayerStack stack={player.stack} score={player.score} standing={playerStanding} />
-          <PlayerSideDeck sideDeck={player.sideDeck} />
+          <OpponentStack stack={opponent.stack} score={opponent.score} standing={opponentStanding} wins={opponent.wins} />
+          <PlayerStack stack={player.stack} score={player.score} standing={playerStanding} wins={player.wins} />
+          <PlayerSideDeck sideDeck={player.sideDeck} turn={playerTurn} uoid={uoid} />
         </TableRing>
         <PlayerDetails turn={playerTurn} name={player.name} avatar={player.avatar} credits={player.credits} />
-        <EndTurnStand turn={playerTurn} standing={playerStanding} />
+        <EndTurnStand turn={playerTurn} standing={playerStanding} uoid={uoid} />
       </Background>
     )
   }

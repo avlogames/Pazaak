@@ -2,7 +2,7 @@ import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 
-export default function Scoreboard({ score = 0, wins = 0, standing = false }) {
+export default function Scoreboard({ score = 0, wins = 0 }) {
   const scoreColor = score === 20 ? ["#FF623C", "#92B059"] : ["#FF0048", "#FF7637"]
   return (
     <View style={styles.container}>

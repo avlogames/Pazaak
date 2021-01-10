@@ -1,14 +1,17 @@
 import React from "react"
 import types from "prop-types"
-import { StyleSheet, Image, Text, View } from "react-native"
+import { StyleSheet, Image, Text, TouchableOpacity, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
 import fatMan from "src/assets/fat-man.jpg"
 import fatWoman from "src/assets/fat-woman.jpg"
 
-export default function OpponentDetails({ turn, name, avatar, credits }) {
+export default function OpponentDetails({ turn, name, avatar, credits, cancel }) {
   return (
     <View style={styles.container}>
+      <TouchableOpacity style={styles.quitButton} onPress={cancel}>
+        <Text style={styles.quitText}>{`FORFEIT GAME`}</Text>
+      </TouchableOpacity>
       <View style={styles.detailsContainer}>
         {name.length && <Text style={styles.name}>{name}</Text>}
         {credits > -1 && (
@@ -35,6 +38,7 @@ export default function OpponentDetails({ turn, name, avatar, credits }) {
 
 OpponentDetails.defaultProps = {
   avatar: null,
+  cancel: () => {},
   credits: null,
   name: null,
   turn: false,
@@ -42,6 +46,7 @@ OpponentDetails.defaultProps = {
 
 OpponentDetails.propTypes = {
   avatar: types.string,
+  cancel: types.func,
   credits: types.number,
   name: types.string,
   turn: types.bool,
@@ -49,11 +54,24 @@ OpponentDetails.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    flexBasis: 30,
+    flexBasis: 40,
     zIndex: 100,
   },
+  quitButton: {
+    position: "absolute",
+    left: 20,
+    top: -10,
+    width: 55,
+    zIndex: 1000,
+  },
+  quitText: {
+    color: `#FFF`,
+    fontWeight: `800`,
+    fontSize: 12,
+    textAlign: `center`,
+  },
   detailsContainer: {
-    marginTop: -20,
+    marginTop: -10,
     width: `100%`,
     alignItems: `center`,
   },

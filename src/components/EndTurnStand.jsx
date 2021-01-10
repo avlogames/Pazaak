@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import types from "prop-types"
 import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
@@ -8,26 +8,30 @@ export default function EndTurnStand({ turn, standing, uoid }) {
   const [endTurn, stand] = useEndTurnStand(uoid)
   return (
     <View style={styles.container}>
-      {/* End Turn */}
-      <TouchableOpacity style={styles.button} onPress={endTurn} disabled={!turn || standing}>
-        <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-          <Text style={styles.text}>END TURN</Text>
-        </LinearGradient>
-      </TouchableOpacity>
-
-      {/* Stand */}
-      {standing ? (
-        <TouchableOpacity style={styles.button} onPress={stand} disabled>
-          <LinearGradient style={styles.gradient} colors={["#2B336C", "#2B336C"]}>
-            <Text style={styles.text}>STAND</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+      {turn ? (
+        standing ? (
+          <View style={styles.waitingWrapper}>
+            <Text style={styles.waitingText}>Standing...</Text>
+          </View>
+        ) : (
+          <Fragment>
+            {/* End Turn */}
+            <TouchableOpacity style={styles.button} onPress={endTurn} disabled={!turn || standing}>
+              <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
+                <Text style={styles.text}>END TURN</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={stand}>
+              <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
+                <Text style={styles.text}>STAND</Text>
+              </LinearGradient>
+            </TouchableOpacity>
+          </Fragment>
+        )
       ) : (
-        <TouchableOpacity style={styles.button} onPress={stand}>
-          <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-            <Text style={styles.text}>STAND</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+        <View style={styles.waitingWrapper}>
+          <Text style={styles.waitingText}>Waiting for opponent...</Text>
+        </View>
       )}
     </View>
   )
@@ -73,5 +77,16 @@ const styles = StyleSheet.create({
     color: `#FFF`,
     fontWeight: `700`,
     fontSize: 12,
+  },
+  waitingWrapper: {
+    height: `100%`,
+    alignItems: "center",
+    flex: 1,
+  },
+  waitingText: {
+    color: `#FFF`,
+    fontWeight: `700`,
+    fontSize: 18,
+    marginTop: 10,
   },
 })

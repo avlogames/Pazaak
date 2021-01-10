@@ -18,7 +18,7 @@ export default function SmallCard({ type = "green", value = 1 }) {
             <View style={styles.topArrow} />
           </LinearGradient>
           <View style={styles.numberStripe}>
-            <Text style={styles.numberText}>{`${value > 0 ? "+" : ""}${value}`}</Text>
+            <Text style={styles.numberText}>{`${value > 0 && type !== "green"  ? "+" : ""}${value}`}</Text>
           </View>
           <LinearGradient colors={[colors[type][1], colors[type][2]]} style={styles.gradient}>
             <View style={styles.bottomArrow} />

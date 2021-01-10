@@ -5,11 +5,11 @@ import SmallCard from "src/atoms/SmallCard"
 import SmallPlaceholder from "src/atoms/SmallPlaceholder"
 import Scoreboard from "src/atoms/Scoreboard"
 
-export default function PlayerStack({ score, stack, standing }) {
+export default function PlayerStack({ score, stack, standing, wins }) {
   return (
     <View style={styles.container}>
       <View style={styles.playerCards}>
-        <Scoreboard score={score} standing={standing} />
+        <Scoreboard score={score} standing={standing} wins={wins} />
         {stack.map((val, i) => {
           if (val.type === "placeholder") return <SmallPlaceholder key={`o-place-${i}`} />
           return <SmallCard key={`o-card-${i}`} {...val} />
@@ -23,6 +23,7 @@ PlayerStack.defaultProps = {
   score: null,
   stack: [],
   standing: false,
+  wins: 0,
 }
 
 PlayerStack.propTypes = {
@@ -34,6 +35,7 @@ PlayerStack.propTypes = {
     })
   ),
   standing: types.bool,
+  wins: types.number,
 }
 
 const styles = StyleSheet.create({

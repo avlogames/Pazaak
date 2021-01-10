@@ -9,9 +9,9 @@ const colors = {
   gray: ["#CCCCCC", "#999999", "#777777", "#555555"],
 }
 
-export default function BigCard({ type = "green", value = "+1", playCard, index }) {
+export default function BigCard({ type = "green", value = "+1", playCard, turn, index }) {
   return (
-    <TouchableOpacity style={styles.paper} onPress={() => playCard(index)}>
+    <TouchableOpacity style={styles.paper} onPress={() => (turn ? playCard(index) : {})}>
       <View style={styles.topRound}>
         <LinearGradient colors={[colors[type][0], colors[type][1]]} style={styles.gradient}>
           <View style={styles.topArrow} />
