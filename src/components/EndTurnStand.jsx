@@ -1,36 +1,46 @@
 import React from "react"
 import types from "prop-types"
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import useEndTurnStand from "src/hooks/useEndTurnStand"
 
-export default function EndTurnStand({ turn, stand }) {
+export default function EndTurnStand({ turn, standing, uoid }) {
+  const [endTurn, stand] = useEndTurnStand(uoid)
   return (
     <View style={styles.container}>
       {/* End Turn */}
-      <TouchableOpacity style={styles.button} onPress={() => {}} disabled={!turn || stand}>
+      <TouchableOpacity style={styles.button} onPress={endTurn} disabled={!turn || standing}>
         <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
           <Text style={styles.text}>END TURN</Text>
         </LinearGradient>
       </TouchableOpacity>
 
       {/* Stand */}
-      <TouchableOpacity style={styles.button} onPress={() => {}}>
-        <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-          <Text style={styles.text}>STAND</Text>
-        </LinearGradient>
-      </TouchableOpacity>
+      {standing ? (
+        <TouchableOpacity style={styles.button} onPress={stand} disabled>
+          <LinearGradient style={styles.gradient} colors={["#2B336C", "#2B336C"]}>
+            <Text style={styles.text}>STAND</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      ) : (
+        <TouchableOpacity style={styles.button} onPress={stand}>
+          <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
+            <Text style={styles.text}>STAND</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      )}
     </View>
   )
 }
 
 EndTurnStand.defaultProps = {
   turn: false,
-  stand: false,
+  standing: false,
 }
 
 EndTurnStand.propTypes = {
   turn: types.bool,
-  stand: types.bool,
+  standing: types.bool,
 }
 
 const styles = StyleSheet.create({
