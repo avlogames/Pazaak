@@ -26,8 +26,8 @@ export default function useEndTurnStand(uoid) {
       if (opponentScore > playerScore && opponentScore < 21) newPazaak.players[uoid].wins += 1
       newPazaak.players[currentPlayer].stack = initializeStack(false)
       newPazaak.players[nextPlayer].stack = initializeStack(true)
-      newPazaak.players[uuid].score = newPazaak.players[uuid].stack.reduce((a, v) => (a + v.value), 0)
-      newPazaak.players[uoid].score = newPazaak.players[uoid].stack.reduce((a, v) => (a + v.value), 0)
+      newPazaak.players[uuid].score = newPazaak.players[uuid].stack.reduce((a, v) => a + v.value, 0)
+      newPazaak.players[uoid].score = newPazaak.players[uoid].stack.reduce((a, v) => a + v.value, 0)
       newPazaak.activePlayer = nextPlayer
       newPazaak.standing = []
       return updateDocument(newPazaak)
@@ -44,12 +44,12 @@ export default function useEndTurnStand(uoid) {
   const endTurn = () => {
     const newPazaak = pazaak
     const newCard = dealCard()
-    
+
     // Opponent is standing.
     if (pazaak.standing.includes(uoid)) {
       const stack = newPazaak.players[uuid].stack
       stack[stack.findIndex((o) => o.type === "placeholder")] = newCard
-      newPazaak.players[uuid].score = stack.reduce((a, v) => (a + v.value), 0)
+      newPazaak.players[uuid].score = stack.reduce((a, v) => a + v.value, 0)
       return updateDocument(newPazaak)
     }
 
@@ -57,11 +57,10 @@ export default function useEndTurnStand(uoid) {
     const stack = newPazaak.players[uoid].stack
     stack[stack.findIndex((o) => o.type === "placeholder")] = newCard
 
-    newPazaak.players[uoid].score = stack.reduce((a, v) => (a + v.value), 0)
+    newPazaak.players[uoid].score = stack.reduce((a, v) => a + v.value, 0)
     newPazaak.activePlayer = uoid
     console.log(newPazaak)
     return updateDocument(newPazaak)
-
   }
 
   return [endTurn, stand]
