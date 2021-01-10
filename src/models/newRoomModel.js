@@ -1,8 +1,10 @@
 export default function newRoomModel(code, uuid) {
   return {
     activePlayer: uuid,
-    players: [],
+    gameOver: false,
+    players: {},
     roomCode: code,
+    standing: [],
     waitingForOpponent: true,
   }
 }

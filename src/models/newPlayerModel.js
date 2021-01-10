@@ -11,7 +11,6 @@ export default function newPlayerModel(avatar, draw, name, uuid) {
     score,
     sideDeck: initializeSideDeck(),
     stack,
-    stand: false,
     uuid,
     wins: 0,
   }

@@ -38,9 +38,8 @@ export default function PazaakScreen() {
   }
 
   if (code && uuid && pazaak) {
-    const index = pazaak.players.map((p) => p.uuid).indexOf(uuid)
-    const player = pazaak.players[index]
-    const opponent = pazaak.players[index === 1 ? 0 : 1]
+    const player = pazaak.players[uuid]
+    const opponent = Object.values(pazaak.players).find((o) => o.uuid !== uuid)
     const playerTurn = pazaak.activePlayer === player.uuid
     const opponentTurn = pazaak.activePlayer === opponent.uuid
 

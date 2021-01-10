@@ -14,13 +14,12 @@ export default function usePlayCard() {
 
   const playCard = async (cindex) => {
     const newPazaak = pazaak
-    const pindex = newPazaak.players.findIndex((p) => p.uuid === uuid)
-    const player = newPazaak.players[pindex]
+    const player = newPazaak.players[uuid]
     const card = player.sideDeck[cindex]
     player.stack[player.stack.findIndex((o) => o.type === "placeholder")] = card
     player.score = player.stack.reduce((a, o) => (a += o.value), 0)
     player.sideDeck[cindex] = PLACEHOLDER
-    newPazaak.players[pindex] = player
+    newPazaak.players[uuid] = player
     return updateDocument(newPazaak)
   }
 
