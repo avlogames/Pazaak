@@ -3,9 +3,8 @@ import { useSelector } from "react-redux"
 import updateDocument from "src/api/updateDocument"
 import dealCard from "src/helpers/dealCard"
 import getAsyncStorage from "src/helpers/getAsyncStorage"
-import { PLACEHOLDER } from "src/constants"
 
-export default function useEndTurnStand() {
+export default function useEndTurnStand(uoid) {
   const pazaak = useSelector((s) => s.pazaak)
   const [uuid, setUuid] = useState(null)
 
@@ -28,6 +27,7 @@ export default function useEndTurnStand() {
       const newCard = dealCard()
       const oStack = newPazzak.players[okey].stack
       oStack[oStack.findIndex((o) => o.type === "placeholder")] = newCard
+      newPazzak.players[okey].score = oStack.reduce((a, v) => (a + v.value), 0)
       updateDocument(newPazzak)
     }
   }
