@@ -5,7 +5,8 @@ export default function initializeStack(draw = false) {
   const stack = []
   let limit = draw ? 8 : 9
   if (draw) {
-    stack.push(dealCard())
+    const card = dealCard()
+    stack.push(card)
   }
   for (let i = 0; i < limit; i++) {
     stack.push(PLACEHOLDER)

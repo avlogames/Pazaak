@@ -3,13 +3,16 @@ import types from "prop-types"
 import { StyleSheet, View } from "react-native"
 import BigCard from "src/atoms/BigCard"
 import BigPlaceholder from "src/atoms/BigPlaceholder"
+import usePlayCard from "src/hooks/usePlayCard"
 
 export default function PlayerSideDeck({ sideDeck }) {
+  const [playCard] = usePlayCard()
+
   return (
     <View style={styles.container}>
       {sideDeck.map((val, i) => {
         if (val.type === "placeholder") return <BigPlaceholder key={`o-place-${i}`} />
-        return <BigCard key={`o-card-${i}`} {...val} index={i} />
+        return <BigCard playCard={playCard} key={`o-card-${i}`} {...val} index={i} />
       })}
     </View>
   )

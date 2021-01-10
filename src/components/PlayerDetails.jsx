@@ -24,7 +24,7 @@ export default function PlayerDetails({ turn, name, avatar, credits }) {
         {credits > -1 && (
           <View style={styles.creditsContainer}>
             <Image style={styles.icon} source={creditIcon} />
-            <Text style={styles.creditsText}>2,756</Text>
+            <Text style={styles.creditsText}>{credits}</Text>
           </View>
         )}
       </View>

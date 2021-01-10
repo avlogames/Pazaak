@@ -10,7 +10,7 @@ export default async function createJoinRoom(code) {
   // Create Room if no other players.
   if (!roomDoc.exists) {
     const room = newRoomModel(code, uuid)
-    room.players.push(newPlayerModel("fatman", "Dr. Sex", uuid))
+    room.players.push(newPlayerModel("fatman", true, "The Gentleman", uuid))
     await db.doc(`ROOMS/${code}`).set(room)
     return true
   }
@@ -24,9 +24,9 @@ export default async function createJoinRoom(code) {
       return true
     }
 
-    // If space for more users add the user to the room. 
+    // If space for more users add the user to the room.
     if (room.players.length === 1) {
-      room.players.push(newPlayerModel("fatwoman", "Madame Burger", uuid))
+      room.players.push(newPlayerModel("fatwoman", false, "The Living Ham", uuid))
       room.waitingForOpponent = false
       await db.doc(`ROOMS/${code}`).set(room)
       return true

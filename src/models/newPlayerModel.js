@@ -1,14 +1,16 @@
 import initializeSideDeck from "src/helpers/initializeSideDeck"
 import initializeStack from "src/helpers/initializeStack"
 
-export default function newPlayerModel(avatar, name, uuid) {
+export default function newPlayerModel(avatar, draw, name, uuid) {
+  const stack = initializeStack(draw)
+  const score = stack.reduce((a, v) => (a += v.value), 0)
   return {
     avatar,
-    credits: 0,
+    credits: 100,
     name,
-    score: 0,
+    score,
     sideDeck: initializeSideDeck(),
-    stack: initializeStack(),
+    stack,
     stand: false,
     uuid,
     wins: 0,
