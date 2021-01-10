@@ -22,8 +22,8 @@ export default function useEndTurnStand(uoid) {
     if (pazaak.standing.includes(uoid)) {
       const playerScore = pazaak.players[uuid].score
       const opponentScore = pazaak.players[uoid].score
-      if (playerScore > opponentScore) newPazaak.players[uuid].wins += 1
-      if (playerScore < opponentScore) newPazaak.players[uoid].wins += 1
+      if (playerScore > opponentScore && playerScore < 21) newPazaak.players[uuid].wins += 1
+      if (opponentScore > playerScore && opponentScore < 21) newPazaak.players[uoid].wins += 1
       newPazaak.players[currentPlayer].stack = initializeStack(false)
       newPazaak.players[nextPlayer].stack = initializeStack(true)
       newPazaak.players[uuid].score = newPazaak.players[uuid].stack.reduce((a, v) => (a + v.value), 0)
