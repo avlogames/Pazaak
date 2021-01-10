@@ -1,7 +1,7 @@
 import React from "react"
 import pathOr from "ramda.pathor"
-
-import { Text } from "react-native"
+import { useNavigation } from "@react-navigation/native"
+import { Button } from "react-native"
 import Background from "src/atoms/Background"
 import TableRing from "src/atoms/TableRing"
 import useOnSnapshot from "src/hooks/useOnSnapshot"
@@ -15,13 +15,16 @@ import EndTurnStand from "src/components/EndTurnStand"
 import LoadingSpinner from "src/components/LoadingSpinner"
 
 export default function PazaakScreen() {
+  const { navigate } = useNavigation()
   const [code, pazaak, uuid] = useOnSnapshot()
   const waiting = pathOr(true, ["waitingForOpponent"], pazaak)
 
   if (waiting) {
     return (
       <Background>
-        <LoadingSpinner label={`Waiting for Opponent`} />
+        <LoadingSpinner label={`Waiting for Opponent`}>
+          <Button onPress={() => navigate("Landing")} title="Go Back" />
+        </LoadingSpinner>
       </Background>
     )
   }
@@ -29,7 +32,9 @@ export default function PazaakScreen() {
   if (!code || !uuid || !pazaak) {
     return (
       <Background>
-        <LoadingSpinner label={`Loading game data...`} />
+        <LoadingSpinner label={`Loading game data...`}>
+          <Button onPress={() => navigate("Landing")} title="Go Back" />
+        </LoadingSpinner>
       </Background>
     )
   }
@@ -40,7 +45,7 @@ export default function PazaakScreen() {
     const opponent = pazaak.players[index === 1 ? 0 : 1]
     const playerTurn = pazaak.activePlayer === player.uuid
     const opponentTurn = pazaak.activePlayer === opponent.uuid
-    
+
     return (
       <Background>
         <OpponentDetails turn={opponentTurn} name={opponent.name} avatar={opponent.avatar} credits={opponent.credits} />

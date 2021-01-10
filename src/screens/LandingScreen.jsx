@@ -36,8 +36,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "flex-start",
-    marginTop: 100,
+    justifyContent: "center",
   },
   wrapper: {
     alignItems: "center",
@@ -50,6 +49,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     marginBottom: 20,
+    borderRadius: 15,
+    fontWeight: `700`
   },
   button: {
     borderWidth: 1,
@@ -58,10 +59,11 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
     alignItems: "center",
+    borderRadius: 15,
   },
   text: {
     color: `#FFF`,
-    fontWeight: `800`,
+    fontWeight: `900`,
     fontSize: 16,
   },
 })

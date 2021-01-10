@@ -2,11 +2,12 @@ import React from "react"
 import types from "prop-types"
 import { StyleSheet, ActivityIndicator, Text, View } from "react-native"
 
-export default function LoadingSpinner({ label }) {
+export default function LoadingSpinner({ children, label }) {
   return (
     <View style={styles.container}>
       <ActivityIndicator style={styles.spinner} size="large" color="#FFF" />
       <Text style={styles.text}>{label}</Text>
+      {children}
     </View>
   )
 }
