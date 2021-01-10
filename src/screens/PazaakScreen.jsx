@@ -1,6 +1,5 @@
 import React from "react"
 import pathOr from "ramda.pathor"
-import { useNavigation } from "@react-navigation/native"
 import { Button } from "react-native"
 import Background from "src/atoms/Background"
 import TableRing from "src/atoms/TableRing"
@@ -15,15 +14,14 @@ import EndTurnStand from "src/components/EndTurnStand"
 import LoadingSpinner from "src/components/LoadingSpinner"
 
 export default function PazaakScreen() {
-  const { navigate } = useNavigation()
-  const [code, pazaak, uuid] = useOnSnapshot()
+  const [code, pazaak, uuid, cancel] = useOnSnapshot()
   const waiting = pathOr(true, ["waitingForOpponent"], pazaak)
 
   if (waiting) {
     return (
       <Background>
         <LoadingSpinner label={`Waiting for Opponent`}>
-          <Button onPress={() => navigate("Landing")} title="Go Back" />
+          <Button onPress={cancel} title="Go Back" />
         </LoadingSpinner>
       </Background>
     )
@@ -33,7 +31,7 @@ export default function PazaakScreen() {
     return (
       <Background>
         <LoadingSpinner label={`Loading game data...`}>
-          <Button onPress={() => navigate("Landing")} title="Go Back" />
+          <Button onPress={cancel} title="Go Back" />
         </LoadingSpinner>
       </Background>
     )
