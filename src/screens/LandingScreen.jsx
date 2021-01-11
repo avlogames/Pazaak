@@ -11,7 +11,8 @@ export default function LandingScreen() {
     <Background>
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.wrapper}>
-          <PazaakLogo />
+          {/* <PazaakLogo /> */}
+          <Text style={styles.title}>Enter Room Code</Text>
           <TextInput
             style={styles.input}
             editable
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     borderRadius: 15,
-    fontWeight: `700`
+    fontWeight: `700`,
   },
   button: {
     borderWidth: 1,
@@ -65,5 +66,11 @@ const styles = StyleSheet.create({
     color: `#FFF`,
     fontWeight: `900`,
     fontSize: 16,
+  },
+  title: {
+    color: `#FFF`,
+    fontWeight: `900`,
+    fontSize: 30,
+    textTransform: `uppercase`
   },
 })

@@ -33,8 +33,6 @@ export default function useEndTurnStand(uoid) {
     if (pazaak.standing.includes(uoid)) {
       const playerScore = pazaak.players[uuid].score
       const opponentScore = pazaak.players[uoid].score
-      console.log("playerScore", playerScore)
-      console.log("opponentScore", opponentScore)
       if ((opponentScore > 20 && playerScore < 21) || (playerScore > opponentScore && playerScore < 21))
         newPazaak.players[uuid].wins += 1
       if ((playerScore > 20 && opponentScore < 21) || (opponentScore > playerScore && opponentScore < 21))
@@ -74,7 +72,6 @@ export default function useEndTurnStand(uoid) {
 
     newPazaak.players[uoid].score = stack.reduce((a, v) => a + v.value, 0)
     newPazaak.activePlayer = uoid
-    console.log(newPazaak)
     return updateDocument(newPazaak)
   }
 
