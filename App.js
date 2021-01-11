@@ -9,7 +9,7 @@ import JoinErrorScreen from "src/screens/JoinErrorScreen"
 import LandingScreen from "src/screens/LandingScreen"
 import PazaakScreen from "src/screens/PazaakScreen"
 
-export default function Pazzak() {
+export default function Pazaak() {
   useUuid()
   const [NavigationContainer, Navigator, Screen] = useStackNavigator()
 

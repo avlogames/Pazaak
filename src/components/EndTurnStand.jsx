@@ -4,21 +4,21 @@ import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import useEndTurnStand from "src/hooks/useEndTurnStand"
 
-export default function EndTurnStand({ turn, standing, uoid }) {
+export default function EndTurnStand({ turn, playerStanding, opponentStanding, uoid }) {
   const [endTurn, stand] = useEndTurnStand(uoid)
   return (
     <View style={styles.container}>
       {turn ? (
-        standing ? (
+        playerStanding ? (
           <View style={styles.waitingWrapper}>
             <Text style={styles.waitingText}>Standing...</Text>
           </View>
         ) : (
           <Fragment>
             {/* End Turn */}
-            <TouchableOpacity style={styles.button} onPress={endTurn} disabled={!turn || standing}>
+            <TouchableOpacity style={styles.button} onPress={endTurn} disabled={!turn || playerStanding}>
               <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-                <Text style={styles.text}>END TURN</Text>
+                <Text style={styles.text}>{opponentStanding ? `HIT ME` : `NEXT`}</Text>
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={stand}>

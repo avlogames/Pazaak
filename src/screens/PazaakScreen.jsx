@@ -12,6 +12,7 @@ import OpponentDetails from "src/components/OpponentDetails"
 import PlayerDetails from "src/components/PlayerDetails"
 import EndTurnStand from "src/components/EndTurnStand"
 import LoadingSpinner from "src/components/LoadingSpinner"
+import PopupModal from "src/atoms/PopupModal"
 
 export default function PazaakScreen() {
   const [code, pazaak, uuid, cancel] = useOnSnapshot()
@@ -48,7 +49,13 @@ export default function PazaakScreen() {
 
     return (
       <Background>
-        <OpponentDetails turn={opponentTurn} name={opponent.name} avatar={opponent.avatar} credits={opponent.credits} cancel={cancel} />
+        <OpponentDetails
+          turn={opponentTurn}
+          name={opponent.name}
+          avatar={opponent.avatar}
+          credits={opponent.credits}
+          cancel={cancel}
+        />
         <TableRing>
           <OpponentSideDeck sideDeck={opponent.sideDeck} />
           <OpponentStack stack={opponent.stack} score={opponent.score} standing={opponentStanding} wins={opponent.wins} />
@@ -56,7 +63,8 @@ export default function PazaakScreen() {
           <PlayerSideDeck sideDeck={player.sideDeck} turn={playerTurn} uoid={uoid} />
         </TableRing>
         <PlayerDetails turn={playerTurn} name={player.name} avatar={player.avatar} credits={player.credits} />
-        <EndTurnStand turn={playerTurn} standing={playerStanding} uoid={uoid} />
+        <EndTurnStand turn={playerTurn} playerStanding={playerStanding} opponentStanding={opponentStanding} uoid={uoid} />
+        {/* <PopupModal ></PopupModal> */}
       </Background>
     )
   }

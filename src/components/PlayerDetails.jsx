@@ -3,8 +3,8 @@ import types from "prop-types"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/credit-icon.png"
-import fatMan from "src/assets/fat-man.jpg"
-import fatWoman from "src/assets/fat-woman.jpg"
+import man from "src/assets/man.png"
+import woman from "src/assets/woman.png"
 export default function PlayerDetails({ turn, name, avatar, credits }) {
   return (
     <View style={styles.container}>
@@ -15,7 +15,7 @@ export default function PlayerDetails({ turn, name, avatar, credits }) {
             <View style={styles.profileBorderWrapper}>
               <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
               <View style={styles.profileImageWrapper}>
-                <Image style={styles.profileImageAvatar} source={avatar === "fatman" ? fatMan : fatWoman} />
+                <Image style={styles.profileImageAvatar} source={avatar === "man" ? man : woman} />
               </View>
             </View>
           )}
