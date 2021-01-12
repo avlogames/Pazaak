@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, Image } from "react-native"
-import logo from "src/assets/pazaak.png"
+import logo from "src/assets/images/pazaak.png"
 
 export default function PazaakLogo() {
   return <Image style={styles.logo} source={logo} />

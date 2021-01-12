@@ -1,6 +1,4 @@
-const initialState = {}
-
-export default function Reducer(state = initialState, action) {
+export default function reducerPazaak(state = {}, action) {
   switch (action.type) {
     case "hydrate":
       return { ...action.value }

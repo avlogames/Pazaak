@@ -2,9 +2,9 @@ import React from "react"
 import types from "prop-types"
 import { StyleSheet, Image, Text, TouchableOpacity, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
-import creditIcon from "src/assets/credit-icon.png"
-import man from "src/assets/man.png"
-import woman from "src/assets/woman.png"
+import creditIcon from "src/assets/images/credit-icon.png"
+import man from "src/assets/images/man.png"
+import woman from "src/assets/images/woman.png"
 
 export default function OpponentDetails({ turn, name, avatar, credits, cancel }) {
   return (

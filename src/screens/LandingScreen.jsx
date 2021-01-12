@@ -1,7 +1,6 @@
 import React from "react"
 import { StyleSheet, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from "react-native"
 import Background from "src/atoms/Background"
-import PazaakLogo from "src/atoms/PazaakLogo"
 import useCreateJoinRoom from "src/hooks/useCreateJoinRoom"
 
 export default function LandingScreen() {
