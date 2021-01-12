@@ -2,6 +2,7 @@ import React from "react"
 import { useNavigation } from "@react-navigation/native"
 import { StyleSheet, Button, Text, View } from "react-native"
 import Background from "src/atoms/Background"
+import Player from "src/helpers/Player"
 
 export default function JoinRoomError() {
   const { navigate } = useNavigation()
@@ -10,7 +11,13 @@ export default function JoinRoomError() {
     <Background>
       <View style={styles.container}>
         <Text style={styles.text}>Failed to join room, Please check your room code and try again.</Text>
-        <Button onPress={() => navigate("Landing")} title="Go Back" />
+        <Button
+          onPress={() => {
+            Player.playSound("buttonPress")
+            navigate("Landing")
+          }}
+          title="Go Back"
+        />
       </View>
     </Background>
   )

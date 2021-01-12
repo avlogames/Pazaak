@@ -3,13 +3,11 @@ import types from "prop-types"
 import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import useEndTurnStand from "src/hooks/useEndTurnStand"
-import { playAudio } from "src/helpers/audio"
 
 export default function EndTurnStand({ turn, playerStanding, opponentStanding, uoid }) {
   const [endTurn, stand] = useEndTurnStand(uoid)
 
   const handlePress = (execute) => {
-    playAudio("buttonPress")
     return execute()
   }
 
@@ -23,14 +21,14 @@ export default function EndTurnStand({ turn, playerStanding, opponentStanding, u
         ) : (
           <Fragment>
             {/* End Turn */}
-            <TouchableOpacity style={styles.button} onPress={() => handlePress(endTurn)} disabled={!turn || playerStanding}>
+            <TouchableOpacity style={styles.button} onPress={endTurn} disabled={!turn || playerStanding}>
               <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
                 <Text style={styles.text}>{opponentStanding ? `HIT ME` : `NEXT`}</Text>
               </LinearGradient>
             </TouchableOpacity>
 
             {/* Stand */}
-            <TouchableOpacity style={styles.button} onPress={() => handlePress(stand)}>
+            <TouchableOpacity style={styles.button} onPress={stand}>
               <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
                 <Text style={styles.text}>STAND</Text>
               </LinearGradient>
