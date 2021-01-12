@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { Audio } from "expo-av"
 import { AUDIOLIBRARY } from "src/constants"
 
-export default async function useSounds() {
+export default async function useAudio() {
   const dispatch = useDispatch()
   
   const loadSounds = () =>
