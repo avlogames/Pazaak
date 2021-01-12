@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import createJoinRoom from "src/api/createJoinRoom"
-import setAsyncStorage from "src/helpers/setAsyncStorage"
+import { setAsyncStorage } from "src/helpers/asyncStorage"
 
 export default function useCreateJoinRoom() {
   const { navigate } = useNavigation()

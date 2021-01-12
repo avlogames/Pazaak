@@ -5,6 +5,7 @@ import Background from "src/atoms/Background"
 
 export default function JoinRoomError() {
   const { navigate } = useNavigation()
+
   return (
     <Background>
       <View style={styles.container}>

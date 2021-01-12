@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import updateDocument from "src/api/updateDocument"
-import getAsyncStorage from "src/helpers/getAsyncStorage"
+import { getAsyncStorage } from 'src/helpers/asyncStorage'
 import { PLACEHOLDER } from "src/constants"
 
 export default function usePlayCard(uoid) {

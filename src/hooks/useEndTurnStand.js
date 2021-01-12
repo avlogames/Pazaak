@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import updateDocument from "src/api/updateDocument"
 import dealCard from "src/helpers/dealCard"
 import initializeStack from "src/helpers/initializeStack"
-import getAsyncStorage from "src/helpers/getAsyncStorage"
+import { getAsyncStorage } from 'src/helpers/asyncStorage'
 
 export default function useEndTurnStand(uoid) {
   const pazaak = useSelector((s) => s.pazaak)

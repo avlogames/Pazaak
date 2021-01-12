@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import {useNavigation} from '@react-navigation/native'
 import { useDispatch, useSelector } from "react-redux"
 import { db } from "src/api/firebase"
-import getAsyncStorage from "src/helpers/getAsyncStorage"
+import { getAsyncStorage } from 'src/helpers/asyncStorage'
 
 export default function useOnSnapshot() {
   const {navigate} = useNavigation()
