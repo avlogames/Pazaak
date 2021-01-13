@@ -10,7 +10,6 @@ export default function LandingScreen() {
     <Background>
       <KeyboardAvoidingView behavior="padding" style={styles.container}>
         <View style={styles.wrapper}>
-          {/* <PazaakLogo /> */}
           <Text style={styles.title}>Enter Room Code</Text>
           <TextInput
             style={styles.input}
@@ -70,6 +69,6 @@ const styles = StyleSheet.create({
     color: `#FFF`,
     fontWeight: `900`,
     fontSize: 30,
-    textTransform: `uppercase`
+    textTransform: `uppercase`,
   },
 })

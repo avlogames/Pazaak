@@ -7,10 +7,6 @@ import useEndTurnStand from "src/hooks/useEndTurnStand"
 export default function EndTurnStand({ turn, playerStanding, opponentStanding, uoid }) {
   const [endTurn, stand] = useEndTurnStand(uoid)
 
-  const handlePress = (execute) => {
-    return execute()
-  }
-
   return (
     <View style={styles.container}>
       {turn ? (

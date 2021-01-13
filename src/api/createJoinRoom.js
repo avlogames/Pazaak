@@ -1,7 +1,7 @@
 import { db } from "src/api/firebase"
+import { getAsyncStorage } from "src/helpers/asyncStorage"
 import newRoomModel from "src/models/newRoomModel"
 import newPlayerModel from "src/models/newPlayerModel"
-import { getAsyncStorage } from 'src/helpers/asyncStorage'
 
 export default async function createJoinRoom(code) {
   const uuid = await getAsyncStorage("uuid")
@@ -9,9 +9,11 @@ export default async function createJoinRoom(code) {
 
   // Create Room if no other players.
   if (!roomDoc.exists) {
-    const room = newRoomModel(code, uuid)
-    room.players[uuid] = newPlayerModel("man", true, "Dr. Colossus", uuid)
-    await db.doc(`ROOMS/${code}`).set(room)
+    await db.doc(`ROOMS/${code}`).set({
+      ...newRoomModel(code, uuid),
+      players: { uuid: newPlayerModel("man", true, "Dr. Colossus", uuid) },
+    })
+
     return true
   }
 
@@ -20,15 +22,16 @@ export default async function createJoinRoom(code) {
     const room = roomDoc.data()
 
     // Check if User Belongs to room already
-    if (room.players[uuid]) {
-      return true
-    }
+    if (room.players[uuid]) return true
 
     // If space for more users add the user to the room.
     if (Object.keys(room.players).length === 1) {
-      room.players[uuid] = newPlayerModel("woman", false, "Nibbler", uuid)
-      room.waitingForOpponent = false
-      await db.doc(`ROOMS/${code}`).set(room)
+      await db.doc(`ROOMS/${code}`).set({
+        ...room,
+        players: { ...room.players, [uuid]: newPlayerModel("woman", false, "Nibbler", uuid) },
+        waitingForOpponent: false,
+      })
+
       return true
     }
   }

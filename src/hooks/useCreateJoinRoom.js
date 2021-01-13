@@ -10,6 +10,7 @@ export default function useCreateJoinRoom() {
   const handleSubmit = async () => {
     if (code.length === 4) {
       const success = await createJoinRoom(code)
+      
       if (success) {
         setAsyncStorage("code", code)
         return navigate("Pazaak")

@@ -8,9 +8,7 @@ class Player {
 
     for (const name in library) {
       const sound = library[name]
-
       soundObjects[name] = new Audio.Sound()
-
       promisedSoundObjects.push(soundObjects[name].loadAsync(sound))
     }
 
@@ -19,9 +17,7 @@ class Player {
 
   static async playSound(name) {
     try {
-      if (soundObjects[name]) {
-        await soundObjects[name].replayAsync()
-      }
+      if (soundObjects[name]) await soundObjects[name].replayAsync()
     } catch (error) {
       console.warn(error)
     }

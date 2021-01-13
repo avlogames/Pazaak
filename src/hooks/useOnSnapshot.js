@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react"
-import {useNavigation} from '@react-navigation/native'
+import { useNavigation } from "@react-navigation/native"
 import { useDispatch, useSelector } from "react-redux"
 import { db } from "src/api/firebase"
-import { getAsyncStorage } from 'src/helpers/asyncStorage'
+import { getAsyncStorage } from "src/helpers/asyncStorage"
 
 export default function useOnSnapshot() {
-  const {navigate} = useNavigation()
   const dispatch = useDispatch()
-  const pazaak = useSelector((s) => s.pazaak)
+  const { navigate } = useNavigation()
   const [code, setCode] = useState(null)
   const [uuid, setUuid] = useState(null)
+
+  const pazaak = useSelector((s) => s.pazaak)
 
   const getCode = async () => {
     const value = await getAsyncStorage("code")
@@ -23,7 +24,7 @@ export default function useOnSnapshot() {
 
   const cancel = async () => {
     await db.doc(`ROOMS/${code}`).delete()
-    return navigate('Landing')
+    return navigate("Landing")
   }
 
   useEffect(() => {
