@@ -1,6 +1,7 @@
 import React from "react"
-import types from "prop-types"
 import { StyleSheet, Image, Text, View } from "react-native"
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import types from "prop-types"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/images/credit-icon.png"
 import man from "src/assets/images/man.png"
@@ -48,16 +49,17 @@ PlayerDetails.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    flexBasis: 60,
+    flexBasis: responsiveHeight(6),
   },
   detailsContainer: {
-    marginTop: -70,
+    position: `absolute`,
+    bottom: responsiveHeight(0.5),
     width: `100%`,
     alignItems: `center`,
   },
   activeWrapper: {
-    height: 75,
-    width: 75,
+    height: responsiveWidth(18),
+    width: responsiveWidth(18),
     borderRadius: 100,
     overflow: `hidden`,
   },
@@ -67,7 +69,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   profileBorderWrapper: {
-    margin: 5,
+    margin: responsiveWidth(1),
     backgroundColor: `green`,
     flex: 1,
     borderRadius: 100,
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   profileImageWrapper: {
-    margin: 5,
+    margin: responsiveWidth(1),
     flex: 1,
     backgroundColor: "red",
     borderRadius: 100,
@@ -94,20 +96,21 @@ const styles = StyleSheet.create({
   name: {
     color: `#FFF`,
     fontWeight: `900`,
-    fontSize: 16,
+    fontSize: responsiveFontSize(1.8),
     textTransform: `uppercase`,
-    paddingTop: 5,
+    paddingTop: responsiveHeight(0.5),
   },
   creditsContainer: {
     flexDirection: "row",
     alignItems: "center",
   },
   icon: {
-    marginRight: 5,
+    marginRight: responsiveWidth(1),
   },
   creditsText: {
     color: `#CCC`,
     fontWeight: `900`,
+    fontSize: responsiveFontSize(1.5),
     textTransform: `uppercase`,
   },
 })
