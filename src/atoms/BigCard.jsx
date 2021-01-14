@@ -1,5 +1,6 @@
 import React from "react"
 import { LinearGradient } from "expo-linear-gradient"
+import { responsiveFontSize, responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native"
 
 const colors = {
@@ -32,26 +33,27 @@ export default function BigCard({ type = "green", value = "+1", playCard, turn, 
 
 const styles = StyleSheet.create({
   paper: {
-    height: 70,
-    width: 50,
-    borderRadius: 10,
+    height: responsiveWidth(15),
+    width: responsiveWidth(11),
+    borderRadius: responsiveWidth(2),
     backgroundColor: `#FFF`,
     flexDirection: `column`,
     alignItems: `center`,
     justifyContent: `flex-start`,
+    overflow: `hidden`,
     shadowColor: "#000",
     shadowOffset: { width: 2, height: 3 },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 2,
-    margin: 5,
+    margin: responsiveWidth(2),
   },
   topRound: {
-    marginTop: `10%`,
-    marginBottom: `10%`,
+    marginTop: responsiveHeight(0.5),
+    marginBottom: responsiveHeight(0.5),
     flex: 3,
-    width: `80%`,
-    borderRadius: 5,
+    width: responsiveWidth(9),
+    borderRadius: responsiveWidth(2),
     overflow: `hidden`,
   },
   gradient: {
@@ -66,26 +68,28 @@ const styles = StyleSheet.create({
   },
   numberText: {
     fontWeight: `900`,
+    fontSize: responsiveFontSize(1.5),
+    marginTop: responsiveFontSize(-0.3),
   },
   bottomRound: {
     flex: 1,
-    width: `80%`,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
+    width: responsiveWidth(9),
+    borderTopLeftRadius: responsiveWidth(2),
+    borderTopRightRadius: responsiveWidth(2),
     overflow: `hidden`,
   },
   topArrow: {
-    height: 15,
-    width: 15,
+    height: responsiveHeight(2),
+    width: responsiveHeight(2),
     transform: [{ rotate: `45deg` }],
-    marginBottom: -20,
+    marginBottom: responsiveHeight(-2.75),
     backgroundColor: "#FFF",
   },
   bottomArrow: {
-    height: 15,
-    width: 15,
+    height: responsiveHeight(2),
+    width: responsiveHeight(2),
     transform: [{ rotate: `45deg` }],
-    marginTop: -20,
+    marginTop: responsiveHeight(-2.75),
     backgroundColor: "#FFF",
   },
 })

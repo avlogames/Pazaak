@@ -1,15 +1,16 @@
 import React from "react"
-import { StyleSheet, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { StyleSheet, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { responsiveFontSize, responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
 import Background from "src/atoms/Background"
 import useCreateJoinRoom from "src/hooks/useCreateJoinRoom"
 
+const iOS = Platform.OS === "ios"
 export default function LandingScreen() {
   const [code, setCode, handleSubmit] = useCreateJoinRoom()
 
   return (
     <Background>
-      <KeyboardAvoidingView behavior="padding" style={styles.container}>
+      <KeyboardAvoidingView behavior={iOS ? "padding" : null} style={styles.container}>
         <View style={styles.wrapper}>
           <Text style={styles.title}>Enter Room Code</Text>
           <TextInput
