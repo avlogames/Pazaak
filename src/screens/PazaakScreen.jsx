@@ -21,17 +21,7 @@ export default function PazaakScreen() {
   if (waiting) {
     return (
       <Background>
-        <LoadingSpinner label={`Waiting for Opponent`}>
-          <Button onPress={cancel} title="Go Back" />
-        </LoadingSpinner>
-      </Background>
-    )
-  }
-
-  if (!code || !uuid || !pazaak) {
-    return (
-      <Background>
-        <LoadingSpinner label={`Loading game data...`}>
+        <LoadingSpinner label={`WAITING FOR OPPONENT TO JOIN...`}>
           <Button onPress={cancel} title="Go Back" />
         </LoadingSpinner>
       </Background>

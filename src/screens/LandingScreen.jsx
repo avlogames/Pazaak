@@ -25,7 +25,7 @@ export default function LandingScreen() {
             onSubmitEditing={() => handleSubmit}
           />
           <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text style={styles.text}>JOIN</Text>
+            <Text style={styles.buttonText}>JOIN</Text>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: `#fff`,
     width: responsiveWidth(80),
-    paddingTop: responsiveHeight(2),
-    paddingBottom: responsiveHeight(2),
+    paddingTop: responsiveHeight(1.5),
+    paddingBottom: responsiveHeight(1.5),
     alignItems: "center",
     borderRadius: responsiveWidth(4),
   },
-  text: {
+  buttonText: {
     color: `#FFF`,
     fontWeight: `900`,
     fontSize: responsiveFontSize(2.5),
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   title: {
     color: `#FFF`,
     fontWeight: `900`,
-    fontSize: responsiveFontSize(3.5),
+    fontSize: responsiveFontSize(3),
     textTransform: `uppercase`,
   },
 })
