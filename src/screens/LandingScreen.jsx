@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from "react-native"
-import { responsiveFontSize } from "react-native-responsive-dimensions"
+import { responsiveFontSize, responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
 import Background from "src/atoms/Background"
 import useCreateJoinRoom from "src/hooks/useCreateJoinRoom"
 
@@ -14,13 +14,14 @@ export default function LandingScreen() {
           <Text style={styles.title}>Enter Room Code</Text>
           <TextInput
             style={styles.input}
+            autoCorrect={false}
             editable
             value={code}
             onChangeText={(t) => setCode(t)}
             autoFocus
             autoCapitalize="characters"
             maxLength={4}
-            returnKeyType="go"
+            returnKeyType="done"
             onSubmitEditing={() => handleSubmit}
           />
           <TouchableOpacity style={styles.button} onPress={handleSubmit}>
@@ -42,24 +43,25 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   input: {
-    width: 250,
-    height: 75,
+    width: responsiveWidth(80),
     backgroundColor: `#FFF`,
-    fontSize: responsiveFontSize(5),
+    fontSize: responsiveFontSize(4),
     textAlign: "center",
-    marginTop: 20,
-    marginBottom: 20,
-    borderRadius: 15,
+    marginTop: responsiveHeight(2),
+    paddingTop: responsiveHeight(2),
+    paddingBottom: responsiveHeight(2),
+    marginBottom: responsiveHeight(2),
+    borderRadius: responsiveWidth(4),
     fontWeight: `700`,
   },
   button: {
     borderWidth: 1,
     borderColor: `#fff`,
-    width: 250,
-    paddingTop: 10,
-    paddingBottom: 10,
+    width: responsiveWidth(80),
+    paddingTop: responsiveHeight(2),
+    paddingBottom: responsiveHeight(2),
     alignItems: "center",
-    borderRadius: 15,
+    borderRadius: responsiveWidth(4),
   },
   text: {
     color: `#FFF`,

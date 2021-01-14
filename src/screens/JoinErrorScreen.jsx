@@ -1,6 +1,7 @@
 import React from "react"
 import { useNavigation } from "@react-navigation/native"
 import { StyleSheet, Button, Text, View } from "react-native"
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import Background from "src/atoms/Background"
 import Player from "src/helpers/Player"
 
@@ -12,6 +13,7 @@ export default function JoinRoomError() {
       <View style={styles.container}>
         <Text style={styles.text}>Failed to join room, Please check your room code and try again.</Text>
         <Button
+          style={styles.buttonText}
           onPress={() => {
             Player.playSound("buttonPress")
             navigate("Landing")
@@ -28,13 +30,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingLeft: 40,
-    paddingRight: 40,
+    paddingLeft: responsiveWidth(5),
+    paddingRight: responsiveWidth(5),
   },
   text: {
     color: `#FFF`,
     fontWeight: `600`,
-    fontSize: 24,
-    paddingBottom: 20,
+    fontSize: responsiveFontSize(3.5),
+    paddingBottom: responsiveHeight(2),
   },
 })
