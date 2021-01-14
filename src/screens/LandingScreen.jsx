@@ -69,6 +69,6 @@ const styles = StyleSheet.create({
     color: `#FFF`,
     fontWeight: `900`,
     fontSize: 30,
-    textTransform: `uppercase`,
+    textTransform: `uppercase`
   },
 })
