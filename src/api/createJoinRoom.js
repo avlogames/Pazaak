@@ -11,7 +11,7 @@ export default async function createJoinRoom(code) {
   if (!roomDoc.exists) {
     await db.doc(`ROOMS/${code}`).set({
       ...newRoomModel(code, uuid),
-      players: { uuid: newPlayerModel("man", true, "Dr. Colossus", uuid) },
+      players: { [uuid]: newPlayerModel("man", true, "Dr. Colossus", uuid) },
     })
 
     return true
