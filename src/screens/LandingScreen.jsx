@@ -1,5 +1,6 @@
 import React from "react"
 import { StyleSheet, KeyboardAvoidingView, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { responsiveFontSize } from "react-native-responsive-dimensions"
 import Background from "src/atoms/Background"
 import useCreateJoinRoom from "src/hooks/useCreateJoinRoom"
 
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 75,
     backgroundColor: `#FFF`,
-    fontSize: 60,
+    fontSize: responsiveFontSize(5),
     textAlign: "center",
     marginTop: 20,
     marginBottom: 20,
@@ -63,12 +64,12 @@ const styles = StyleSheet.create({
   text: {
     color: `#FFF`,
     fontWeight: `900`,
-    fontSize: 16,
+    fontSize: responsiveFontSize(2.5),
   },
   title: {
     color: `#FFF`,
     fontWeight: `900`,
-    fontSize: 30,
-    textTransform: `uppercase`
+    fontSize: responsiveFontSize(3.5),
+    textTransform: `uppercase`,
   },
 })
