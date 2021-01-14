@@ -1,7 +1,9 @@
 import React, { Fragment } from "react"
-import types from "prop-types"
-import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { getStatusBarHeight } from "react-native-status-bar-height"
+import { LinearGradient } from "expo-linear-gradient"
+import types from "prop-types"
 import useEndTurnStand from "src/hooks/useEndTurnStand"
 
 export default function EndTurnStand({ turn, playerStanding, opponentStanding, uoid }) {
@@ -50,46 +52,45 @@ EndTurnStand.propTypes = {
   standing: types.bool,
 }
 
+const statusBar = getStatusBarHeight(true)
 const styles = StyleSheet.create({
   container: {
-    flexBasis: 100,
+    height: responsiveHeight(6),
+    marginBottom: statusBar - 10,
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-around",
-    paddingLeft: 20,
+    paddingLeft: responsiveWidth(5),
   },
   button: {
-    height: 50,
     flex: 1,
-    position: "relative",
-    marginRight: 20,
+    marginRight: responsiveWidth(5),
     shadowColor: `#000`,
-    borderRadius: 8,
+    borderRadius: responsiveWidth(4),
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
   },
   gradient: {
-    height: `100%`,
-    width: `100%`,
     alignItems: `center`,
     justifyContent: `center`,
-    borderRadius: 8,
+    borderRadius: responsiveWidth(4),
+    height: `100%`,
   },
   text: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: 12,
+    fontSize: responsiveFontSize(1.5),
   },
   waitingWrapper: {
-    height: `100%`,
+    height: responsiveHeight(5.5),
     alignItems: "center",
+    justifyContent: "center",
     flex: 1,
   },
   waitingText: {
     color: `#FFF`,
-    fontWeight: `700`,
-    fontSize: 18,
-    marginTop: 10,
+    fontWeight: `800`,
+    fontSize: responsiveFontSize(1.5),
   },
 })
