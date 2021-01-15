@@ -3,6 +3,7 @@
     "name": "Pazaak",
     "slug": "pazaak",
     "version": "0.0.1",
+    "owner": "avlogames",
     "description": "Pazaak is an online head to head game. To be victorious you must win three sets by scoring the closests to 20 points without going over.",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
