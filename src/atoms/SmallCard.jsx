@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   numberText: {
     fontWeight: `900`,
-    fontSize: responsiveFontSize(1.5),
+    fontSize: responsiveFontSize(1.2),
     marginTop: responsiveFontSize(-0.3),
   },
   bottomRound: {

@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
     textTransform: `uppercase`,
   },
   quitButton: {
-    width: responsiveWidth(15),
+    width: responsiveWidth(16),
     marginTop: responsiveHeight(0.5),
     marginLeft: responsiveWidth(5),
     zIndex: 100
