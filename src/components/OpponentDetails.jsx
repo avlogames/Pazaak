@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(15),
     marginTop: responsiveHeight(0.5),
     marginLeft: responsiveWidth(5),
+    zIndex: 100
   },
   quitText: {
     color: `#FFF`,
