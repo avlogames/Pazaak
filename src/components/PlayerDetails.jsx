@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   name: {
     color: `#FFF`,
-    fontWeight: `900`,
+    fontWeight: `700`,
     fontSize: responsiveFontSize(1.8),
     textTransform: `uppercase`,
     paddingTop: responsiveHeight(0.5),
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   },
   creditsText: {
     color: `#CCC`,
-    fontWeight: `900`,
+    fontWeight: `700`,
     fontSize: responsiveFontSize(1.5),
     textTransform: `uppercase`,
   },

@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   score: {
     color: `#FFF`,
-    fontWeight: `900`,
+    fontWeight: `700`,
     fontSize: responsiveFontSize(1.5)
   },
   winRow: {

@@ -66,12 +66,12 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: `#FFF`,
-    fontWeight: `900`,
+    fontWeight: `700`,
     fontSize: responsiveFontSize(2.5),
   },
   title: {
     color: `#FFF`,
-    fontWeight: `900`,
+    fontWeight: `700`,
     fontSize: responsiveFontSize(3),
     textTransform: `uppercase`,
   },
