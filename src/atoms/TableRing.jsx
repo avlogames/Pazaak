@@ -28,7 +28,6 @@ export default function TableRing({ children }) {
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
     flex: 1,
     paddingLeft: responsiveWidth(5),
     paddingRight: responsiveWidth(5),

@@ -1,6 +1,8 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
+import { responsiveHeight } from "react-native-responsive-dimensions"
+
 import SmallCard from "src/atoms/SmallCard"
 import SmallPlaceholder from "src/atoms/SmallPlaceholder"
 
@@ -34,10 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
     backgroundColor: `#2E385A`,
     width: `100%`,
-    paddingLeft: 50,
-    paddingRight: 50,
-    paddingTop: `1%`,
-    paddingBottom: `1%`,
-    marginTop: `12%`,
+    marginTop: responsiveHeight(4),
   },
 })

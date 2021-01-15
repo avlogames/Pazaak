@@ -1,6 +1,7 @@
 import React from "react"
 import { LinearGradient } from "expo-linear-gradient"
 import { StyleSheet, View, Text } from "react-native"
+import { responsiveFontSize, responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
 
 const colors = {
   red: ["#FF6D3A", "#FF573F", "#FF4342", "#FD0043"],
@@ -18,7 +19,7 @@ export default function SmallCard({ type = "green", value = 1 }) {
             <View style={styles.topArrow} />
           </LinearGradient>
           <View style={styles.numberStripe}>
-            <Text style={styles.numberText}>{`${value > 0 && type !== "green"  ? "+" : ""}${value}`}</Text>
+            <Text style={styles.numberText}>{`${value > 0 && type !== "green" ? "+" : ""}${value}`}</Text>
           </View>
           <LinearGradient colors={[colors[type][1], colors[type][2]]} style={styles.gradient}>
             <View style={styles.bottomArrow} />
@@ -33,29 +34,26 @@ export default function SmallCard({ type = "green", value = 1 }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexBasis: 40,
-    marginLeft: 4,
-    marginRight: 4,
-    marginTop: 5,
-    marginBottom: 5,
-  },
   paper: {
-    height: 55,
-    width: 40,
-    borderRadius: 10,
+    height: responsiveWidth(12),
+    width: responsiveWidth(9),
+    borderRadius: responsiveWidth(1),
     backgroundColor: `#FFF`,
     flexDirection: `column`,
     alignItems: `center`,
     justifyContent: `flex-start`,
     overflow: `hidden`,
+    marginLeft: responsiveWidth(1.5),
+    marginRight: responsiveWidth(1.5),
+    marginTop: responsiveHeight(1),
+    marginBottom: responsiveHeight(.5),
   },
   topRound: {
-    marginTop: `10%`,
-    marginBottom: `10%`,
+    marginTop: responsiveHeight(0.5),
+    marginBottom: responsiveHeight(0.5),
     flex: 3,
-    width: `80%`,
-    borderRadius: 5,
+    width: responsiveWidth(7),
+    borderRadius: responsiveWidth(1),
     overflow: `hidden`,
   },
   gradient: {
@@ -70,29 +68,28 @@ const styles = StyleSheet.create({
   },
   numberText: {
     fontWeight: `900`,
-    fontSize: 10,
-    marginTop: -1,
-    marginRight: -1,
+    fontSize: responsiveFontSize(1.5),
+    marginTop: responsiveFontSize(-0.3),
   },
   bottomRound: {
     flex: 1,
-    width: `80%`,
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
+    width: responsiveWidth(7),
+    borderTopLeftRadius: responsiveWidth(1),
+    borderTopRightRadius: responsiveWidth(1),
     overflow: `hidden`,
   },
   topArrow: {
-    height: 15,
-    width: 15,
+    height: responsiveHeight(2),
+    width: responsiveHeight(2),
     transform: [{ rotate: `45deg` }],
-    marginBottom: -20,
+    marginBottom: responsiveHeight(-2.75),
     backgroundColor: "#FFF",
   },
   bottomArrow: {
-    height: 15,
-    width: 15,
+    height: responsiveHeight(2),
+    width: responsiveHeight(2),
     transform: [{ rotate: `45deg` }],
-    marginTop: -20,
+    marginTop: responsiveHeight(-2.75),
     backgroundColor: "#FFF",
   },
 })

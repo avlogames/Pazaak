@@ -1,6 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, Image, Text, TouchableOpacity, View } from "react-native"
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/images/credit-icon.png"
 import man from "src/assets/images/man.png"
@@ -10,7 +11,7 @@ export default function OpponentDetails({ turn, name, avatar, credits, cancel })
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.quitButton} onPress={cancel}>
-        <Text style={styles.quitText}>{`FORFEIT GAME`}</Text>
+        <Text style={styles.quitText}>{`LEAVE MATCH`}</Text>
       </TouchableOpacity>
       <View style={styles.detailsContainer}>
         {name.length && <Text style={styles.name}>{name}</Text>}
@@ -54,30 +55,17 @@ OpponentDetails.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    flexBasis: 40,
+    flexBasis: responsiveHeight(6),
     zIndex: 100,
   },
-  quitButton: {
-    position: "absolute",
-    left: 20,
-    top: -10,
-    width: 55,
-    zIndex: 1000,
-  },
-  quitText: {
-    color: `#FFF`,
-    fontWeight: `800`,
-    fontSize: 12,
-    textAlign: `center`,
-  },
   detailsContainer: {
-    marginTop: -10,
+    position: `absolute`,
     width: `100%`,
     alignItems: `center`,
   },
   activeWrapper: {
-    height: 75,
-    width: 75,
+    height: responsiveWidth(18),
+    width: responsiveWidth(18),
     borderRadius: 100,
     overflow: `hidden`,
   },
@@ -87,7 +75,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   profileBorderWrapper: {
-    margin: 5,
+    margin: responsiveWidth(1),
     backgroundColor: `green`,
     flex: 1,
     borderRadius: 100,
@@ -101,7 +89,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   profileImageWrapper: {
-    margin: 5,
+    margin: responsiveWidth(1),
     flex: 1,
     backgroundColor: "red",
     borderRadius: 100,
@@ -114,20 +102,33 @@ const styles = StyleSheet.create({
   name: {
     color: `#FFF`,
     fontWeight: `900`,
-    fontSize: 16,
+    fontSize: responsiveFontSize(1.8),
     textTransform: `uppercase`,
+    paddingTop: responsiveHeight(0.5),
   },
   creditsContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingBottom: 5,
   },
   icon: {
-    marginRight: 5,
+    marginRight: responsiveWidth(1),
   },
   creditsText: {
     color: `#CCC`,
     fontWeight: `900`,
+    fontSize: responsiveFontSize(1.5),
     textTransform: `uppercase`,
+  },
+  quitButton: {
+    width: responsiveWidth(15),
+    marginTop: responsiveHeight(0.5),
+    marginLeft: responsiveWidth(5),
+  },
+  quitText: {
+    color: `#FFF`,
+    fontWeight: `900`,
+    fontSize: responsiveFontSize(1.8),
+    textTransform: `uppercase`,
+    textAlign: "center",
   },
 })

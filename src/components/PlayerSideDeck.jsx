@@ -1,6 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
+import { responsiveHeight } from "react-native-responsive-dimensions"
 import BigCard from "src/atoms/BigCard"
 import BigPlaceholder from "src/atoms/BigPlaceholder"
 import usePlayCard from "src/hooks/usePlayCard"
@@ -21,7 +22,7 @@ export default function PlayerSideDeck({ sideDeck, turn, uoid }) {
 PlayerSideDeck.defaultProps = {
   sideDeck: [],
   turn: false,
-  uoid: null
+  uoid: null,
 }
 
 PlayerSideDeck.propTypes = {
@@ -32,7 +33,7 @@ PlayerSideDeck.propTypes = {
     })
   ),
   turn: types.bool,
-  uoid: types.string
+  uoid: types.string,
 }
 
 const styles = StyleSheet.create({
@@ -41,8 +42,6 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
     backgroundColor: `#2E385A`,
     width: `100%`,
-    paddingTop: `1%`,
-    paddingBottom: `1%`,
-    marginBottom: `15%`,
+    marginBottom: responsiveHeight(6),
   },
 })

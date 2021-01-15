@@ -1,6 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
+import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import SmallCard from "src/atoms/SmallCard"
 import SmallPlaceholder from "src/atoms/SmallPlaceholder"
 import Scoreboard from "src/atoms/Scoreboard"
@@ -23,7 +24,7 @@ OpponentStack.defaultProps = {
   score: null,
   stack: [],
   standing: false,
-  wins: 0
+  wins: 0,
 }
 
 OpponentStack.propTypes = {
@@ -35,19 +36,19 @@ OpponentStack.propTypes = {
     })
   ),
   standing: types.bool,
-  wins: types.number
+  wins: types.number,
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderBottomWidth: 2.5,
+    borderBottomWidth: responsiveHeight(0.4),
     borderBottomColor: `#2E385A`,
     alignItems: "center",
     justifyContent: "center",
   },
   opponentCards: {
-    width: 240,
+    width: responsiveWidth(60.5),
     flexDirection: `row`,
     flexWrap: `wrap`,
   },

@@ -1,6 +1,7 @@
 import React from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
+import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 
 export default function Scoreboard({ score = 0, wins = 0 }) {
   const scoreColor = score === 20 ? ["#FF623C", "#92B059"] : ["#FF0048", "#FF7637"]
@@ -31,35 +32,27 @@ export default function Scoreboard({ score = 0, wins = 0 }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    flexBasis: 40,
-    marginLeft: 4,
-    marginRight: 4,
-    marginTop: 5,
-    marginBottom: 5,
-  },
   paper: {
-    height: 50,
-    width: 40,
-    borderRadius: 10,
+    height: responsiveWidth(12),
+    width: responsiveWidth(9),
+    borderRadius: responsiveWidth(1),
     flexDirection: `column`,
     alignItems: `center`,
-    justifyContent: `center`,
+    justifyContent: `flex-start`,
     overflow: `hidden`,
+    margin: responsiveWidth(1.5),
   },
   gradientWrapper: {
-    height: 35,
-    width: 35,
+    height: responsiveWidth(8),
+    width: responsiveWidth(8),
     borderRadius: 20,
-    backgroundColor: `yellow`,
     overflow: `hidden`,
   },
   gradient: {
     flex: 1,
   },
   innerCircle: {
-    margin: 3,
+    margin: responsiveWidth(1),
     flex: 1,
     backgroundColor: `#1A244B`,
     borderRadius: 30,
@@ -74,15 +67,15 @@ const styles = StyleSheet.create({
     flexDirection: `row`,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 5,
+    marginTop: responsiveHeight(1),
   },
   winWrapper: {
-    height: 7,
-    width: 7,
+    height: responsiveWidth(1.8),
+    width: responsiveWidth(1.8),
     backgroundColor: `#141B36`,
     borderRadius: 5,
     overflow: "hidden",
-    marginLeft: 2,
-    marginRight: 2,
+    marginLeft: responsiveWidth(.5),
+    marginRight: responsiveWidth(.5),
   },
 })
