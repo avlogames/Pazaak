@@ -42,7 +42,7 @@ PlayerStack.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderTopWidth: responsiveHeight(0.4),
+    borderTopWidth: responsiveHeight(.75),
     borderTopColor: `#2E385A`,
     alignItems: "center",
     justifyContent: "center",

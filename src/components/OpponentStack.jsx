@@ -42,7 +42,6 @@ OpponentStack.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderBottomWidth: responsiveHeight(0.4),
     borderBottomColor: `#2E385A`,
     alignItems: "center",
     justifyContent: "center",

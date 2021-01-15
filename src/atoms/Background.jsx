@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: `column`,
     alignItems: "stretch",
-    paddingTop: statusBar,
+    paddingTop: statusBar === 44 ? 44 : 20,
   },
 })

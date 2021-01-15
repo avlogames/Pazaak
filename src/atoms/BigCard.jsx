@@ -60,9 +60,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    zIndex: 200
   },
   numberText: {
-    fontWeight: `900`,
+    fontWeight: `700`,
     fontSize: responsiveFontSize(1.5),
     marginTop: responsiveFontSize(-0.3),
   },

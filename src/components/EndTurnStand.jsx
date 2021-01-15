@@ -56,7 +56,7 @@ const statusBar = getStatusBarHeight(true)
 const styles = StyleSheet.create({
   container: {
     height: responsiveHeight(6),
-    marginBottom: statusBar - 10,
+    marginBottom: statusBar === 44 ? 35 : 5,
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-around",
