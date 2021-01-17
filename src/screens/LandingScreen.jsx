@@ -1,5 +1,6 @@
 import React from "react"
-import { StyleSheet, KeyboardAvoidingView, Platform, Text, TextInput, TouchableOpacity, View } from "react-native"
+import { Text as Atext, Image as Aimage } from "react-native-animatable"
+import { StyleSheet, KeyboardAvoidingView, Image, Platform, Text, TextInput, TouchableOpacity, View } from "react-native"
 import { responsiveFontSize, responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
 import Background from "src/atoms/Background"
 import useCreateJoinRoom from "src/hooks/useCreateJoinRoom"
@@ -12,7 +13,10 @@ export default function LandingScreen() {
     <Background>
       <KeyboardAvoidingView behavior={iOS ? "padding" : null} style={styles.container}>
         <View style={styles.wrapper}>
-          <Text style={styles.title}>Enter Room Code</Text>
+          <Aimage iterationCount="infinite" iterationDelay={3000} animation="pulse" style={styles.logo} source={require("src/assets/images/pazaak.png")} />
+          <Atext style={styles.title} animation="bounceInDown">
+            Enter Room Code
+          </Atext>
           <TextInput
             style={styles.input}
             autoCorrect={false}
@@ -42,6 +46,10 @@ const styles = StyleSheet.create({
   },
   wrapper: {
     alignItems: "center",
+  },
+  logo: {
+    width: responsiveWidth(80),
+    height: responsiveHeight(10),
   },
   input: {
     width: responsiveWidth(80),
