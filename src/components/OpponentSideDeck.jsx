@@ -2,17 +2,14 @@ import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
 import { responsiveHeight } from "react-native-responsive-dimensions"
-
 import SmallCard from "src/atoms/SmallCard"
-import SmallPlaceholder from "src/atoms/SmallPlaceholder"
 
 export default function OpponentSideDeck({ sideDeck }) {
   return (
     <View style={styles.container}>
-      {sideDeck.map((val, i) => {
-        if (val.type === "placeholder") return <SmallPlaceholder key={`o-place-${i}`} />
-        return <SmallCard key={`o-card-${i}`} type="gray" value="" />
-      })}
+      {sideDeck.map((val, i) => (
+        <SmallCard key={`o-card-${i}`} type={val.type === "placeholder" ? "placeholder" : "grey"} value="" />
+      ))}
     </View>
   )
 }
@@ -36,6 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
     backgroundColor: `#2E385A`,
     width: `100%`,
-    marginTop: responsiveHeight(4),
+    marginTop: responsiveHeight(5),
   },
 })

@@ -1,18 +1,18 @@
 import React from "react"
 import types from "prop-types"
-import { getStatusBarHeight } from "react-native-status-bar-height"
 import { StyleSheet, Image, Text, TouchableOpacity, View } from "react-native"
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/images/credit-icon.png"
 import man from "src/assets/images/man.png"
 import woman from "src/assets/images/woman.png"
+import LeaveMatch from "src/atoms/LeaveMatch"
 
 export default function OpponentDetails({ turn, name, avatar, credits, cancel }) {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.quitButton} onPress={cancel}>
-        <Text style={styles.quitText}>{`LEAVE MATCH`}</Text>
+        <LeaveMatch />
       </TouchableOpacity>
       <View style={styles.detailsContainer}>
         {name.length && <Text style={styles.name}>{name}</Text>}
@@ -54,12 +54,11 @@ OpponentDetails.propTypes = {
   turn: types.bool,
 }
 
-const statusBar = getStatusBarHeight(true)
 const styles = StyleSheet.create({
   container: {
     flexBasis: responsiveHeight(6),
     zIndex: 100,
-    marginTop: statusBar === 44 ? responsiveHeight(3) : responsiveHeight(2),
+    marginTop: responsiveHeight(1),
   },
   detailsContainer: {
     position: `absolute`,

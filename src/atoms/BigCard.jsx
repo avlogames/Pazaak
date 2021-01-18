@@ -13,11 +13,8 @@ export default function BigCard({ type = "green", value = "+1", playCard, turn, 
 
 const styles = StyleSheet.create({
   paper: {
-    borderWidth: 1,
-    borderColor: `#CCC`,
-    borderRadius: 5,
-    marginLeft: responsiveWidth(1),
-    marginRight: responsiveWidth(1)
+    marginLeft: responsiveWidth(1.5),
+    marginRight: responsiveWidth(1.5),
   },
   card: (w) => ({
     height: responsiveWidth(w * 1.3986013986),

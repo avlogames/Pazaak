@@ -11,10 +11,13 @@ export default function PlayerStack({ score, stack, standing, wins }) {
     <View style={styles.container}>
       <View style={styles.playerCards}>
         <Scoreboard score={score} standing={standing} wins={wins} />
-        {stack.map((val, i) => {
-          if (val.type === "placeholder") return <SmallPlaceholder key={`o-place-${i}`} />
-          return <SmallCard key={`o-card-${i}`} {...val} />
-        })}
+        {stack.map((val, i) => (
+          <SmallCard
+            key={`o-card-${i}`}
+            type={val.type === "placeholder" ? "placeholder" : val.type}
+            value={val.type === "placeholder" ? "" : val.value}
+          />
+        ))}
       </View>
     </View>
   )
@@ -42,7 +45,7 @@ PlayerStack.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderTopWidth: responsiveHeight(.75),
+    borderTopWidth: responsiveHeight(0.75),
     borderTopColor: `#2E385A`,
     alignItems: "center",
     justifyContent: "center",

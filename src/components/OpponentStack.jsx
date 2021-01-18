@@ -11,10 +11,13 @@ export default function OpponentStack({ score, stack, standing, wins }) {
     <View style={styles.container}>
       <View style={styles.opponentCards}>
         <Scoreboard score={score} standing={standing} wins={wins} />
-        {stack.map((val, i) => {
-          if (val.type === "placeholder") return <SmallPlaceholder key={`o-place-${i}`} />
-          return <SmallCard key={`o-card-${i}`} {...val} />
-        })}
+        {stack.map((val, i) => (
+          <SmallCard
+            key={`o-card-${i}`}
+            type={val.type === "placeholder" ? "placeholder" : val.type}
+            value={val.type === "placeholder" ? "" : val.value}
+          />
+        ))}
       </View>
     </View>
   )
