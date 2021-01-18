@@ -63,7 +63,7 @@ export default function PazaakScreen() {
           <PlayerSideDeck sideDeck={player.sideDeck} turn={playerTurn} uoid={uoid} />
         </TableRing>
         <PlayerDetails turn={playerTurn} name={player.name} avatar={player.avatar} credits={player.credits} />
-        <EndTurnStand turn={playerTurn} playerStanding={playerStanding} opponentStanding={opponentStanding} uoid={uoid} />
+        {/* <EndTurnStand turn={playerTurn} playerStanding={playerStanding} opponentStanding={opponentStanding} uoid={uoid} /> */}
         {/* <PopupModal ></PopupModal> */}
       </Background>
     )

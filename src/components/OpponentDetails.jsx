@@ -1,5 +1,6 @@
 import React from "react"
 import types from "prop-types"
+import { getStatusBarHeight } from "react-native-status-bar-height"
 import { StyleSheet, Image, Text, TouchableOpacity, View } from "react-native"
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import { LinearGradient } from "expo-linear-gradient"
@@ -53,10 +54,12 @@ OpponentDetails.propTypes = {
   turn: types.bool,
 }
 
+const statusBar = getStatusBarHeight(true)
 const styles = StyleSheet.create({
   container: {
     flexBasis: responsiveHeight(6),
     zIndex: 100,
+    marginTop: statusBar === 44 ? responsiveHeight(3) : responsiveHeight(2),
   },
   detailsContainer: {
     position: `absolute`,
@@ -123,7 +126,7 @@ const styles = StyleSheet.create({
     width: responsiveWidth(16),
     marginTop: responsiveHeight(0.5),
     marginLeft: responsiveWidth(5),
-    zIndex: 100
+    zIndex: 100,
   },
   quitText: {
     color: `#FFF`,

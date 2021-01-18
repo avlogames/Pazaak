@@ -1,11 +1,12 @@
 import React from "react"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
-import types from "prop-types"
 import { LinearGradient } from "expo-linear-gradient"
+import types from "prop-types"
 import creditIcon from "src/assets/images/credit-icon.png"
 import man from "src/assets/images/man.png"
 import woman from "src/assets/images/woman.png"
+
 export default function PlayerDetails({ turn, name, avatar, credits }) {
   return (
     <View style={styles.container}>
@@ -47,9 +48,11 @@ PlayerDetails.propTypes = {
   turn: types.bool,
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flexBasis: responsiveHeight(6),
+    marginBottom: responsiveHeight(3),
   },
   detailsContainer: {
     position: `absolute`,
