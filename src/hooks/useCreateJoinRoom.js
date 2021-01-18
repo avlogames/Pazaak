@@ -7,17 +7,23 @@ export default function useCreateJoinRoom() {
   const { navigate } = useNavigation()
   const [code, setCode] = useState("")
 
-  const handleSubmit = async () => {
-    if (code.length === 4) {
-      const success = await createJoinRoom(code)
-      
-      if (success) {
-        setAsyncStorage("code", code)
+  const onTextChange = async (newCode) => {
+    if (newCode.length !== 4) {
+      return setCode(newCode.toUpperCase())
+    }
+
+    try {
+      if (await createJoinRoom(newCode)) {
+        setCode(newCode.toUpperCase())
+        setAsyncStorage("code", newCode)
         return navigate("Pazaak")
       }
+
+      return navigate("Join Error")
+    } catch (err) {
+      console.error(err)
     }
-    return navigate("Join Error")
   }
 
-  return [code, setCode, handleSubmit]
+  return [code, onTextChange]
 }
