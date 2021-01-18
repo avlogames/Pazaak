@@ -1,21 +1,18 @@
 import React from "react"
-import { StyleSheet, View } from "react-native"
+import { StyleSheet, Image } from "react-native"
 import { responsiveWidth } from "react-native-responsive-dimensions"
+import placeholder from "src/assets/cards/placeholder.png"
 
 export default function BigPlaceholder() {
-  return <View style={styles.paper}></View>
+  return <Image style={styles.card(12.4)} source={placeholder} />
 }
 
 const styles = StyleSheet.create({
-  paper: {
-    height: responsiveWidth(15),
-    width: responsiveWidth(11),
-    borderRadius: responsiveWidth(2),
-    backgroundColor: `#141B36`,
-    flexDirection: `column`,
-    alignItems: `center`,
-    justifyContent: `flex-start`,
-    overflow: `hidden`,
-    margin: responsiveWidth(2),
-  },
+  card: (w) => ({
+    height: responsiveWidth(w * 1.3986013986),
+    width: responsiveWidth(w),
+    borderRadius: 5,
+    marginLeft: responsiveWidth(1),
+    marginRight: responsiveWidth(1)
+  }),
 })

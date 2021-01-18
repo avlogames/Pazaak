@@ -10,7 +10,7 @@ export default function Router() {
 
   return (
     <Navigation>
-      <Navigator initialRouteName="Card Test" screenOptions={screenOptions}>
+      <Navigator initialRouteName="Landing" screenOptions={screenOptions}>
         <Screen name="Landing" component={LandingScreen} />
         <Screen name="Pazaak" component={PazaakScreen} />
         <Screen name="Join Error" component={JoinErrorScreen} />

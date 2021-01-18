@@ -1,15 +1,12 @@
 import React from "react"
 import { StyleSheet, Image, View } from "react-native"
 import { responsiveWidth } from "react-native-responsive-dimensions"
+import { CARDS } from "src/constants"
 
-import RedOne from "src/assets/cards/blue-four.png"
-
-export default function CardTest() {
+export default function CardTest({ type = "red", value = "-1" }) {
   return (
     <View style={styles.container}>
-      <View style={styles.cardWrapper}>
-        <Image style={styles.card(20)} source={RedOne} />
-      </View>
+
     </View>
   )
 }
@@ -17,16 +14,13 @@ export default function CardTest() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 50,
     justifyContent: "center",
   },
   cardWrapper: {
-    borderWidth: 1,
-    borderColor: `#CCC`,
-    borderRadius: 5,
+
   },
-  card: (w) => ({
-    height: responsiveWidth(w * 1.3986013986),
-    width: responsiveWidth(w),
-  }),
+
 })

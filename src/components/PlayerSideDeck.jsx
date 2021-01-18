@@ -43,5 +43,7 @@ const styles = StyleSheet.create({
     backgroundColor: `#2E385A`,
     width: `100%`,
     marginBottom: responsiveHeight(6),
+    paddingTop: responsiveHeight(1),
+    paddingBottom: responsiveHeight(1),
   },
 })
