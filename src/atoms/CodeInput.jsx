@@ -14,6 +14,7 @@ export default function CodeInput() {
       <Input
         autoFocus
         value={code}
+        onFocus={() => onTextChange("")}
         onTextChange={onTextChange}
         restrictToNumbers={false}
         keyboardType="default"
