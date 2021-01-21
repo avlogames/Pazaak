@@ -1,6 +1,8 @@
 import { useEffect } from "react"
-import { NavigationContainer } from "@react-navigation/native"
+import { NavigationContainer as Navigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
+import { Asset } from "expo-asset"
+import assets from "src/config/cachedAssets"
 import { getAsyncStorage, setAsyncStorage } from "src/helpers/asyncStorage"
 import { AUDIOLIBRARY } from "src/constants"
 import Player from "src/helpers/Player"
@@ -15,9 +17,12 @@ export default function useInitializeApp() {
     if (!currentUuid) await setAsyncStorage("uuid", uuid())
   }
 
-  useEffect(() => {
-    Promise.all([setUuid(), ...sounds])
-  }, [])
+  const setCache = async () => {
+    const cacheAssets = Object.values(assets).map((asset) => {
+      return Asset.fromModule(asset).downloadAsync()
+    })
+    return Promise.all([setUuid(), ...cacheAssets, ...sounds])
+  }
 
-  return [NavigationContainer, Navigator, Screen]
+  return [Navigation, Navigator, Screen, setCache]
 }
