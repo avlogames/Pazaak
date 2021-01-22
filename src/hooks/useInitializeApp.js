@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { NavigationContainer as Navigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { Asset } from "expo-asset"

@@ -4,7 +4,7 @@ import updateDocument from "src/api/updateDocument"
 import { getAsyncStorage } from "src/helpers/asyncStorage"
 import { PLACEHOLDER } from "src/constants"
 
-export default function usePlayCard(uoid) {
+export default function usePlayCard() {
   const pazaak = useSelector((s) => s.pazaak)
   const [uuid, setUuid] = useState(null)
 
@@ -20,7 +20,6 @@ export default function usePlayCard(uoid) {
     player.score = player.stack.reduce((a, o) => (a += o.value), 0)
     player.sideDeck[cindex] = PLACEHOLDER
     newPazaak.players[uuid] = player
-
     return updateDocument(newPazaak)
   }
 
