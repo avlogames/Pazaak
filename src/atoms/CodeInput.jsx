@@ -4,9 +4,10 @@ import { StyleSheet, Text } from "react-native"
 import Input from "react-native-smooth-pincode-input"
 import { responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions"
 import useCreateJoinRoom from "src/hooks/useCreateJoinRoom"
+import HollowButton from "src/atoms/HollowButton"
 
 export default function CodeInput() {
-  const [code, onTextChange] = useCreateJoinRoom()
+  const [code, onTextChange, onSubmit] = useCreateJoinRoom()
 
   return (
     <View style={styles.container} animation="bounceIn">
@@ -22,6 +23,7 @@ export default function CodeInput() {
         cellStyleFocused={styles.cellStyleFocused}
         textStyle={styles.textStyle}
       />
+      {code.length === 4 && <HollowButton onPress={onSubmit} title="SUBMIT" animation="fadeIn" />}
     </View>
   )
 }

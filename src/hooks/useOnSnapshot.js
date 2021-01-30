@@ -24,7 +24,7 @@ export default function useOnSnapshot() {
 
   const cancel = async () => {
     await db.doc(`ROOMS/${code}`).delete()
-    return navigate("Landing")
+    return navigate("join_room")
   }
 
   useEffect(() => {

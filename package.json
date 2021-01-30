@@ -2,6 +2,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "dev": "expo start",
+    "web": "expo start --web",
     "eject": "expo eject"
   },
   "dependencies": {

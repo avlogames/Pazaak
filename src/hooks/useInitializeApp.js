@@ -1,7 +1,7 @@
 import { NavigationContainer as Navigation } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { Asset } from "expo-asset"
-import assets from "src/config/cachedAssets"
+import { CARDS, IMAGES } from "src/constants"
 import { getAsyncStorage, setAsyncStorage } from "src/helpers/asyncStorage"
 import { AUDIOLIBRARY } from "src/constants"
 import Player from "src/helpers/Player"
@@ -17,7 +17,7 @@ export default function useInitializeApp() {
   }
 
   const setCache = async () => {
-    const cacheAssets = Object.values(assets).map((asset) => {
+    const cacheAssets = Object.values({ ...CARDS, ...IMAGES }).map((asset) => {
       return Asset.fromModule(asset).downloadAsync()
     })
     return Promise.all([setUuid(), ...cacheAssets, ...sounds])

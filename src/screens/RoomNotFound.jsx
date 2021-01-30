@@ -5,12 +5,12 @@ import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-nat
 import Background from "src/atoms/Background"
 import Player from "src/helpers/Player"
 
-export default function JoinRoomError() {
+export default function RoomNotFound() {
   const { navigate } = useNavigation()
 
   const handlePress = () => {
     Player.playSound("buttonPress")
-    return navigate("Landing")
+    return navigate("join_room")
   }
 
   return (

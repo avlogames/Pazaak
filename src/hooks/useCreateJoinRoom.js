@@ -1,29 +1,29 @@
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
-import createJoinRoom from "src/api/createJoinRoom"
 import { setAsyncStorage } from "src/helpers/asyncStorage"
+import createJoinRoom from "src/api/createJoinRoom"
 
 export default function useCreateJoinRoom() {
   const { navigate } = useNavigation()
   const [code, setCode] = useState("")
 
-  const onTextChange = async (newCode) => {
-    if (newCode.length !== 4) {
-      return setCode(newCode.toUpperCase())
-    }
+  const onTextChange = (newCode) => {
+    if (newCode.length < 5) setCode(newCode.toUpperCase())
+  }
 
+  const onSubmit = async () => {
     try {
-      if (await createJoinRoom(newCode)) {
-        setCode(newCode.toUpperCase())
-        setAsyncStorage("code", newCode)
-        return navigate("Pazaak")
+      if (await createJoinRoom(code)) {
+        setAsyncStorage("code", code)
+        return navigate("pazaak")
       }
 
-      return navigate("Join Error")
+      return navigate("room_not_found")
     } catch (err) {
       console.error(err)
+      return navigate("room_not_found")
     }
   }
 
-  return [code, onTextChange]
+  return [code, onTextChange, onSubmit]
 }
