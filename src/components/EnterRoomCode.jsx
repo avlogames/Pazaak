@@ -1,16 +1,16 @@
 import React from "react"
-import { View } from "react-native-animatable"
-import { StyleSheet, Text } from "react-native"
+import { View as AniView } from "react-native-animatable"
+import { StyleSheet, Text, View } from "react-native"
 import Input from "react-native-smooth-pincode-input"
-import { responsiveFontSize, responsiveHeight } from "react-native-responsive-dimensions"
+import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import useCreateJoinRoom from "src/hooks/useCreateJoinRoom"
 import HollowButton from "src/atoms/HollowButton"
 
-export default function CodeInput() {
+export default function EnterRoomCode() {
   const [code, onTextChange, onSubmit] = useCreateJoinRoom()
 
   return (
-    <View style={styles.container} animation="bounceIn">
+    <AniView style={styles.container} animation="bounceIn">
       <Text style={styles.title}>ENTER ROOM CODE</Text>
       <Input
         autoFocus
@@ -23,8 +23,10 @@ export default function CodeInput() {
         cellStyleFocused={styles.cellStyleFocused}
         textStyle={styles.textStyle}
       />
-      {code.length === 4 && <HollowButton onPress={onSubmit} title="SUBMIT" animation="fadeIn" />}
-    </View>
+      <View style={styles.buttonWrapper}>
+        {code.length === 4 && <HollowButton onPress={onSubmit} title="SUBMIT" animation="fadeIn" />}
+      </View>
+    </AniView>
   )
 }
 
@@ -53,5 +55,10 @@ const styles = StyleSheet.create({
   textStyle: {
     fontSize: responsiveFontSize(4),
     color: "#FFF",
+  },
+  buttonWrapper: {
+    height: responsiveHeight(6),
+    width: responsiveWidth(80),
+    marginTop: responsiveHeight(4),
   },
 })

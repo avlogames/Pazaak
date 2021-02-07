@@ -2,7 +2,7 @@ import React from "react"
 import { Image } from "react-native-animatable"
 import { StyleSheet, ImageBackground, KeyboardAvoidingView, Platform, View } from "react-native"
 import { responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
-import CodeInput from "src/atoms/CodeInput"
+import EnterRoomCode from "src/components/EnterRoomCode"
 import wallpaper from "src/assets/images/wallpaper.jpg"
 
 const iOS = Platform.OS === "ios"
@@ -12,8 +12,7 @@ export default function LandingScreen() {
       <KeyboardAvoidingView behavior={iOS ? "padding" : null} style={styles.container}>
         <View style={styles.wrapper}>
           <Image animation="bounceIn" style={styles.logo} source={require("src/assets/images/pazaak.png")} />
-          <CodeInput />
-          {/* <HollowButton animation="zoomInLeft" title="JOIN" onPress={handleSubmit} /> */}
+          <EnterRoomCode />
         </View>
       </KeyboardAvoidingView>
     </ImageBackground>
@@ -23,7 +22,7 @@ export default function LandingScreen() {
 const styles = StyleSheet.create({
   imageBackground: {
     height: `100%`,
-    width: `100%`
+    width: `100%`,
   },
   container: {
     flex: 1,
