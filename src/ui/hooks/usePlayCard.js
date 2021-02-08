@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import updateDocument from "src/api/controllers/updateDocument"
 import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
-import { PLACEHOLDER } from "src/ui/constants"
+import { PLACEHOLDER } from "src/ui/config"
 
 export default function usePlayCard() {
   const pazaak = useSelector((s) => s.pazaak)

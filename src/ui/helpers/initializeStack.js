@@ -1,5 +1,5 @@
 import dealCard from "src/ui/helpers/dealCard"
-import { PLACEHOLDER } from "src/ui/constants"
+import { PLACEHOLDER } from "src/ui/config"
 
 export default function initializeStack(draw = false) {
   const stack = []

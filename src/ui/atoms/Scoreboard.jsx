@@ -11,7 +11,10 @@ export default function Scoreboard({ score = 0, wins = 0 }) {
   const pazaak = useSelector((s) => s.pazaak)
   useEffect(() => {
     if (wins === 3) {
-      updateDocument({ ...pazaak, gameOver: true })
+      const winner = Object.keys(pazaak.players).find((k) => {
+        return pazaak.players[k].wins === 3
+      })
+      updateDocument({ ...pazaak, gameOver: true, winner })
     }
   }, [wins])
 

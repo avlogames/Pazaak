@@ -1,7 +1,7 @@
 import React from "react"
 import { responsiveWidth } from "react-native-responsive-dimensions"
 import { StyleSheet, Image, TouchableOpacity } from "react-native"
-import { CARDS } from "src/ui/constants"
+import { CARDS } from "src/ui/config"
 
 export default function BigCard({ type = "green", value = "+1", playCard, turn, index }) {
   return (

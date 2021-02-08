@@ -1,4 +1,4 @@
-import { db } from "src/api/firebase"
+import { db } from "src/api/config/firebase"
 import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
 import newRoomModel from "src/api/models/newRoomModel"
 import newPlayerModel from "src/api/models/newPlayerModel"

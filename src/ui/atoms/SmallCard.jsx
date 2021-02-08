@@ -2,7 +2,7 @@ import React from "react"
 import { View } from "react-native-animatable"
 import { StyleSheet, Image } from "react-native"
 import { responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
-import { CARDS } from "src/ui/constants"
+import { CARDS } from "src/ui/config"
 
 export default function SmallCard({ type = "green", value = 1 }) {
   return (
