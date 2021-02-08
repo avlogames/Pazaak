@@ -1,4 +1,4 @@
-import { db } from "src/api/config/firebase"
+import { db } from "src/firebase/config/firebase"
 import { getAsyncStorage } from 'src/ui/helpers/asyncStorage'
 
 export default async function updateDocument(doc) {

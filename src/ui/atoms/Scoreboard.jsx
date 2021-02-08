@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient"
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import blueHex from "src/ui/assets/images/blue-hex.png"
 import redHex from "src/ui/assets/images/red-hex.png"
-import updateDocument from "src/api/controllers/updateDocument"
+import updateDocument from "src/firebase/controllers/updateDocument"
 
 export default function Scoreboard({ score = 0, wins = 0 }) {
   const pazaak = useSelector((s) => s.pazaak)

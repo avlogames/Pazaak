@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import updateDocument from "src/api/controllers/updateDocument"
+import updateDocument from "src/firebase/controllers/updateDocument"
 import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
 import { PLACEHOLDER } from "src/ui/config"
 

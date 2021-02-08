@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import updateDocument from "src/api/controllers/updateDocument"
+import updateDocument from "src/firebase/controllers/updateDocument"
 import dealCard from "src/ui/helpers/dealCard"
 import initializeStack from "src/ui/helpers/initializeStack"
 import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
