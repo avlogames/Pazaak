@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "Catch 22",
-    "slug": "catch-22",
+    "name": "Pazaak",
+    "slug": "pazaak",
     "version": "0.0.1",
-    "owner": "avlogames",
-    "description": "Catch 22 is an online head to head game. To be victorious you must win three sets by scoring the closests to 22 points without going over.",
+    "owner": "charleshay",
+    "description": "Pazaak is an online head to head game. To be victorious you must win three sets by scoring the closests to 20 points without going over.",
     "orientation": "portrait",
     "icon": "./src/ui/assets/images/icon.png",
     "splash": {
