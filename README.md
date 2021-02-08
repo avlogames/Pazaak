@@ -1,5 +1,9 @@
 # Pazaak
 
+## Project Kanban Board:
+
+[Click Here](https://github.com/orgs/avlogames/projects/3?fullscreen=true)
+
 ## How To Setup:
 
 ### 1. Clone repo:
