@@ -4,40 +4,28 @@ import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-nat
 import { getStatusBarHeight } from "react-native-status-bar-height"
 import { LinearGradient } from "expo-linear-gradient"
 import types from "prop-types"
-import useEndTurnStand from "src/hooks/useEndTurnStand"
+import useHitStand from "src/hooks/useHitStand"
 
-export default function EndTurnStand({ turn, playerStanding, opponentStanding, uoid }) {
-  const [endTurn, stand] = useEndTurnStand(uoid)
+export default function EndTurnStand({ turn, playerStanding, uoid }) {
+  const [hitMe, stand] = useHitStand(uoid)
 
   return (
     <View style={styles.container}>
-      {turn ? (
-        playerStanding ? (
-          <View style={styles.waitingWrapper}>
-            <Text style={styles.waitingText}>Standing...</Text>
-          </View>
-        ) : (
-          <Fragment>
-            {/* End Turn */}
-            <TouchableOpacity style={styles.button} onPress={endTurn} disabled={!turn || playerStanding}>
-              <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-                <Text style={styles.text}>{opponentStanding ? `HIT ME` : `NEXT`}</Text>
-              </LinearGradient>
-            </TouchableOpacity>
+      <Fragment>
+        {/* Hit Me */}
+        <TouchableOpacity style={styles.button} onPress={hitMe} disabled={!turn || playerStanding}>
+          <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
+            <Text style={styles.text}>HIT ME</Text>
+          </LinearGradient>
+        </TouchableOpacity>
 
-            {/* Stand */}
-            <TouchableOpacity style={styles.button} onPress={stand}>
-              <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-                <Text style={styles.text}>STAND</Text>
-              </LinearGradient>
-            </TouchableOpacity>
-          </Fragment>
-        )
-      ) : (
-        <View style={styles.waitingWrapper}>
-          <Text style={styles.waitingText}>Waiting for opponent...</Text>
-        </View>
-      )}
+        {/* Stand */}
+        <TouchableOpacity style={styles.button} onPress={stand}>
+          <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
+            <Text style={styles.text}>STAND</Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      </Fragment>
     </View>
   )
 }
@@ -56,7 +44,7 @@ const statusBar = getStatusBarHeight(true)
 const styles = StyleSheet.create({
   container: {
     height: responsiveHeight(6),
-    marginBottom: statusBar === 44 ? 35 : 5,
+    marginBottom: statusBar === 44 ? 35 : 20,
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-around",
@@ -80,7 +68,7 @@ const styles = StyleSheet.create({
   text: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(1.5),
+    fontSize: responsiveFontSize(1.75),
   },
   waitingWrapper: {
     height: responsiveHeight(5.5),

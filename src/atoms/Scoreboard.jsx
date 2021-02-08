@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     height: responsiveWidth(9),
     width: responsiveWidth(9),
     borderRadius: 20,
-    // overflow: `hidden`,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -67,4 +66,8 @@ const styles = StyleSheet.create({
     marginLeft: responsiveWidth(0.5),
     marginRight: responsiveWidth(0.5),
   },
+  gradient: {
+    height: `100%`,
+    width: `100%`
+  }
 })
