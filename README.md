@@ -2,7 +2,11 @@
 
 ## Project Kanban Board:
 
-[Click Here](https://github.com/orgs/avlogames/projects/3?fullscreen=true)
+[Kanban Board](https://github.com/orgs/avlogames/projects/3?fullscreen=true)
+
+## Project Backlog:
+
+[Google Sheet](https://docs.google.com/spreadsheets/d/1ZgFOcgGq1j_-YYKMqCpUTZVLTEfaAiXwBpVhTdODvO4/edit?ts=602193c4#gid=0)
 
 ## How To Setup:
 
