@@ -1,4 +1,5 @@
-# Pazaak
+![pazaak logo](https://github.com/avlogames/Pazaak/blob/master/src/ui/assets/images/pazaak-git.png "Pazaak Logo")
+---------------------------------
 
 ### Project:
 
