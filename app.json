@@ -6,9 +6,9 @@
     "owner": "avlogames",
     "description": "Catch 22 is an online head to head game. To be victorious you must win three sets by scoring the closests to 22 points without going over.",
     "orientation": "portrait",
-    "icon": "./src/assets/images/icon.png",
+    "icon": "./src/ui/assets/images/icon.png",
     "splash": {
-      "image": "./src/assets/images/splash.png",
+      "image": "./src/ui/assets/images/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#131935"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/ui/assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./src/assets/images/favicon.png"
+      "favicon": "./src/ui/assets/images/favicon.png"
     }
   }
 }
