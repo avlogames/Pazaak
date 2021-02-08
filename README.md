@@ -1,4 +1,4 @@
-![pazaak logo](https://github.com/avlogames/Pazaak/blob/master/src/ui/assets/images/pazaak-git.png =250x)
+<img src="https://github.com/avlogames/Pazaak/blob/master/src/ui/assets/images/pazaak-git.png" alt="pazaak logo" width="250"/>
 ---------------------------------
 
 ### Project:
