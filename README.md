@@ -1,7 +1,9 @@
 # Pazaak
 
 ### Project:
+
 [Kanban Board](https://github.com/orgs/avlogames/projects/3?fullscreen=true)
+
 [Backlog](https://docs.google.com/spreadsheets/d/1ZgFOcgGq1j_-YYKMqCpUTZVLTEfaAiXwBpVhTdODvO4/edit?ts=602193c4#gid=0)
 
 ### How To Setup:
