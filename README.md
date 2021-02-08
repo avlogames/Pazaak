@@ -1,23 +1,20 @@
 # Pazaak
 
-## Project Kanban Board:
-
+### Project:
 [Kanban Board](https://github.com/orgs/avlogames/projects/3?fullscreen=true)
+[Backlog](https://docs.google.com/spreadsheets/d/1ZgFOcgGq1j_-YYKMqCpUTZVLTEfaAiXwBpVhTdODvO4/edit?ts=602193c4#gid=0)
 
-## Project Backlog:
+### How To Setup:
+```
+# Clone repo:
+git clone git@github.com:avlogames/Pazaak.git
 
-[Google Sheet](https://docs.google.com/spreadsheets/d/1ZgFOcgGq1j_-YYKMqCpUTZVLTEfaAiXwBpVhTdODvO4/edit?ts=602193c4#gid=0)
+# Install Dependencies:
+cd pazaak && npm i
 
-## How To Setup:
+# Install Expo CLI
+npm i -g expo cli
 
-### 1. Clone repo:
-`git clone git@github.com:avlogames/Pazaak.git`
-
-### 2. Install Dependencies:
-`cd pazaak && npm i`
-
-### 3. Install Expo CLI
-`npm i -g expo cli`
-
-### 4. Run app.
-`npm run ios`
+# Run app
+npm run ios
+```
