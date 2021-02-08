@@ -2,7 +2,7 @@
 
 ---
 
-### Project:
+### PROJECT:
 
 * [Kanban Board](https://github.com/orgs/avlogames/projects/3?fullscreen=true)
 
@@ -10,7 +10,7 @@
 
 ---
 
-### How To Setup:
+### HOW TO SETUP:
 ```
 # Clone repo:
 git clone git@github.com:avlogames/Pazaak.git
