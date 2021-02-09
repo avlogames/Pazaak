@@ -1,4 +1,4 @@
-<img src="https://github.com/avlogames/Pazaak/blob/master/src/client/assets/images/pazaak-git.png" alt="pazaak logo" width="250"/>
+<img src="https://github.com/avlogames/Pazaak/blob/master/src/ui/assets/images/pazaak-git.png" alt="pazaak logo" width="250"/>
 
 ---
 
