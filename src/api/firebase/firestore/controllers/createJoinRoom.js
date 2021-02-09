@@ -1,10 +1,10 @@
 import { db } from "src/api/firebase"
-import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
 import newRoomModel from "src/api/firebase/firestore/models/newRoomModel"
 import newPlayerModel from "src/api/firebase/firestore/models/newPlayerModel"
+import Storage from "src/lib/Storage"
 
 export default async function createJoinRoom(code) {
-  const uuid = await getAsyncStorage("uuid")
+  const uuid = await Storage.get("uuid")
   const roomDoc = await db.doc(`ROOMS/${code}`).get()
 
   // Create Room if no other players.

@@ -6,7 +6,6 @@ import database from "src/api/sqlite/database/aiLogic.db"
 class SQLite {
   constructor() {
     this.db = null
-    // this.load = this.load.bind(this)
   }
 
   static load = async () => {

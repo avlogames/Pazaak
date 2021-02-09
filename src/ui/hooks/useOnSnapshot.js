@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import { useDispatch, useSelector } from "react-redux"
 import { db } from "src/api/firebase"
-import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
+import Storage from 'src/lib/Storage'
 
 export default function useOnSnapshot() {
   const dispatch = useDispatch()
@@ -13,12 +13,12 @@ export default function useOnSnapshot() {
   const pazaak = useSelector((s) => s.pazaak)
 
   const getCode = async () => {
-    const value = await getAsyncStorage("code")
+    const value = await Storage.get("code")
     return setCode(value)
   }
 
   const getUuid = async () => {
-    const value = await getAsyncStorage("uuid")
+    const value = await Storage.get("uuid")
     return setUuid(value)
   }
 

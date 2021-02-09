@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
-import { setAsyncStorage } from "src/ui/helpers/asyncStorage"
+import Storage from "src/lib/Storage"
 import createJoinRoom from "src/api/firebase/firestore/controllers/createJoinRoom"
 
 export default function useCreateJoinRoom() {
@@ -14,7 +14,7 @@ export default function useCreateJoinRoom() {
   const onSubmit = async () => {
     try {
       if (await createJoinRoom(code)) {
-        setAsyncStorage("code", code)
+        Storage.set("code", code)
         return navigate("pazaak")
       }
       return navigate("room_not_found")

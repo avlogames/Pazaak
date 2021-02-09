@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import updateDocument from "src/api/firebase/firestore/controllers/updateDocument"
-import dealCard from "src/ui/helpers/dealCard"
-import initializeStack from "src/lib/initializeStack"
-import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
+import Pazaak from 'src/lib/Pazaak'
+import Storage from 'src/lib/Storage'
 
 export default function useHitStand(uoid) {
   const pazaak = useSelector((s) => s.pazaak)
   const [uuid, setUuid] = useState(null)
 
   useEffect(() => {
-    getAsyncStorage("uuid").then((u) => setUuid(u))
+    Storage.get("uuid").then((u) => setUuid(u))
   }, [])
 
   const stand = () => {
@@ -19,8 +18,8 @@ export default function useHitStand(uoid) {
     // Player Stands on a Bust.
     if (newPazaak.players[uuid].score > 20) {
       newPazaak.players[uoid].wins += 1
-      newPazaak.players[uuid].stack = initializeStack(false)
-      newPazaak.players[uoid].stack = initializeStack(true)
+      newPazaak.players[uuid].stack = Pazaak.initializeStack(false)
+      newPazaak.players[uoid].stack = Pazaak.initializeStack(true)
       newPazaak.players[uuid].score = newPazaak.players[uuid].stack.reduce((a, v) => a + v.value, 0)
       newPazaak.players[uoid].score = newPazaak.players[uoid].stack.reduce((a, v) => a + v.value, 0)
       newPazaak.activePlayer = uoid
@@ -30,7 +29,7 @@ export default function useHitStand(uoid) {
 
     // Player is first to stand.
     if (!pazaak.standing.includes(uuid) && !pazaak.standing.includes(uoid)) {
-      const newCard = dealCard()
+      const newCard = Pazaak.dealCard()
       const stack = newPazaak.players[uoid].stack
       stack[stack.findIndex((o) => o.type === "placeholder")] = newCard
       newPazaak.players[uoid].score = stack.reduce((a, v) => a + v.value, 0)
@@ -47,8 +46,8 @@ export default function useHitStand(uoid) {
         newPazaak.players[uuid].wins += 1
       if ((playerScore > 20 && opponentScore < 21) || (opponentScore > playerScore && opponentScore < 21))
         newPazaak.players[uoid].wins += 1
-      newPazaak.players[uuid].stack = initializeStack(false)
-      newPazaak.players[uoid].stack = initializeStack(true)
+      newPazaak.players[uuid].stack = Pazaak.initializeStack(false)
+      newPazaak.players[uoid].stack = Pazaak.initializeStack(true)
       newPazaak.players[uuid].score = newPazaak.players[uuid].stack.reduce((a, v) => a + v.value, 0)
       newPazaak.players[uoid].score = newPazaak.players[uoid].stack.reduce((a, v) => a + v.value, 0)
       newPazaak.activePlayer = uoid
@@ -59,7 +58,7 @@ export default function useHitStand(uoid) {
 
   const hitMe = () => {
     const newPazaak = pazaak
-    const newCard = dealCard()
+    const newCard = Pazaak.dealCard()
     const stack = newPazaak.players[uuid].stack
     stack[stack.findIndex((o) => o.type === "placeholder")] = newCard
     newPazaak.players[uuid].score = stack.reduce((a, v) => a + v.value, 0)

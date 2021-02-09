@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import updateDocument from "src/api/firebase/firestore/controllers/updateDocument"
-import { getAsyncStorage } from "src/ui/helpers/asyncStorage"
+import Storage from 'src/lib/Storage'
 import { PLACEHOLDER } from "src/ui/config"
 
 export default function usePlayCard() {
@@ -9,7 +9,7 @@ export default function usePlayCard() {
   const [uuid, setUuid] = useState(null)
 
   useEffect(() => {
-    getAsyncStorage("uuid").then((u) => setUuid(u))
+    Storage.get("uuid").then((u) => setUuid(u))
   }, [])
 
   const playCard = async (cindex) => {

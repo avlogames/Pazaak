@@ -3,13 +3,13 @@ import { useNavigation } from "@react-navigation/native"
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native"
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
 import Background from "src/ui/atoms/Background"
-import Player from "src/ui/helpers/Player"
+import Audio from "src/lib/Audio"
 
 export default function RoomNotFound() {
   const { navigate } = useNavigation()
 
   const handlePress = () => {
-    Player.playSound("buttonPress")
+    Audio.playSound("buttonPress")
     return navigate("join_room")
   }
 
