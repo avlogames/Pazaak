@@ -6,9 +6,9 @@
     "owner": "charleshay",
     "description": "Pazaak is an online head to head game. To be victorious you must win three sets by scoring the closests to 20 points without going over.",
     "orientation": "portrait",
-    "icon": "./src/ui/assets/images/icon.png",
+    "icon": "./src/client/assets/images/icon.png",
     "splash": {
-      "image": "./src/ui/assets/images/splash.png",
+      "image": "./src/client/assets/images/splash.png",
       "resizeMode": "cover",
       "backgroundColor": "#131935"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./src/ui/assets/images/adaptive-icon.png",
+        "foregroundImage": "./src/client/assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./src/ui/assets/images/favicon.png"
+      "favicon": "./src/client/assets/images/favicon.png"
     }
   }
 }

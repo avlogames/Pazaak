@@ -1,8 +1,8 @@
 import "react-native-gesture-handler"
 import React from "react"
 import { StatusBar } from "expo-status-bar"
-import store, { Provider } from "src/firebase/redux"
-import Router from "src/ui/Router"
+import store, { Provider } from "src/client/redux"
+import Router from "src/client/Router"
 
 export default function Pazaak() {
   return (
