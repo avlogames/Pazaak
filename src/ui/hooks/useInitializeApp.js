@@ -1,6 +1,6 @@
-import { NavigationContainer as Navigation } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack"
 import { Asset } from "expo-asset"
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
 import { AUDIO, CARDS, IMAGES } from "src/ui/config"
 import Storage from "src/lib/Storage"
 import Audio from "src/lib/Audio"
@@ -18,11 +18,10 @@ export default function useInitializeApp() {
   }
 
   const setCache = async () => {
-    const cacheAssets = Object.values({ ...CARDS, ...IMAGES }).map((asset) => {
-      return Asset.fromModule(asset).downloadAsync()
-    })
+    const cacheItems = Object.values({ ...CARDS, ...IMAGES })
+    const cacheAssets = cacheItems.map((ass) => Asset.fromModule(ass).downloadAsync())
     return Promise.all([setUuid(), ...cacheAssets, ...sounds, sqlite])
   }
 
-  return [Navigation, Navigator, Screen, setCache]
+  return [NavigationContainer, Navigator, Screen, setCache]
 }
