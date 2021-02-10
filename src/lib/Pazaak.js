@@ -9,7 +9,7 @@ class Pazaak {
 
   static initializeSideDeck = () => {
     const cards = []
-    const allValues = [-6, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5, 6]
+    const allValues = [-6, -6, -5, -5, -4, -4, -3, -3, -2, -2, -1, -1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
     for (let x = 0; x < 4; x++) {
       const index = Math.floor(Math.random() * allValues.length)
       const value = allValues[index]
@@ -27,11 +27,40 @@ class Pazaak {
     return stack
   }
 
-  static sideDeckFloor = () => {}
+  static sideDeckFloor = (cards) => {
+    return cards.reduce((acc, { type, value }) => {
+      return type === "red" ? (acc += value) : acc
+    }, 0)
+  }
 
-  static sideDeckCeiling = () => {}
+  static sideDeckCeiling = (cards) => {
+    return cards.reduce((acc, { type, value }) => {
+      return type === "blue" ? (acc += value) : acc
+    }, 0)
+  }
 
-  static smallestCombo = () => {}
+  static smallestCombo = (cards, currScore, minScore) => {
+    const filterCards = cards.map((val, i) => ({ ...val, index: i })).filter((c) => c.value !== 0)
+    const result = []
+    function buildCombinations(acc = [], array = filterCards) {
+      array.map((val, i) => {
+        result.push([...acc, val])
+        buildCombinations([...acc, val], array.slice(i + 1))
+      })
+    }
+    buildCombinations([], filterCards)
+
+    const bestCombo = result.reduce((acc, arr) => {
+        const cardSum = arr.reduce((acc, val) => (acc += val.value), 0)
+        const total = currScore + cardSum
+        // return { total, length: arr.length, arr }
+        return total >= minScore && total <= 20 && arr.length <= acc.length && total >= acc.total
+          ? { total, length: arr.length, arr: arr }
+          : acc
+      },{ total: 0, length: 4, arr: [] })
+
+    return bestCombo
+  }
 }
 
 export default Pazaak

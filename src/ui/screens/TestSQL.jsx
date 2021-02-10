@@ -1,10 +1,14 @@
 import React, { useEffect } from "react"
 import { StyleSheet, View } from "react-native"
-import getAllData from "src/api/sqlite/queries/getAllData"
+import Pazaak from "src/lib/Pazaak"
 
 export default function TestSQL() {
   useEffect(() => {
-    getAllData(14, 0, 1, 1)
+    const sideDeck = Pazaak.initializeSideDeck()
+    const sideDeckFloor = Pazaak.sideDeckFloor(sideDeck)
+    const sideDeckCeiling = Pazaak.sideDeckCeiling(sideDeck)
+    const smallestCombo = Pazaak.smallestCombo(sideDeck, 14, 17)
+    console.log(smallestCombo)
   }, [])
 
   return <View style={styles.container}></View>

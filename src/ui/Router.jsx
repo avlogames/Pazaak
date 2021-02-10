@@ -16,7 +16,7 @@ export default function Router() {
 
   return (
     <Navigation>
-      <Navigator initialRouteName="join_room" screenOptions={screenOptions}>
+      <Navigator initialRouteName="test_sql" screenOptions={screenOptions}>
         <Screen name="test_sql" component={TestSQL} />
         <Screen name="join_room" component={JoinRoomScreen} />
         <Screen name="pazaak" component={PazaakScreen} />
