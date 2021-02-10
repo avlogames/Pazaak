@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import updateDocument from "src/api/firebase/firestore/controllers/updateDocument"
+import updateDocument from "src/api/firebase/firestore/updateDocument"
 import Pazaak from 'src/lib/Pazaak'
 import Storage from 'src/lib/Storage'
 

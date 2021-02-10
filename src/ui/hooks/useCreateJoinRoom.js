@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import Storage from "src/lib/Storage"
-import createJoinRoom from "src/api/firebase/firestore/controllers/createJoinRoom"
+import createJoinRoom from "src/api/firebase/firestore/createJoinRoom"
 
 export default function useCreateJoinRoom() {
   const { navigate } = useNavigation()
