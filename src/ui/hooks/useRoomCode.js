@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native"
 import Storage from "src/lib/Storage"
 import createJoinRoom from "src/api/firebase/firestore/createJoinRoom"
 
-export default function useCreateJoinRoom() {
+export default function useRoomCode() {
   const { navigate } = useNavigation()
   const [code, setCode] = useState("")
 
@@ -15,7 +15,7 @@ export default function useCreateJoinRoom() {
     try {
       if (await createJoinRoom(code)) {
         Storage.set("code", code)
-        return navigate("pazaak")
+        return navigate("friend_match")
       }
       return navigate("room_not_found")
     } catch (err) {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { db } from "src/api/firebase"
 import Storage from 'src/lib/Storage'
 
-export default function useOnSnapshot() {
+export default function useFriendMatch() {
   const dispatch = useDispatch()
   const { navigate } = useNavigation()
   const [code, setCode] = useState(null)
@@ -24,7 +24,7 @@ export default function useOnSnapshot() {
 
   const cancel = async () => {
     await db.doc(`ROOMS/${code}`).delete()
-    return navigate("join_room")
+    return navigate("enter_room_code")
   }
 
   useEffect(() => {

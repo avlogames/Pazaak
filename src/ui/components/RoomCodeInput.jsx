@@ -3,11 +3,11 @@ import { View as AniView } from "react-native-animatable"
 import { StyleSheet, Text, View } from "react-native"
 import Input from "react-native-smooth-pincode-input"
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
-import useCreateJoinRoom from "src/ui/hooks/useCreateJoinRoom"
+import useRoomCode from "src/ui/hooks/useRoomCode"
 import HollowButton from "src/ui/atoms/HollowButton"
 
-export default function EnterRoomCode() {
-  const [code, onTextChange, onSubmit] = useCreateJoinRoom()
+export default function RoomCodeInput() {
+  const [code, onTextChange, onSubmit] = useRoomCode()
 
   return (
     <AniView style={styles.container} animation="bounceIn">

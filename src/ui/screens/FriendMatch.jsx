@@ -11,11 +11,11 @@ import OpponentDetails from "src/ui/components/OpponentDetails"
 import PlayerDetails from "src/ui/components/PlayerDetails"
 import EndTurnStand from "src/ui/components/EndTurnStand"
 import LoadingSpinner from "src/ui/components/LoadingSpinner"
-import useOnSnapshot from "src/ui/hooks/useOnSnapshot"
+import useFriendMatch from "src/ui/hooks/useFriendMatch"
 import PopupModal from "src/ui/atoms/PopupModal"
 
-export default function PazaakScreen() {
-  const [code, pazaak, uuid, quitMatch] = useOnSnapshot()
+export default function CustomMatch() {
+  const [code, pazaak, uuid, quitMatch] = useFriendMatch()
   const waiting = pathOr(true, ["waitingForOpponent"], pazaak)
 
   if (waiting) {

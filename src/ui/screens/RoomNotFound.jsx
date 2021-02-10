@@ -10,7 +10,7 @@ export default function RoomNotFound() {
 
   const handlePress = () => {
     Audio.playSound("buttonPress")
-    return navigate("join_room")
+    return navigate("enter_room_code")
   }
 
   return (
