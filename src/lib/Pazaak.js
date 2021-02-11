@@ -1,27 +1,30 @@
-import { PLACEHOLDER } from "src/ui/config"
+import { PLACEHOLDER, SIDE_DECK_COLLECTION } from "src/ui/config"
 
 class Pazaak {
   /**
    * Deal Card From Pile
    */
   static dealCard = () => {
-    const value = Math.floor(Math.random() * 10) + 1
-    return { type: "green", value }
+    return { type: "green", value: Math.floor(Math.random() * 10) + 1 }
   }
 
   /**
    * Initialize Side Deck
    */
-  static initializeSideDeck = () => {
-    const cards = []
-    const allValues = [-6, -6, -5, -5, -4, -4, -3, -3, -2, -2, -1, -1, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6]
+  static initializeSideDeck = (cards = []) => {
+    const allValues = SIDE_DECK_COLLECTION
+
+    // Loop 4 Cards
     for (let x = 0; x < 4; x++) {
-      const index = Math.floor(Math.random() * allValues.length)
-      const value = allValues[index]
+      const value = allValues[Math.floor(Math.random() * allValues.length)]
       const type = value > 0 ? "blue" : "red"
+
+      // Splice From Collection And Push To Card Array
       allValues.splice(index, 1)
       cards.push({ type, value })
     }
+
+    // Return Cards Array
     return cards
   }
 
@@ -64,7 +67,7 @@ class Pazaak {
   /**
    * Smallest Winning Combo
    */
-  static smallestCombo = (cards, currScore, opponentScore) => {
+  static smallestCombo = (cards, currentScore, opponentScore) => {
     const minScore = opponentScore >= 17 ? opponentScore : 17
     const filterCards = cards.map((val, i) => ({ ...val, index: i })).filter((c) => c.value !== 0)
     const result = []
@@ -78,13 +81,14 @@ class Pazaak {
 
     buildCombinations([], filterCards)
     return result.reduce((acc, arr) => {
-      const cardSum = arr.reduce((acc, val) => (acc += val.value), 0)
-      const total = currScore + cardSum
-      if (total >= minScore && total <= 20 && arr.length <= acc.length && total >= acc.total) {
-        return { total, length: arr.length, arr: arr }
-      }
-      return acc
-    }, { total: 0, length: 4, arr: [] })
+        const cardSum = arr.reduce((acc, val) => (acc += val.value), 0)
+        const total = currentScore + cardSum
+        const currentOrMin = currentScore > 20 ? minScore - 1 : currentScore
+        if (total >= minScore && total <= 20 && total > currentOrMin && arr.length <= acc.length && total >= acc.total) {
+          return { total, length: arr.length, arr: arr }
+        }
+        return acc
+      }, { total: 0, length: 4, arr: [] })
   }
 }
 
