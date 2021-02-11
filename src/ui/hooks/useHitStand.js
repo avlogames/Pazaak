@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import updateDocument from "src/api/firebase/firestore/updateDocument"
-import Pazaak from 'src/lib/Pazaak'
-import Storage from 'src/lib/Storage'
+import Storage from "src/lib/Storage"
+import GameActions from "src/lib/GameActions"
 
 export default function useHitStand(uoid) {
   const pazaak = useSelector((s) => s.pazaak)
@@ -12,58 +11,9 @@ export default function useHitStand(uoid) {
     Storage.get("uuid").then((u) => setUuid(u))
   }, [])
 
-  const stand = () => {
-    const newPazaak = pazaak
+  const stand = () => GameActions.stand(pazaak, uuid, uoid, true)
 
-    // Player Stands on a Bust.
-    if (newPazaak.players[uuid].score > 20) {
-      newPazaak.players[uoid].wins += 1
-      newPazaak.players[uuid].stack = Pazaak.initializeStack(false)
-      newPazaak.players[uoid].stack = Pazaak.initializeStack(true)
-      newPazaak.players[uuid].score = newPazaak.players[uuid].stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.players[uoid].score = newPazaak.players[uoid].stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.activePlayer = uoid
-      newPazaak.standing = []
-      return updateDocument(newPazaak)
-    }
-
-    // Player is first to stand.
-    if (!pazaak.standing.includes(uuid) && !pazaak.standing.includes(uoid)) {
-      const newCard = Pazaak.dealCard()
-      const stack = newPazaak.players[uoid].stack
-      stack[stack.findIndex((o) => o.type === "placeholder")] = newCard
-      newPazaak.players[uoid].score = stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.standing.push(uuid)
-      newPazaak.activePlayer = uoid
-      return updateDocument(newPazaak)
-    }
-
-    // Opponent is standing. (Both will be standing).
-    if (pazaak.standing.includes(uoid)) {
-      const playerScore = pazaak.players[uuid].score
-      const opponentScore = pazaak.players[uoid].score
-      if ((opponentScore > 20 && playerScore < 21) || (playerScore > opponentScore && playerScore < 21))
-        newPazaak.players[uuid].wins += 1
-      if ((playerScore > 20 && opponentScore < 21) || (opponentScore > playerScore && opponentScore < 21))
-        newPazaak.players[uoid].wins += 1
-      newPazaak.players[uuid].stack = Pazaak.initializeStack(false)
-      newPazaak.players[uoid].stack = Pazaak.initializeStack(true)
-      newPazaak.players[uuid].score = newPazaak.players[uuid].stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.players[uoid].score = newPazaak.players[uoid].stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.activePlayer = uoid
-      newPazaak.standing = []
-      return updateDocument(newPazaak)
-    }
-  }
-
-  const hitMe = () => {
-    const newPazaak = pazaak
-    const newCard = Pazaak.dealCard()
-    const stack = newPazaak.players[uuid].stack
-    stack[stack.findIndex((o) => o.type === "placeholder")] = newCard
-    newPazaak.players[uuid].score = stack.reduce((a, v) => a + v.value, 0)
-    return updateDocument(newPazaak)
-  }
+  const hitMe = () => GameActions.hit(pazaak, uuid, uoid, true)
 
   return [hitMe, stand]
 }

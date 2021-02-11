@@ -10,7 +10,7 @@ class SQLite {
 
   static load = async () => {
     const { isDirectory } = await getInfoAsync(`${documentDirectory}SQLite`)
-    if (!isDirectory) await FileSystem.makeDirectoryAsync(`${documentDirectory}SQLite`)
+    if (!isDirectory) await makeDirectoryAsync(`${documentDirectory}SQLite`)
     await downloadAsync(Asset.fromModule(database).uri, `${documentDirectory}SQLite/aiLogic.db`)
     this.db = openDatabase("myDatabaseName.db")
   }

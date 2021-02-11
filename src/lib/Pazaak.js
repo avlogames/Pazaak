@@ -42,23 +42,23 @@ class Pazaak {
   static smallestCombo = (cards, currScore, minScore) => {
     const filterCards = cards.map((val, i) => ({ ...val, index: i })).filter((c) => c.value !== 0)
     const result = []
+
     function buildCombinations(acc = [], array = filterCards) {
       array.map((val, i) => {
         result.push([...acc, val])
         buildCombinations([...acc, val], array.slice(i + 1))
       })
     }
-    buildCombinations([], filterCards)
-
+    
     const bestCombo = result.reduce((acc, arr) => {
-        const cardSum = arr.reduce((acc, val) => (acc += val.value), 0)
-        const total = currScore + cardSum
-        // return { total, length: arr.length, arr }
-        return total >= minScore && total <= 20 && arr.length <= acc.length && total >= acc.total
-          ? { total, length: arr.length, arr: arr }
-          : acc
-      },{ total: 0, length: 4, arr: [] })
-
+      const cardSum = arr.reduce((acc, val) => (acc += val.value), 0)
+      const total = currScore + cardSum
+      return total >= minScore && total <= 20 && arr.length <= acc.length && total >= acc.total
+      ? { total, length: arr.length, arr: arr }
+      : acc
+    },{ total: 0, length: 4, arr: [] })
+    
+    buildCombinations([], filterCards)
     return bestCombo
   }
 }
