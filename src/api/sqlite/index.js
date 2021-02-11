@@ -1,7 +1,7 @@
 import { documentDirectory, getInfoAsync, makeDirectoryAsync, downloadAsync } from "expo-file-system"
 import { Asset } from "expo-asset"
 import { openDatabase } from "expo-sqlite"
-import database from "src/api/sqlite/database/aiLogic.db"
+import database from "src/api/sqlite/database/qtable.db"
 
 class SQLite {
   constructor() {
@@ -11,8 +11,8 @@ class SQLite {
   static load = async () => {
     const { isDirectory } = await getInfoAsync(`${documentDirectory}SQLite`)
     if (!isDirectory) await makeDirectoryAsync(`${documentDirectory}SQLite`)
-    await downloadAsync(Asset.fromModule(database).uri, `${documentDirectory}SQLite/aiLogic.db`)
-    this.db = openDatabase("myDatabaseName.db")
+    await downloadAsync(Asset.fromModule(database).uri, `${documentDirectory}SQLite/qtable.db`)
+    this.db = openDatabase("qtable.db")
   }
 }
 

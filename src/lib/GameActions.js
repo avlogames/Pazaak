@@ -1,73 +1,124 @@
-import Pazaak from "src/lib/Pazaak"
 import updateDocument from "src/api/firebase/firestore/updateDocument"
+import { PLACEHOLDER } from "src/ui/config"
+import Pazaak from "src/lib/Pazaak"
 import store from "src/api/redux"
 
 class GameActions {
   /**
+   * Play Card From Side Deck
+   */
+  playSideDeckCard = (pazaak, cardIndex, pid, useFirestore) => {
+    const newPazaak = pazaak
+    const player = newPazaak.players[pid]
+    const card = player.sideDeck[cardIndex]
+
+    // Set Player Values
+    player.stack[player.stack.findIndex((o) => o.type === "placeholder")] = card
+    player.score = player.stack.reduce((a, o) => (a += o.value), 0)
+    player.sideDeck[cardIndex] = PLACEHOLDER
+
+    // Add New Pazaak To Firestore Or Redux
+    if (useFirestore) updateDocument(newPazaak)
+    else store.dispatch({ type: "hydrate", value: newPazaak })
+  }
+
+  /**
    * Hit New Card
    */
-  hit = (pazaak, pid, oid, useFirebase) => {
+  hit = (pazaak, pid, oid, useFirestore) => {
     const newPazaak = pazaak
     const player = newPazaak.players[pid]
     const stack = player.stack
-    const nextPlace = stack.findIndex((o) => o.type === "placeholder")
+    const nextPlaceholder = stack.findIndex((o) => o.type === "placeholder")
 
-    // Set stack and store.
-    stack[nextPlace] = Pazaak.dealCard()
+    // Set Stack And Store
+    stack[nextPlaceholder] = Pazaak.dealCard()
     player.score = stack.reduce((a, v) => (a += v.value), 0)
 
-    // Add newPazaak to firebase or redux
-    if (useFirebase) updateDocument(newPazaak)
+    // Add New Pazaak To Firestore Or Redux
+    if (useFirestore) updateDocument(newPazaak)
     else store.dispatch({ type: "hydrate", value: newPazaak })
 
-    // Return auto stand (if 9 cards) or false
-    const cardLimit = stack.filter((card) => card.type !== "placeholder")
-    return cardLimit.length === 9 ? this.stand(newPazaak, pid, oid, useFirebase) : false
+    // Return Auto-Stand (If 9 Cards) Or False
+    if (Pazaak.stackLimit(stack)) {
+      this.stand(newPazaak, pid, oid, useFirestore)
+    }
   }
 
   /**
    * Stand At Current Score
    */
-  stand = (pazaak, pid, oid, useFirebase) => {
+  stand = (pazaak, pid, oid, useFirestore) => {
     const newPazaak = pazaak
 
-    // Player Stands on a Bust.
+    // Player Stands On A Bust
     if (newPazaak.players[pid].score > 20) {
-      newPazaak.players[oid].wins += 1
+      // Reset Player Stack And Score
       newPazaak.players[pid].stack = Pazaak.initializeStack(false)
-      newPazaak.players[oid].stack = Pazaak.initializeStack(true)
       newPazaak.players[pid].score = newPazaak.players[pid].stack.reduce((a, v) => a + v.value, 0)
+
+      // Reset Opponent Stack And Score - Incriment Wins
+      newPazaak.players[oid].wins += 1
+      newPazaak.players[oid].stack = Pazaak.initializeStack(true)
       newPazaak.players[oid].score = newPazaak.players[oid].stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.activePlayer = oid
+
+      // Reset Standing And Change Active Player
       newPazaak.standing = []
-      return useFirebase ? updateDocument(newPazaak) : store.dispatch({ type: "hydrate", value: newPazaak })
+      newPazaak.activePlayer = oid
+
+      // Add New Pazaak To Firestore Or Redux
+      if (useFirestore) updateDocument(newPazaak)
+      else store.dispatch({ type: "hydrate", value: newPazaak })
     }
 
-    // Player is first to stand.
+    // Player Is First To Stand
     if (!pazaak.standing.includes(pid) && !pazaak.standing.includes(oid)) {
-      const stack = newPazaak.players[oid].stack
-      stack[stack.findIndex((o) => o.type === "placeholder")] = Pazaak.dealCard()
-      newPazaak.players[oid].score = stack.reduce((a, v) => a + v.value, 0)
+      const opponentStack = newPazaak.players[oid].stack
+      const nextPlaceholder = opponentStack.findIndex((o) => o.type === "placeholder")
+
+      // Deal Opponent A First Card And Update Score
+      opponentStack[nextPlaceholder] = Pazaak.dealCard()
+      newPazaak.players[oid].score = opponentStack.reduce((a, v) => a + v.value, 0)
+
+      // Add User To Standing and Change Active Player
       newPazaak.standing.push(pid)
       newPazaak.activePlayer = oid
-      return useFirebase ? updateDocument(newPazaak) : store.dispatch({ type: "hydrate", value: newPazaak })
+
+      // Add New Pazaak To Firestore Or Redux
+      if (useFirestore) updateDocument(newPazaak)
+      else store.dispatch({ type: "hydrate", value: newPazaak })
     }
 
-    // Opponent is standing. (Both will be standing).
+    // Opponent Is Standing. (Both Will Be Standing)
     if (pazaak.standing.includes(oid)) {
       const playerScore = pazaak.players[pid].score
       const opponentScore = pazaak.players[oid].score
-      if ((opponentScore > 20 && playerScore < 21) || (playerScore > opponentScore && playerScore < 21))
+
+      // If Player Wins - Increment Score
+      if ((opponentScore > 20 && playerScore < 21) || (playerScore > opponentScore && playerScore < 21)) {
         newPazaak.players[pid].wins += 1
-      if ((playerScore > 20 && opponentScore < 21) || (opponentScore > playerScore && opponentScore < 21))
+      }
+
+      // If Opponent Wins - Increment Score
+      if ((playerScore > 20 && opponentScore < 21) || (opponentScore > playerScore && opponentScore < 21)) {
         newPazaak.players[oid].wins += 1
+      }
+
+      // Reinitialize Stacks
       newPazaak.players[pid].stack = Pazaak.initializeStack(false)
       newPazaak.players[oid].stack = Pazaak.initializeStack(true)
-      newPazaak.players[pid].score = newPazaak.players[pid].stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.players[oid].score = newPazaak.players[oid].stack.reduce((a, v) => a + v.value, 0)
-      newPazaak.activePlayer = oid
+
+      // Reset Scores For Both Players
+      playerScore = newPazaak.players[pid].stack.reduce((a, v) => a + v.value, 0)
+      opponentScore = newPazaak.players[oid].stack.reduce((a, v) => a + v.value, 0)
+
+      // Reset Standing And Change Active Player
       newPazaak.standing = []
-      return useFirebase ? updateDocument(newPazaak) : store.dispatch({ type: "hydrate", value: newPazaak })
+      newPazaak.activePlayer = oid
+
+      // Add New Pazaak To Firestore Or Redux
+      if (useFirestore) updateDocument(newPazaak)
+      else store.dispatch({ type: "hydrate", value: newPazaak })
     }
   }
 }
