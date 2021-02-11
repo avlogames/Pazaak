@@ -11,9 +11,13 @@ export default function useHitStand(uoid) {
     Storage.get("uuid").then((u) => setUuid(u))
   }, [])
 
-  const stand = () => GameActions.stand(pazaak, uuid, uoid, true)
+  const stand = () => {
+    return GameActions.stand(pazaak, uuid, uoid, true)
+  }
 
-  const hitMe = () => GameActions.hit(pazaak, uuid, uoid, true)
+  const hitMe = () => {
+    return GameActions.hit(pazaak, uuid, uoid, true)
+  }
 
   return [hitMe, stand]
 }
