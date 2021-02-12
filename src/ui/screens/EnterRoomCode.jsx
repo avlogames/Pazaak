@@ -1,27 +1,21 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { Image } from "react-native-animatable"
 import { StyleSheet, ImageBackground, KeyboardAvoidingView, Platform, View } from "react-native"
 import { responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
 import RoomCodeInput from "src/ui/components/RoomCodeInput"
+import useRoomCode from "src/ui/hooks/useRoomCode"
 import wallpaper from "src/ui/assets/images/wallpaper.jpg"
-import Storage from "src/lib/Storage"
 
 const iOS = Platform.OS === "ios"
-export default function EnterRoomCode({ navigation }) {
-  useEffect(() => {
-    Storage.get("code").then((code) => {
-      if (code) {
-        navigation.navigate("friend_match")
-      }
-    })
-  }, [])
+export default function EnterRoomCode() {
+  const roomCodeProps = useRoomCode()
 
   return (
     <ImageBackground source={wallpaper} style={styles.imageBackground}>
       <KeyboardAvoidingView behavior={iOS ? "padding" : null} style={styles.container}>
         <View style={styles.wrapper}>
           <Image animation="bounceIn" style={styles.logo} source={require("src/ui/assets/images/pazaak.png")} />
-          <RoomCodeInput />
+          <RoomCodeInput {...roomCodeProps} />
         </View>
       </KeyboardAvoidingView>
     </ImageBackground>

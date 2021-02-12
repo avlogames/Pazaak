@@ -3,12 +3,9 @@ import { View as AniView } from "react-native-animatable"
 import { StyleSheet, Text, View } from "react-native"
 import Input from "react-native-smooth-pincode-input"
 import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
-import useRoomCode from "src/ui/hooks/useRoomCode"
 import HollowButton from "src/ui/atoms/HollowButton"
 
-export default function RoomCodeInput() {
-  const [code, onTextChange, onSubmit] = useRoomCode(true)
-
+export default function RoomCodeInput({ code, onTextChange, onSubmit }) {
   return (
     <AniView style={styles.container} animation="bounceIn">
       <Text style={styles.title}>ENTER ROOM CODE</Text>
