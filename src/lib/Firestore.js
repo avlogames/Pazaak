@@ -1,22 +1,43 @@
 import { db } from "src/api/firebase"
 
 class Firestore {
-  constructor() {
-    this.unsubscribe = null
+  unsubscribe = null
+
+  /**
+   * Delete Room From Firestore
+   */
+  deleteRoom = async (code) => {
+    try {
+      await db.doc(`ROOMS/${code}`).delete()
+    } catch (err) {
+      console.error(err)
+    }
   }
 
+  /**
+   * Subscribe To Room Document
+   */
   subscribe = (code, callback) => {
-    let last = {}
-    this.unsubscribe = db.doc(`ROOMS/${code}`).onSnapshot((doc) => {
-      const value = doc.data()
-      if (value !== last) {
-        last = value
-        callback(value)
-      }
-    })
+    try {
+      let last = {}
+      this.unsubscribe = db.doc(`ROOMS/${code}`).onSnapshot((doc) => {
+        const value = doc.data()
+        if (value !== last) {
+          last = value
+          callback(value)
+        }
+      })
+    } catch (err) {
+      console.error(err)
+    }
   }
 
-  unsubscribe = () => this.unsubscribe()
+  /**
+   * Unsubscribe From Room
+   */
+  unsubscribe = () => {
+    return this.unsubscribe()
+  }
 }
 
 export default new Firestore()

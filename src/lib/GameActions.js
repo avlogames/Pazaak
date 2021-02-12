@@ -4,6 +4,22 @@ import Pazaak from "src/lib/Pazaak"
 import store from "src/api/redux"
 
 class GameActions {
+  checkForWinner = (pazaak, useFirestore) => {
+    const newPazaak = pazaak
+    const players = pazaak.players
+    const playerKeys = Object.keys(players)
+    const winner = playerKeys.find((k) => players[k].wins === 3)
+
+    if (typeof winner !== "undefined") {
+      newPazaak.gameOver = true,
+      newPazaak.winner = winner
+
+      // Add New Pazaak To Firestore Or Redux
+      if (useFirestore) updateDocument(newPazaak)
+      else store.dispatch({ type: "hydrate", value: newPazaak })
+    }
+  }
+
   /**
    * Play Card From Side Deck
    */
@@ -91,8 +107,8 @@ class GameActions {
 
     // Opponent Is Standing. (Both Will Be Standing)
     if (pazaak.standing.includes(oid)) {
-      const playerScore = pazaak.players[pid].score
-      const opponentScore = pazaak.players[oid].score
+      let playerScore = pazaak.players[pid].score
+      let opponentScore = pazaak.players[oid].score
 
       // If Player Wins - Increment Score
       if ((opponentScore > 20 && playerScore < 21) || (playerScore > opponentScore && playerScore < 21)) {
@@ -109,8 +125,8 @@ class GameActions {
       newPazaak.players[oid].stack = Pazaak.initializeStack(true)
 
       // Reset Scores For Both Players
-      playerScore = newPazaak.players[pid].stack.reduce((a, v) => a + v.value, 0)
-      opponentScore = newPazaak.players[oid].stack.reduce((a, v) => a + v.value, 0)
+      pazaak.players[pid].score = newPazaak.players[pid].stack.reduce((a, v) => a + v.value, 0)
+      pazaak.players[oid].score = newPazaak.players[oid].stack.reduce((a, v) => a + v.value, 0)
 
       // Reset Standing And Change Active Player
       newPazaak.standing = []

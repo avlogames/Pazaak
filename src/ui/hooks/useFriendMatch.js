@@ -7,30 +7,14 @@ import Storage from "src/lib/Storage"
 
 export default function useFriendMatch() {
   const dispatch = useDispatch()
+  const pazaak = useSelector((s) => s.pazaak)
   const { navigate } = useNavigation()
   const [code, setCode] = useState(null)
   const [uuid, setUuid] = useState(null)
 
-  const pazaak = useSelector((s) => s.pazaak)
-
-  const getCode = async () => {
-    const value = await Storage.get("code")
-    return setCode(value)
-  }
-
-  const getUuid = async () => {
-    const value = await Storage.get("uuid")
-    return setUuid(value)
-  }
-
-  const cancel = async () => {
-    await db.doc(`ROOMS/${code}`).delete()
-    return navigate("enter_room_code")
-  }
-
   useEffect(() => {
-    getCode()
-    getUuid()
+    Storage.get("code").then((code) => setCode(code))
+    Storage.get("uuid").then((uuid) => setUuid(uuid))
   }, [])
 
   useEffect(() => {
@@ -39,6 +23,11 @@ export default function useFriendMatch() {
       return Firestore.unsubscribe
     }
   }, [code])
+
+  const cancel = async () => {
+    Firestore.deleteRoom(code)
+    return navigate("enter_room_code")
+  }
 
   return [code, pazaak, uuid, cancel]
 }
