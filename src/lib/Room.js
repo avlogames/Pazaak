@@ -10,6 +10,12 @@ class Room {
     waitingForOpponent: true,
     winner: null,
   })
+
+  static addOpponent = (room, uuid) => ({
+    ...room,
+    players: { ...room.players, [uuid]: Player.create("woman", false, "Nibbler", uuid) },
+    waitingForOpponent: false,
+  })
 }
 
 export default Room

@@ -1,9 +1,8 @@
-import updateDocument from "src/api/firebase/firestore/updateDocument"
-import { PLACEHOLDER } from "src/ui/config"
-import Pazaak from "src/lib/Pazaak"
-import Firestore from "src/lib/Firestore"
-import Room from "src/lib/Room"
 import store from "src/api/redux"
+import Firestore from "src/lib/Firestore"
+import Pazaak from "src/lib/Pazaak"
+import Room from "src/lib/Room"
+import { PLACEHOLDER } from "src/ui/config"
 
 class GameActions {
   /**
@@ -29,7 +28,7 @@ class GameActions {
       const newPazaak = { ...pazaak, gameOver: true, winner }
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) updateDocument(newPazaak)
+      if (useFirestore) Firestore.updateDocument(newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
     }
   }
@@ -48,7 +47,7 @@ class GameActions {
     player.sideDeck[cardIndex] = PLACEHOLDER
 
     // Add New Pazaak To Firestore Or Redux
-    if (useFirestore) updateDocument(newPazaak)
+    if (useFirestore) Firestore.updateDocument(newPazaak)
     else store.dispatch({ type: "hydrate", value: newPazaak })
   }
 
@@ -66,7 +65,7 @@ class GameActions {
     player.score = stack.reduce((a, v) => (a += v.value), 0)
 
     // Add New Pazaak To Firestore Or Redux
-    if (useFirestore) updateDocument(newPazaak)
+    if (useFirestore) Firestore.updateDocument(newPazaak)
     else store.dispatch({ type: "hydrate", value: newPazaak })
 
     // Return Auto-Stand (If 9 Cards) Or False
@@ -97,7 +96,7 @@ class GameActions {
       newPazaak.activePlayer = oid
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) updateDocument(newPazaak)
+      if (useFirestore) Firestore.updateDocument(newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
     }
 
@@ -115,7 +114,7 @@ class GameActions {
       newPazaak.activePlayer = oid
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) updateDocument(newPazaak)
+      if (useFirestore) Firestore.updateDocument(newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
     }
 
@@ -147,7 +146,7 @@ class GameActions {
       newPazaak.activePlayer = oid
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) updateDocument(newPazaak)
+      if (useFirestore) Firestore.updateDocument(newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
     }
   }

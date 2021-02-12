@@ -1,10 +1,38 @@
 import { db } from "src/api/firebase"
+import Storage from "src/lib/Storage"
+import Room from "src/lib/Room"
 
 class Firestore {
   unsubscribe = null
+  last = {}
 
-  updateDocument = async (code, doc) => {
-    await db.doc(`ROOMS/${code}`).set(doc, { merge: true })
+  /**
+   * Create Room
+   */
+  createJoinRoom = async (code) => {
+    const uuid = await Storage.get("uuid")
+    const roomDoc = await db.doc(`ROOMS/${code}`).get()
+
+    // Room Doesn't Exist
+    if (!roomDoc.exists) {
+      // Create New Room
+      this.updateDocument(code, Room.create(code, uuid))
+      return true
+    }
+
+    // Room Already Exists
+    if (roomDoc.exists) {
+      const room = roomDoc.data()
+
+      // Challenger Already Belongs To Room
+      if (room.players[uuid]) return true
+
+      // If No Opponent - Add Them To Room
+      if (Object.keys(room.players).length === 1) {
+        this.updateDocument(code, Room.addOpponent(room, uuid))
+        return true
+      }
+    }
   }
 
   /**
@@ -23,11 +51,10 @@ class Firestore {
    */
   subscribe = (code, callback) => {
     try {
-      let last = {}
       this.unsubscribe = db.doc(`ROOMS/${code}`).onSnapshot((doc) => {
         const value = doc.data()
-        if (value !== last) {
-          last = value
+        if (value !== this.last) {
+          this.last = value
           callback(value)
         }
       })
@@ -41,6 +68,13 @@ class Firestore {
    */
   unsubscribe = () => {
     return this.unsubscribe()
+  }
+
+  /**
+   * Update Document
+   */
+  updateDocument = async (code, doc) => {
+    await db.doc(`ROOMS/${code}`).set(doc, { merge: true })
   }
 }
 
