@@ -7,7 +7,7 @@ import useRoomCode from "src/ui/hooks/useRoomCode"
 import HollowButton from "src/ui/atoms/HollowButton"
 
 export default function RoomCodeInput() {
-  const [code, onTextChange, onSubmit] = useRoomCode()
+  const [code, onTextChange, onSubmit] = useRoomCode(true)
 
   return (
     <AniView style={styles.container} animation="bounceIn">

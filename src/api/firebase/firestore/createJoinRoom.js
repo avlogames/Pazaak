@@ -1,30 +1,14 @@
 import { db } from "src/api/firebase"
-import Pazaak from "src/lib/Pazaak"
 import Storage from "src/lib/Storage"
+import GameActions from "src/lib/GameActions"
 
-function createPlayer(avatar, draw, name, uuid) {
-  const stack = Pazaak.initializeStack(draw)
-  const score = stack.reduce((a, v) => (a += v.value), 0)
-  const sideDeck = Pazaak.initializeSideDeck()
-  return { avatar, credits: 100, name, score, sideDeck, stack, uuid, wins: 0 }
-}
-
-export default async function createJoinRoom(code) {
+export default async function createJoinRoom(code, useFirestore) {
   const uuid = await Storage.get("uuid")
   const roomDoc = await db.doc(`ROOMS/${code}`).get()
 
   // Create Room if no other players.
   if (!roomDoc.exists) {
-    await db.doc(`ROOMS/${code}`).set({
-      activePlayer: uuid,
-      gameOver: false,
-      players: { [uuid]: createPlayer("man", true, "Dr. Colossus", uuid) },
-      roomCode: code,
-      standing: [],
-      waitingForOpponent: true,
-      winner: null,
-    })
-
+    await GameActions.createNewRoom(code, uuid, useFirestore)
     return true
   }
 

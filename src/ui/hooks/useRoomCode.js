@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native"
 import Storage from "src/lib/Storage"
 import createJoinRoom from "src/api/firebase/firestore/createJoinRoom"
 
-export default function useRoomCode() {
+export default function useRoomCode(useFirestore) {
   const { navigate } = useNavigation()
   const [code, setCode] = useState("")
 
@@ -13,7 +13,7 @@ export default function useRoomCode() {
 
   const onSubmit = async () => {
     try {
-      if (await createJoinRoom(code)) {
+      if (await createJoinRoom(code, useFirestore)) {
         Storage.set("code", code)
         return navigate("friend_match")
       }

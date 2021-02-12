@@ -1,18 +1,32 @@
 import updateDocument from "src/api/firebase/firestore/updateDocument"
 import { PLACEHOLDER } from "src/ui/config"
 import Pazaak from "src/lib/Pazaak"
+import Firestore from "src/lib/Firestore"
+import Room from "src/lib/Room"
 import store from "src/api/redux"
 
 class GameActions {
+  /**
+   * Create New Room
+   */
+  createNewRoom = async (code, uuid, useFirestore) => {
+    const newRoom = Room.create(code, uuid)
+
+    // Add New Pazaak To Firestore Or Redux
+    if (useFirestore) Firestore.updateDocument(code, newRoom)
+    else store.dispatch({ type: "hydrate", value: newRoom })
+  }
+
+  /**
+   * Check For Player With 3 Wins
+   */
   checkForWinner = (pazaak, useFirestore) => {
-    const newPazaak = pazaak
     const players = pazaak.players
     const playerKeys = Object.keys(players)
     const winner = playerKeys.find((k) => players[k].wins === 3)
 
     if (typeof winner !== "undefined") {
-      newPazaak.gameOver = true,
-      newPazaak.winner = winner
+      const newPazaak = { ...pazaak, gameOver: true, winner }
 
       // Add New Pazaak To Firestore Or Redux
       if (useFirestore) updateDocument(newPazaak)

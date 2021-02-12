@@ -3,6 +3,10 @@ import { db } from "src/api/firebase"
 class Firestore {
   unsubscribe = null
 
+  updateDocument = async (code, doc) => {
+    await db.doc(`ROOMS/${code}`).set(doc, { merge: true })
+  }
+
   /**
    * Delete Room From Firestore
    */
