@@ -5,7 +5,7 @@ class Storage {
     try {
       return await AsyncStorage.getItem(key)
     } catch (err) {
-      console.log("Error getting uuid in async storage")
+      console.log(err)
     }
   }
 
@@ -13,7 +13,15 @@ class Storage {
     try {
       return await AsyncStorage.setItem(key, value)
     } catch (err) {
-      console.log("Error setting uuid in async storage")
+      console.log(err)
+    }
+  }
+
+  static remove = async (key) => {
+    try {
+      return await AsyncStorage.removeItem(key)
+    } catch (err) {
+      console.log(err)
     }
   }
 }

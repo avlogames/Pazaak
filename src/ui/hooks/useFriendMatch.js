@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import { useDispatch, useSelector } from "react-redux"
-import { db } from "src/api/firebase"
 import Firestore from "src/lib/Firestore"
 import Storage from "src/lib/Storage"
 
@@ -26,6 +25,7 @@ export default function useFriendMatch() {
 
   const cancel = async () => {
     Firestore.deleteRoom(code)
+    Storage.remove("code")
     return navigate("enter_room_code")
   }
 

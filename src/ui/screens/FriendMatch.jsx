@@ -10,33 +10,16 @@ import PlayerSideDeck from "src/ui/components/PlayerSideDeck"
 import OpponentDetails from "src/ui/components/OpponentDetails"
 import PlayerDetails from "src/ui/components/PlayerDetails"
 import EndTurnStand from "src/ui/components/EndTurnStand"
-import LoadingSpinner from "src/ui/components/LoadingSpinner"
 import useFriendMatch from "src/ui/hooks/useFriendMatch"
 import PopupModal from "src/ui/atoms/PopupModal"
+import WaitingForOpponent from "src/ui/components/WaitingForOpponent"
 
 export default function CustomMatch() {
   const [code, pazaak, uuid, quitMatch] = useFriendMatch()
   const waiting = pathOr(true, ["waitingForOpponent"], pazaak)
 
-  if (waiting) {
-    return (
-      <Background>
-        <LoadingSpinner label={`WAITING FOR OPPONENT`}>
-          <Button onPress={quitMatch} title="Go Back" />
-        </LoadingSpinner>
-      </Background>
-    )
-  }
-
-  if (!code || !uuid || !pazaak) {
-    return (
-      <Background>
-        <LoadingSpinner label={`Loading game data...`}>
-          <Button onPress={quitMatch} title="Go Back" />
-        </LoadingSpinner>
-      </Background>
-    )
-  }
+  if (waiting) return <WaitingForOpponent message={`WAITING FOR OPPONENT`} quitMatch={quitMatch} />
+  if (!code || !uuid || !pazaak) return <WaitingForOpponent message={`LOADING GAME DATA...`} quitMatch={quitMatch} />
 
   if (code && uuid && pazaak) {
     const uoid = Object.keys(pazaak.players).find((k) => k !== uuid)
@@ -68,7 +51,7 @@ export default function CustomMatch() {
         <EndTurnStand turn={playerTurn} playerStanding={playerStanding} opponentStanding={opponentStanding} uoid={uoid} />
         {gameOver && (
           <PopupModal>
-            <Text>{`${winner} WINS!`}</Text>
+            <Text>{`${pazaak.players[winner].name} WINS!`}</Text>
             <Button title="Exit" onPress={quitMatch} />
           </PopupModal>
         )}
