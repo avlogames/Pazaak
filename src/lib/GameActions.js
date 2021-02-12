@@ -24,6 +24,8 @@ class GameActions {
       // Add New Pazaak To Firestore Or Redux
       if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
+
+      return false
     }
   }
 
@@ -43,6 +45,8 @@ class GameActions {
     // Add New Pazaak To Firestore Or Redux
     if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
     else store.dispatch({ type: "hydrate", value: newPazaak })
+
+    return false
   }
 
   /**
@@ -67,6 +71,8 @@ class GameActions {
       if (Pazaak.stackLimit(stack)) {
         this.stand(newPazaak, pid, oid, useFirestore)
       }
+
+      return false
     } catch (err) {
       console.log(err)
     }
@@ -96,6 +102,8 @@ class GameActions {
       // Add New Pazaak To Firestore Or Redux
       if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
+
+      return false
     }
 
     // Player Is First To Stand
@@ -104,7 +112,7 @@ class GameActions {
       const nextPlaceholder = opponentStack.findIndex((o) => o.type === "placeholder")
 
       // Deal Opponent A First Card And Update Score
-      opponentStack[nextPlaceholder] = Pazaak.dealCard()
+      newPazaak.players[oid].stack[nextPlaceholder] = Pazaak.dealCard()
       newPazaak.players[oid].score = opponentStack.reduce((a, v) => a + v.value, 0)
 
       // Add User To Standing and Change Active Player
@@ -114,12 +122,14 @@ class GameActions {
       // Add New Pazaak To Firestore Or Redux
       if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
+
+      return false
     }
 
     // Opponent Is Standing. (Both Will Be Standing)
     if (pazaak.standing.includes(oid)) {
-      let playerScore = pazaak.players[pid].score
-      let opponentScore = pazaak.players[oid].score
+      let playerScore = newPazaak.players[pid].score
+      let opponentScore = newPazaak.players[oid].score
 
       // If Player Wins - Increment Score
       if ((opponentScore > 20 && playerScore < 21) || (playerScore > opponentScore && playerScore < 21)) {
@@ -136,8 +146,8 @@ class GameActions {
       newPazaak.players[oid].stack = Pazaak.initializeStack(true)
 
       // Reset Scores For Both Players
-      pazaak.players[pid].score = newPazaak.players[pid].stack.reduce((a, v) => a + v.value, 0)
-      pazaak.players[oid].score = newPazaak.players[oid].stack.reduce((a, v) => a + v.value, 0)
+      newPazaak.players[pid].score = newPazaak.players[pid].stack.reduce((a, v) => a + v.value, 0)
+      newPazaak.players[oid].score = newPazaak.players[oid].stack.reduce((a, v) => a + v.value, 0)
 
       // Reset Standing And Change Active Player
       newPazaak.standing = []
@@ -146,6 +156,8 @@ class GameActions {
       // Add New Pazaak To Firestore Or Redux
       if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
+
+      return false
     }
   }
 }

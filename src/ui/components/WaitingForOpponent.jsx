@@ -3,11 +3,11 @@ import { Button } from "react-native"
 import Background from "src/ui/atoms/Background"
 import LoadingSpinner from "src/ui/components/LoadingSpinner"
 
-export default function WaitingForOpponent({ message, quitMatch }) {
+export default function WaitingForOpponent({ message, quit }) {
   return (
     <Background>
       <LoadingSpinner label={message}>
-        <Button onPress={quitMatch} title="Go Back" />
+        <Button onPress={quit} title="Go Back" />
       </LoadingSpinner>
     </Background>
   )

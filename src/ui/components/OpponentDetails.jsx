@@ -8,10 +8,10 @@ import man from "src/ui/assets/images/man.png"
 import woman from "src/ui/assets/images/woman.png"
 import LeaveMatch from "src/ui/atoms/LeaveMatch"
 
-export default function OpponentDetails({ turn, name, avatar, credits, quitMatch }) {
+export default function OpponentDetails({ turn, name, avatar, credits, quit }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.quitButton} onPress={quitMatch}>
+      <TouchableOpacity style={styles.quitButton} onPress={quit}>
         <LeaveMatch />
       </TouchableOpacity>
       <View style={styles.detailsContainer}>
@@ -40,7 +40,7 @@ export default function OpponentDetails({ turn, name, avatar, credits, quitMatch
 
 OpponentDetails.defaultProps = {
   avatar: null,
-  quitMatch: () => {},
+  quit: () => {},
   credits: null,
   name: null,
   turn: false,
@@ -48,7 +48,7 @@ OpponentDetails.defaultProps = {
 
 OpponentDetails.propTypes = {
   avatar: types.string,
-  quitMatch: types.func,
+  quit: types.func,
   credits: types.number,
   name: types.string,
   turn: types.bool,

@@ -5,6 +5,7 @@ import RoomNotFound from "src/ui/screens/RoomNotFound"
 import EnterRoomCode from "src/ui/screens/EnterRoomCode"
 import FriendMatch from "src/ui/screens/FriendMatch"
 import RandomMatch from "src/ui/screens/RandomMatch"
+import ChooseGame from "src/ui/screens/ChooseGame"
 
 export default function Router() {
   const [ready, setReady] = useState(false)
@@ -14,7 +15,8 @@ export default function Router() {
     <AppLoading startAsync={setCache} onFinish={() => setReady(true)} onError={console.warn} />
   ) : (
     <Navigation>
-      <Navigator initialRouteName="enter_room_code" screenOptions={screenOptions}>
+      <Navigator initialRouteName="choose_game" screenOptions={screenOptions}>
+        <Screen name="choose_game" component={ChooseGame} />
         <Screen name="random_match" component={RandomMatch} />
         <Screen name="enter_room_code" component={EnterRoomCode} />
         <Screen name="friend_match" component={FriendMatch} />
