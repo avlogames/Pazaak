@@ -9,10 +9,11 @@ import PlayerStack from "src/ui/components/PlayerStack"
 import PlayerSideDeck from "src/ui/components/PlayerSideDeck"
 import OpponentDetails from "src/ui/components/OpponentDetails"
 import PlayerDetails from "src/ui/components/PlayerDetails"
-import EndTurnStand from "src/ui/components/EndTurnStand"
+import HitStand from "src/ui/components/HitStand"
 import useFriendMatch from "src/ui/hooks/useFriendMatch"
 import PopupModal from "src/ui/atoms/PopupModal"
 import WaitingForOpponent from "src/ui/components/WaitingForOpponent"
+import GameActions from "src/lib/GameActions"
 
 export default function CustomMatch() {
   const [code, pazaak, uuid, quitMatch] = useFriendMatch()
@@ -31,6 +32,9 @@ export default function CustomMatch() {
     const opponentTurn = pazaak.activePlayer === opponent.uuid
     const playerStanding = pazaak.standing.includes(uuid)
     const opponentStanding = pazaak.standing.includes(uoid)
+    const stand = () => GameActions.stand(pazaak, uuid, uoid, true)
+    const hit = () => GameActions.hit(pazaak, uuid, uoid, true)
+    const playCard = (cardIndex) => GameActions.playSideDeckCard(pazaak, cardIndex, uuid)
 
     return (
       <Background>
@@ -45,10 +49,10 @@ export default function CustomMatch() {
           <OpponentSideDeck sideDeck={opponent.sideDeck} />
           <OpponentStack stack={opponent.stack} score={opponent.score} standing={opponentStanding} wins={opponent.wins} />
           <PlayerStack stack={player.stack} score={player.score} standing={playerStanding} wins={player.wins} />
-          <PlayerSideDeck pazaak={pazaak} sideDeck={player.sideDeck} turn={playerTurn} uuid={uuid} />
+          <PlayerSideDeck playCard={playCard} sideDeck={player.sideDeck} turn={playerTurn} />
         </TableRing>
         <PlayerDetails turn={playerTurn} name={player.name} avatar={player.avatar} credits={player.credits} />
-        <EndTurnStand turn={playerTurn} playerStanding={playerStanding} opponentStanding={opponentStanding} uoid={uoid} />
+        <HitStand hit={hit} stand={stand} turn={playerTurn} />
         {gameOver && (
           <PopupModal>
             <Text>{`${pazaak.players[winner].name} WINS!`}</Text>

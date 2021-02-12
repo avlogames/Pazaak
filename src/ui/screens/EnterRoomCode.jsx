@@ -3,12 +3,12 @@ import { Image } from "react-native-animatable"
 import { StyleSheet, ImageBackground, KeyboardAvoidingView, Platform, View } from "react-native"
 import { responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
 import RoomCodeInput from "src/ui/components/RoomCodeInput"
-import useRoomCode from "src/ui/hooks/useRoomCode"
+import useEnterRoomCode from "src/ui/hooks/useEnterRoomCode"
 import wallpaper from "src/ui/assets/images/wallpaper.jpg"
 
 const iOS = Platform.OS === "ios"
 export default function EnterRoomCode() {
-  const roomCodeProps = useRoomCode()
+  const roomCodeProps = useEnterRoomCode()
 
   return (
     <ImageBackground source={wallpaper} style={styles.imageBackground}>

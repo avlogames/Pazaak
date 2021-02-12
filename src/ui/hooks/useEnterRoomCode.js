@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native"
 import Storage from "src/lib/Storage"
 import Firestore from "src/lib/Firestore"
 
-export default function useRoomCode() {
+export default function useEnterRoomCode() {
   const { navigate } = useNavigation()
   const [code, setCode] = useState("")
 
@@ -14,17 +14,14 @@ export default function useRoomCode() {
   }, [])
 
   const onTextChange = (newCode) => {
-    if (newCode.length < 5) {
-      setCode(newCode.toUpperCase())
-    }
+    if (newCode.length < 5) setCode(newCode.toUpperCase())
   }
 
   const onSubmit = async () => {
-    if (await Firestore.createJoinRoom(code)) {
-      Storage.set("code", code)
-      return navigate("friend_match")
-    }
-    return navigate("room_not_found")
+    const roomFound = await Firestore.createJoinRoom(code)
+    if (!roomFound) return navigate("room_not_found")
+    Storage.set("code", code)
+    return navigate("friend_match")
   }
 
   return { code, onTextChange, onSubmit }

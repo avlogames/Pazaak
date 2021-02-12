@@ -49,22 +49,26 @@ class GameActions {
    * Hit New Card
    */
   hit = (pazaak, pid, oid, useFirestore) => {
-    const newPazaak = pazaak
-    const player = newPazaak.players[pid]
-    const stack = player.stack
-    const nextPlaceholder = stack.findIndex((o) => o.type === "placeholder")
+    try {
+      const newPazaak = pazaak
+      const player = newPazaak.players[pid]
+      const stack = player.stack
+      const nextPlaceholder = stack.findIndex((o) => o.type === "placeholder")
 
-    // Set Stack And Store
-    stack[nextPlaceholder] = Pazaak.dealCard()
-    player.score = stack.reduce((a, v) => (a += v.value), 0)
+      // Set Stack And Store
+      newPazaak.players[pid].stack[nextPlaceholder] = Pazaak.dealCard()
+      player.score = stack.reduce((a, v) => (a += v.value), 0)
 
-    // Add New Pazaak To Firestore Or Redux
-    if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
-    else store.dispatch({ type: "hydrate", value: newPazaak })
+      // Add New Pazaak To Firestore Or Redux
+      if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
+      else store.dispatch({ type: "hydrate", value: newPazaak })
 
-    // Return Auto-Stand (If 9 Cards) Or False
-    if (Pazaak.stackLimit(stack)) {
-      this.stand(newPazaak, pid, oid, useFirestore)
+      // Return Auto-Stand (If 9 Cards) Or False
+      if (Pazaak.stackLimit(stack)) {
+        this.stand(newPazaak, pid, oid, useFirestore)
+      }
+    } catch (err) {
+      console.log(err)
     }
   }
 

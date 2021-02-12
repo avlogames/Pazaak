@@ -4,23 +4,20 @@ import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-nat
 import { getStatusBarHeight } from "react-native-status-bar-height"
 import { LinearGradient } from "expo-linear-gradient"
 import types from "prop-types"
-import useHitStand from "src/ui/hooks/useHitStand"
 
-export default function EndTurnStand({ turn, playerStanding, uoid }) {
-  const [hitMe, stand] = useHitStand(uoid)
-
+export default function HitStand({ hit, stand, turn }) {
   return (
     <View style={styles.container}>
       <Fragment>
         {/* Hit Me */}
-        <TouchableOpacity style={styles.button} onPress={hitMe} disabled={!turn || playerStanding}>
+        <TouchableOpacity style={styles.button} onPress={hit} disabled={!turn}>
           <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
             <Text style={styles.text}>HIT ME</Text>
           </LinearGradient>
         </TouchableOpacity>
 
         {/* Stand */}
-        <TouchableOpacity style={styles.button} onPress={stand}>
+        <TouchableOpacity style={styles.button} onPress={stand} disabled={!turn}>
           <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
             <Text style={styles.text}>STAND</Text>
           </LinearGradient>
@@ -30,12 +27,12 @@ export default function EndTurnStand({ turn, playerStanding, uoid }) {
   )
 }
 
-EndTurnStand.defaultProps = {
+HitStand.defaultProps = {
   turn: false,
   standing: false,
 }
 
-EndTurnStand.propTypes = {
+HitStand.propTypes = {
   turn: types.bool,
   standing: types.bool,
 }

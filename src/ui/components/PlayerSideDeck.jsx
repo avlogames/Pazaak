@@ -4,13 +4,8 @@ import { StyleSheet, View } from "react-native"
 import { responsiveHeight } from "react-native-responsive-dimensions"
 import BigCard from "src/ui/atoms/BigCard"
 import BigPlaceholder from "src/ui/atoms/BigPlaceholder"
-import GameActions from "src/lib/GameActions"
 
-export default function PlayerSideDeck({ pazaak, sideDeck, turn, uuid }) {
-  const playCard = async (cardIndex) => {
-    return GameActions.playSideDeckCard(pazaak, cardIndex, uuid)
-  }
-
+export default function PlayerSideDeck({ playCard, sideDeck, turn }) {
   return (
     <View style={styles.container}>
       {sideDeck.map((val, i) => {
