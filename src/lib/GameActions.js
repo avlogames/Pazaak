@@ -1,7 +1,7 @@
 import store from "src/api/redux"
 import Firestore from "src/lib/Firestore"
 import Pazaak from "src/lib/Pazaak"
-import { PLACEHOLDER } from "src/ui/config"
+import { PLACEHOLDER } from "src/config"
 import Storage from "src/lib/Storage"
 
 class GameActions {

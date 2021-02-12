@@ -1,7 +1,7 @@
 import store from "src/api/redux"
 import Room from "src/lib/Room"
 import Storage from "src/lib/Storage"
-import { OFFLINE_OPPONENT, OFFLINE_ROOM_CODE } from "src/ui/config"
+import { OFFLINE_OPPONENT, OFFLINE_ROOM_CODE } from "src/config"
 
 class Redux {
   createFakeRoom = async () => {

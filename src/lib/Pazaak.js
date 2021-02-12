@@ -1,4 +1,4 @@
-import { PLACEHOLDER, SIDE_DECK_COLLECTION } from "src/ui/config"
+import { PLACEHOLDER, SIDE_DECK_COLLECTION } from "src/config"
 
 class Pazaak {
   /**

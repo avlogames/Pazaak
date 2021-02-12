@@ -1,8 +1,7 @@
 import SQLite from "src/api/sqlite"
-import GameActions from "src/lib/GameActions"
 import Pazaak from "src/lib/Pazaak"
 import Storage from "src/lib/Storage"
-import { OFFLINE_OPPONENT } from "src/ui/config"
+import { OFFLINE_OPPONENT } from "src/config"
 
 class AiOpponent {
   constructor() {
@@ -28,7 +27,7 @@ class AiOpponent {
       nap_score,
     ])
 
-    return action
+    return [action, smallest_combo]
   }
 
   sqlQuery = async (queryValues) => {
