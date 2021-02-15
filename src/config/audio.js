@@ -6,4 +6,5 @@ export default {
   endSet: require("src/assets/audio/sfx-end-set.mp3"),
   sideDeck: require("src/assets/audio/sfx-side-deck.mp3"),
   tie: require("src/assets/audio/sfx-tie.mp3"),
+  theme: require('src/assets/audio/msc-theme.mp3')
 }

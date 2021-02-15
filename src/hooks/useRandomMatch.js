@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { useNavigation } from "@react-navigation/native"
 import Redux from "src/lib/Redux"
 import Storage from "src/lib/Storage"
 import AiOpponent from "src/lib/AiOpponent"
@@ -9,6 +10,7 @@ import { OFFLINE_OPPONENT } from "src/config"
 export default function useRandomMatch() {
   let lastPlayer = null
   const [uuid, setUuid] = useState(null)
+  const { navigate } = useNavigation()
   const pazaak = useSelector((s) => s.pazaak)
   const ready = Object.keys(pazaak).length > 0 && uuid
 
@@ -44,15 +46,13 @@ export default function useRandomMatch() {
 
   useEffect(() => {
     if (pazaak.activePlayer !== lastPlayer) {
-      if (pazaak.activePlayer === OFFLINE_OPPONENT) {
-        aiLoop()
-      }
+      if (pazaak.activePlayer === OFFLINE_OPPONENT) aiLoop()
       lastPlayer = pazaak.activePlayer
     }
   }, [pazaak.activePlayer])
 
   const quit = async () => {
-    Firestore.deleteRoom(code)
+    Redux.hydrateStore({})
     Storage.remove("code")
     return navigate("enter_room_code")
   }

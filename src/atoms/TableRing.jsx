@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
-import { responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
+import { rWidth, rHeight } from "src/helpers/responsive"
 import { LinearGradient } from "expo-linear-gradient"
 
 export default function TableRing({ children }) {
@@ -29,10 +29,10 @@ export default function TableRing({ children }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingLeft: responsiveWidth(5),
-    paddingRight: responsiveWidth(5),
-    paddingBottom: responsiveHeight(2.5),
-    paddingTop: responsiveHeight(2.5),
+    paddingLeft: rWidth(5),
+    paddingRight: rWidth(5),
+    paddingBottom: rHeight(2.5),
+    paddingTop: rHeight(2.5),
     alignItems: "stretch",
   },
   tableShadow: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   tableRing: {
     flex: 1,
-    padding: responsiveHeight(2.5),
+    padding: rHeight(2.5),
   },
   fabricWrapper: {
     flex: 1,
@@ -71,9 +71,9 @@ const styles = StyleSheet.create({
   },
   innerRing: {
     flex: 1,
-    margin: responsiveHeight(3),
+    margin: rHeight(3),
     borderRadius: 200,
-    borderWidth: responsiveHeight(1),
+    borderWidth: rHeight(1),
     borderColor: `rgba(255, 255, 255, 0.05)`,
   },
 })

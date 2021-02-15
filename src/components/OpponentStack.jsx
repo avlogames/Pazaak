@@ -1,7 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
-import { responsiveWidth } from "react-native-responsive-dimensions"
+import { rWidth } from "src/helpers/responsive"
 import SmallCard from "src/atoms/SmallCard"
 import Scoreboard from "src/atoms/Scoreboard"
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   opponentCards: {
-    width: responsiveWidth(61),
+    width: rWidth(61),
     flexDirection: `row`,
     flexWrap: `wrap`,
   },

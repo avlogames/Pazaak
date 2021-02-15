@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, Image } from "react-native"
-import { responsiveWidth } from "react-native-responsive-dimensions"
+import { rWidth } from "src/helpers/responsive"
 import placeholder from "src/assets/cards/placeholder.png"
 
 export default function BigPlaceholder() {
@@ -9,10 +9,10 @@ export default function BigPlaceholder() {
 
 const styles = StyleSheet.create({
   card: (w) => ({
-    height: responsiveWidth(w * 1.3986013986),
-    width: responsiveWidth(w),
+    height: rWidth(w * 1.3986013986),
+    width: rWidth(w),
     borderRadius: 5,
-    marginLeft: responsiveWidth(1),
-    marginRight: responsiveWidth(1)
+    marginLeft: rWidth(1),
+    marginRight: rWidth(1)
   }),
 })

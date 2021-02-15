@@ -1,6 +1,6 @@
 import React, { Fragment } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import { getStatusBarHeight } from "react-native-status-bar-height"
 import { LinearGradient } from "expo-linear-gradient"
 import types from "prop-types"
@@ -40,18 +40,18 @@ HitStand.propTypes = {
 const statusBar = getStatusBarHeight(true)
 const styles = StyleSheet.create({
   container: {
-    height: responsiveHeight(6),
+    height: rHeight(6),
     marginBottom: statusBar === 44 ? 35 : 20,
     flexDirection: "row",
     alignItems: "flex-start",
     justifyContent: "space-around",
-    paddingLeft: responsiveWidth(5),
+    paddingLeft: rWidth(5),
   },
   button: {
     flex: 1,
-    marginRight: responsiveWidth(5),
+    marginRight: rWidth(5),
     shadowColor: `#000`,
-    borderRadius: responsiveWidth(4),
+    borderRadius: rWidth(4),
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
@@ -59,16 +59,16 @@ const styles = StyleSheet.create({
   gradient: {
     alignItems: `center`,
     justifyContent: `center`,
-    borderRadius: responsiveWidth(4),
+    borderRadius: rWidth(4),
     height: `100%`,
   },
   text: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(1.75),
+    fontSize: rFont(1.75),
   },
   waitingWrapper: {
-    height: responsiveHeight(5.5),
+    height: rHeight(5.5),
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
@@ -76,6 +76,6 @@ const styles = StyleSheet.create({
   waitingText: {
     color: `#FFF`,
     fontWeight: `800`,
-    fontSize: responsiveFontSize(1.5),
+    fontSize: rFont(1.5),
   },
 })

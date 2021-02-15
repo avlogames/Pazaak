@@ -1,7 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
-import { responsiveHeight } from "react-native-responsive-dimensions"
+import { rHeight } from "src/helpers/responsive"
 import BigCard from "src/atoms/BigCard"
 import BigPlaceholder from "src/atoms/BigPlaceholder"
 
@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
     backgroundColor: `#2E385A`,
     width: `100%`,
-    marginBottom: responsiveHeight(6),
-    paddingTop: responsiveHeight(1),
-    paddingBottom: responsiveHeight(1),
+    marginBottom: rHeight(6),
+    paddingTop: rHeight(1),
+    paddingBottom: rHeight(1),
   },
 })

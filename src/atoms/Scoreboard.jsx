@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { StyleSheet, ImageBackground, Platform, Text, View } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import blueHex from "src/assets/images/blue-hex.png"
 import redHex from "src/assets/images/red-hex.png"
 import GameActions from "src/lib/GameActions"
@@ -36,18 +36,18 @@ export default function Scoreboard({ score = 0, wins = 0 }) {
 const iOS = Platform.OS === "ios"
 const styles = StyleSheet.create({
   paper: (w) => ({
-    height: responsiveWidth(w * 1.395256917),
-    width: responsiveWidth(w),
+    height: rWidth(w * 1.395256917),
+    width: rWidth(w),
     alignItems: "center",
     justifyContent: "center",
-    marginLeft: responsiveWidth(1.25),
-    marginRight: responsiveWidth(1.25),
-    marginTop: responsiveHeight(0.5),
-    marginBottom: responsiveHeight(0.5),
+    marginLeft: rWidth(1.25),
+    marginRight: rWidth(1.25),
+    marginTop: rHeight(0.5),
+    marginBottom: rHeight(0.5),
   }),
   imageBackground: {
-    height: responsiveWidth(9),
-    width: responsiveWidth(9),
+    height: rWidth(9),
+    width: rWidth(9),
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
@@ -56,22 +56,22 @@ const styles = StyleSheet.create({
     color: `#FFF`,
     fontWeight: `700`,
     paddingLeft: iOS ? 2 : 0,
-    fontSize: responsiveFontSize(1.5),
+    fontSize: rFont(1.5),
   },
   winRow: {
     flexDirection: `row`,
     alignItems: "center",
     justifyContent: "center",
-    marginTop: responsiveHeight(1),
+    marginTop: rHeight(1),
   },
   winWrapper: {
-    height: responsiveWidth(1.8),
-    width: responsiveWidth(1.8),
+    height: rWidth(1.8),
+    width: rWidth(1.8),
     backgroundColor: `#141B36`,
     borderRadius: 5,
     overflow: "hidden",
-    marginLeft: responsiveWidth(0.5),
-    marginRight: responsiveWidth(0.5),
+    marginLeft: rWidth(0.5),
+    marginRight: rWidth(0.5),
   },
   gradient: {
     height: `100%`,

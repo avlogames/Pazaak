@@ -1,7 +1,7 @@
 import React from "react"
 import { useNavigation } from "@react-navigation/native"
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native"
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import Background from "src/atoms/Background"
 import Audio from "src/lib/Audio"
 
@@ -30,28 +30,28 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingLeft: responsiveWidth(5),
-    paddingRight: responsiveWidth(5),
+    paddingLeft: rWidth(5),
+    paddingRight: rWidth(5),
   },
   button: {
     borderWidth: 1,
     borderColor: `#fff`,
-    width: responsiveWidth(90),
-    paddingTop: responsiveHeight(1.5),
-    paddingBottom: responsiveHeight(1.5),
+    width: rWidth(90),
+    paddingTop: rHeight(1.5),
+    paddingBottom: rHeight(1.5),
     alignItems: "center",
-    borderRadius: responsiveWidth(4),
+    borderRadius: rWidth(4),
   },
   buttonText: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(2.5),
+    fontSize: rFont(2.5),
   },
   text: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(2.8),
-    paddingBottom: responsiveHeight(5),
+    fontSize: rFont(2.8),
+    paddingBottom: rHeight(5),
     textTransform: `uppercase`,
   },
 })

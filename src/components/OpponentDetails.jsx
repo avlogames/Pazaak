@@ -1,7 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, Image, Text, TouchableOpacity, View } from "react-native"
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import { LinearGradient } from "expo-linear-gradient"
 import creditIcon from "src/assets/images/credit-icon.png"
 import man from "src/assets/images/man.png"
@@ -56,9 +56,9 @@ OpponentDetails.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    flexBasis: responsiveHeight(6),
+    flexBasis: rHeight(6),
     zIndex: 100,
-    marginTop: responsiveHeight(1),
+    marginTop: rHeight(1),
   },
   detailsContainer: {
     position: `absolute`,
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     alignItems: `center`,
   },
   activeWrapper: {
-    height: responsiveWidth(18),
-    width: responsiveWidth(18),
+    height: rWidth(18),
+    width: rWidth(18),
     borderRadius: 100,
     overflow: `hidden`,
   },
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   profileBorderWrapper: {
-    margin: responsiveWidth(1),
+    margin: rWidth(1),
     backgroundColor: `green`,
     flex: 1,
     borderRadius: 100,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   profileImageWrapper: {
-    margin: responsiveWidth(1),
+    margin: rWidth(1),
     flex: 1,
     backgroundColor: "red",
     borderRadius: 100,
@@ -104,33 +104,33 @@ const styles = StyleSheet.create({
   name: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(1.8),
+    fontSize: rFont(1.8),
     textTransform: `uppercase`,
-    paddingTop: responsiveHeight(0.5),
+    paddingTop: rHeight(0.5),
   },
   creditsContainer: {
     flexDirection: "row",
     alignItems: "center",
   },
   icon: {
-    marginRight: responsiveWidth(1),
+    marginRight: rWidth(1),
   },
   creditsText: {
     color: `#CCC`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(1.5),
+    fontSize: rFont(1.5),
     textTransform: `uppercase`,
   },
   quitButton: {
-    width: responsiveWidth(16),
-    marginTop: responsiveHeight(0.5),
-    marginLeft: responsiveWidth(5),
+    width: rWidth(16),
+    marginTop: rHeight(0.5),
+    marginLeft: rWidth(5),
     zIndex: 100,
   },
   quitText: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(1.8),
+    fontSize: rFont(1.8),
     textTransform: `uppercase`,
     textAlign: "center",
   },

@@ -1,7 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
-import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { rHeight, rWidth } from "src/helpers/responsive"
 import SmallCard from "src/atoms/SmallCard"
 import Scoreboard from "src/atoms/Scoreboard"
 
@@ -44,13 +44,13 @@ PlayerStack.propTypes = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    borderTopWidth: responsiveHeight(0.75),
+    borderTopWidth: rHeight(0.75),
     borderTopColor: `#2E385A`,
     alignItems: "center",
     justifyContent: "center",
   },
   playerCards: {
-    width: responsiveWidth(61),
+    width: rWidth(61),
     flexDirection: `row`,
     flexWrap: `wrap`,
   },

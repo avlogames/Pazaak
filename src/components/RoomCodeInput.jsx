@@ -2,7 +2,7 @@ import React from "react"
 import { View as AniView } from "react-native-animatable"
 import { StyleSheet, Text, View } from "react-native"
 import Input from "react-native-smooth-pincode-input"
-import { responsiveFontSize, responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import HollowButton from "src/atoms/HollowButton"
 
 export default function RoomCodeInput({ code, onTextChange, onSubmit }) {
@@ -35,27 +35,27 @@ const styles = StyleSheet.create({
   title: {
     color: `#CCC`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(2),
+    fontSize: rFont(2),
     textTransform: `uppercase`,
-    marginBottom: responsiveHeight(2),
+    marginBottom: rHeight(2),
   },
   cellStyle: {
-    borderWidth: responsiveFontSize(0.2),
+    borderWidth: rFont(0.2),
     borderRadius: 50,
     borderColor: "#999",
-    marginLeft: responsiveFontSize(1),
-    marginRight: responsiveFontSize(1),
+    marginLeft: rFont(1),
+    marginRight: rFont(1),
   },
   cellStyleFocused: {
     borderColor: "#008FFD",
   },
   textStyle: {
-    fontSize: responsiveFontSize(4),
+    fontSize: rFont(4),
     color: "#FFF",
   },
   buttonWrapper: {
-    height: responsiveHeight(6),
-    width: responsiveWidth(80),
-    marginTop: responsiveHeight(4),
+    height: rHeight(6),
+    width: rWidth(80),
+    marginTop: rHeight(4),
   },
 })

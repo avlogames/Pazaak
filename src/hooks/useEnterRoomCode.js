@@ -8,14 +8,10 @@ export default function useEnterRoomCode() {
   const [code, setCode] = useState("")
 
   useEffect(() => {
-    Storage.get("code").then((code) => {
-      if (code) navigate("friend_match")
-    })
+    Storage.get("code").then((c) => (c ? navigate("friend_match") : null))
   }, [])
 
-  const onTextChange = (newCode) => {
-    if (newCode.length < 5) setCode(newCode.toUpperCase())
-  }
+  const onTextChange = (c) => (c.length < 5 ? setCode(c.toUpperCase()) : null)
 
   const onSubmit = async () => {
     const roomFound = await Firestore.createJoinRoom(code)

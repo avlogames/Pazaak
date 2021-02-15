@@ -1,7 +1,7 @@
 import React from "react"
 import { Image } from "react-native-animatable"
 import { StyleSheet, ImageBackground, KeyboardAvoidingView, Platform, View } from "react-native"
-import { responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
+import { rWidth, rHeight } from "src/helpers/responsive"
 import RoomCodeInput from "src/components/RoomCodeInput"
 import useEnterRoomCode from "src/hooks/useEnterRoomCode"
 import wallpaper from "src/assets/images/wallpaper.jpg"
@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logo: {
-    width: responsiveWidth(80),
-    height: responsiveHeight(10),
+    width: rWidth(80),
+    height: rHeight(10),
     marginBottom: 20,
   },
 })

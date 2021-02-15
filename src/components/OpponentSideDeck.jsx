@@ -1,7 +1,7 @@
 import React from "react"
 import types from "prop-types"
 import { StyleSheet, View } from "react-native"
-import { responsiveHeight } from "react-native-responsive-dimensions"
+import { rHeight } from "src/helpers/responsive"
 import SmallCard from "src/atoms/SmallCard"
 
 export default function OpponentSideDeck({ sideDeck }) {
@@ -33,6 +33,6 @@ const styles = StyleSheet.create({
     justifyContent: `center`,
     backgroundColor: `#2E385A`,
     width: `100%`,
-    marginTop: responsiveHeight(5),
+    marginTop: rHeight(5),
   },
 })

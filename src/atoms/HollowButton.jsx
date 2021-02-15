@@ -1,7 +1,7 @@
 import React from "react"
 import { View } from "react-native-animatable"
 import { StyleSheet, Text, TouchableOpacity } from "react-native"
-import { responsiveFontSize, responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
+import { rFont, rWidth, rHeight } from "src/helpers/responsive"
 
 export default function HollowButton({ animation, onPress, title }) {
   return (
@@ -17,15 +17,15 @@ const styles = StyleSheet.create({
   button: {
     borderWidth: 1,
     borderColor: `#fff`,
-    width: responsiveWidth(80),
-    paddingTop: responsiveHeight(1.5),
-    paddingBottom: responsiveHeight(1.5),
+    width: rWidth(80),
+    paddingTop: rHeight(1.5),
+    paddingBottom: rHeight(1.5),
     alignItems: "center",
-    borderRadius: responsiveWidth(4),
+    borderRadius: rWidth(4),
   },
   buttonText: {
     color: `#FFF`,
     fontWeight: `700`,
-    fontSize: responsiveFontSize(2.5),
+    fontSize: rFont(2.5),
   },
 })

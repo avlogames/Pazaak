@@ -1,7 +1,7 @@
 import React from "react"
 import { View } from "react-native-animatable"
 import { StyleSheet, Image } from "react-native"
-import { responsiveWidth, responsiveHeight } from "react-native-responsive-dimensions"
+import { rWidth, rHeight } from "src/helpers/responsive"
 import { CARDS } from "src/config"
 
 export default function SmallCard({ type = "green", value = 1 }) {
@@ -15,13 +15,13 @@ export default function SmallCard({ type = "green", value = 1 }) {
 const styles = StyleSheet.create({
   paper: {
     overflow: `hidden`,
-    marginLeft: responsiveWidth(1.25),
-    marginRight: responsiveWidth(1.25),
-    marginTop: responsiveHeight(0.5),
-    marginBottom: responsiveHeight(0.5),
+    marginLeft: rWidth(1.25),
+    marginRight: rWidth(1.25),
+    marginTop: rHeight(0.5),
+    marginBottom: rHeight(0.5),
   },
   card: (w) => ({
-    height: responsiveWidth(w * 1.395256917),
-    width: responsiveWidth(w),
+    height: rWidth(w * 1.395256917),
+    width: rWidth(w),
   }),
 })

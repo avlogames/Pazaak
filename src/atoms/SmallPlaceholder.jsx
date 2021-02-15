@@ -1,6 +1,6 @@
 import React from "react"
 import { StyleSheet, View } from "react-native"
-import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions"
+import { rHeight, rWidth } from "src/helpers/responsive"
 
 export default function SmallPlaceholder() {
   return <View style={styles.paper}></View>
@@ -8,17 +8,17 @@ export default function SmallPlaceholder() {
 
 const styles = StyleSheet.create({
   paper: {
-    height: responsiveWidth(12.2),
-    width: responsiveWidth(9),
-    borderRadius: responsiveWidth(1),
+    height: rWidth(12.2),
+    width: rWidth(9),
+    borderRadius: rWidth(1),
     backgroundColor: `#141B36`,
     flexDirection: `column`,
     alignItems: `center`,
     justifyContent: `flex-start`,
     overflow: `hidden`,
-    marginLeft: responsiveWidth(1.5),
-    marginRight: responsiveWidth(1.5),
-    marginTop: responsiveHeight(1),
-    marginBottom: responsiveHeight(.5),
+    marginLeft: rWidth(1.5),
+    marginRight: rWidth(1.5),
+    marginTop: rHeight(1),
+    marginBottom: rHeight(.5),
   },
 })

@@ -23,11 +23,11 @@ export default function useFriendMatch() {
     }
   }, [code])
 
-  const cancel = async () => {
+  const quit = async () => {
     Firestore.deleteRoom(code)
     Storage.remove("code")
     return navigate("enter_room_code")
   }
 
-  return [code, pazaak, uuid, cancel]
+  return [code, pazaak, uuid, quit]
 }
