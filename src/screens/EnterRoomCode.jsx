@@ -1,43 +1,47 @@
 import React from "react"
 import { Image } from "react-native-animatable"
-import { StyleSheet, ImageBackground, KeyboardAvoidingView, Platform, View } from "react-native"
+import BackgroundSplash from "src/atoms/BackgroundSplash"
+import { StyleSheet, Button, KeyboardAvoidingView, Platform, View } from "react-native"
 import { rWidth, rHeight } from "src/helpers/responsive"
 import RoomCodeInput from "src/components/RoomCodeInput"
 import useEnterRoomCode from "src/hooks/useEnterRoomCode"
-import wallpaper from "src/assets/images/wallpaper.jpg"
 
 const iOS = Platform.OS === "ios"
-export default function EnterRoomCode() {
+export default function EnterRoomCode({ navigation }) {
   const roomCodeProps = useEnterRoomCode()
 
   return (
-    <ImageBackground source={wallpaper} style={styles.imageBackground}>
+    <BackgroundSplash>
       <KeyboardAvoidingView behavior={iOS ? "padding" : null} style={styles.container}>
+        <View style={styles.buttonWrapper}>
+          <Button title="< back" onPress={() => navigation.navigate("choose_game")} />
+        </View>
         <View style={styles.wrapper}>
           <Image animation="bounceIn" style={styles.logo} source={require("src/assets/images/pazaak.png")} />
           <RoomCodeInput {...roomCodeProps} />
         </View>
       </KeyboardAvoidingView>
-    </ImageBackground>
+    </BackgroundSplash>
   )
 }
 
 const styles = StyleSheet.create({
-  imageBackground: {
-    height: `100%`,
-    width: `100%`,
+  buttonWrapper: {
+    paddingTop: rHeight(5),
+    paddingLeft: rWidth(5),
+    alignItems: "flex-start",
   },
   container: {
+    flex: 1,
+  },
+  wrapper: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
-  wrapper: {
-    alignItems: "center",
-  },
   logo: {
-    width: rWidth(80),
-    height: rHeight(10),
-    marginBottom: 20,
+    width: rWidth(100),
+    height: rHeight(15),
+    marginBottom: rHeight(2),
   },
 })

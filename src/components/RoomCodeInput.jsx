@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: `column`,
     alignItems: `center`,
+    height: rHeight(11),
   },
   title: {
     color: `#CCC`,

@@ -54,7 +54,7 @@ export default function useRandomMatch() {
   const quit = async () => {
     Redux.hydrateStore({})
     Storage.remove("code")
-    return navigate("enter_room_code")
+    return navigate("choose_game")
   }
 
   return [pazaak, ready, uuid, quit]

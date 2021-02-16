@@ -1,4 +1,5 @@
 import React from "react"
+import { View as Aview } from "react-native-animatable"
 import { StyleSheet, Image, Text, View } from "react-native"
 import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import { LinearGradient } from "expo-linear-gradient"
@@ -12,7 +13,11 @@ export default function PlayerDetails({ turn, name, avatar, credits }) {
     <View style={styles.container}>
       <View style={styles.detailsContainer}>
         <View style={styles.activeWrapper}>
-          {turn && <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />}
+          {turn && (
+            <Aview>
+              <LinearGradient style={styles.activeGradient} colors={["#FF0044", "#FF623C"]} />
+            </Aview>
+          )}
           {avatar.length && (
             <View style={styles.profileBorderWrapper}>
               <LinearGradient style={styles.profileBorderGradient} colors={["#008EFE", "#004289"]} />
@@ -47,7 +52,6 @@ PlayerDetails.propTypes = {
   name: types.string,
   turn: types.bool,
 }
-
 
 const styles = StyleSheet.create({
   container: {
