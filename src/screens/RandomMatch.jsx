@@ -1,7 +1,7 @@
 import React from "react"
 import { OFFLINE_OPPONENT } from "src/config"
 import useRandomMatch from "src/hooks/useRandomMatch"
-import Background from "src/atoms/Background"
+import Layout from "src/layouts/BlueLayout"
 import TableRing from "src/atoms/TableRing"
 import OpponentSideDeck from "src/components/OpponentSideDeck"
 import OpponentStack from "src/components/OpponentStack"
@@ -34,7 +34,7 @@ export default function RandomMatch() {
     const playCard = (cardIndex) => GameActions.playSideDeckCard(pazaak, cardIndex, uuid, false)
     
     return (
-      <Background>
+      <Layout>
         <OpponentDetails
           turn={opponentTurn}
           name={opponent.name}
@@ -56,7 +56,7 @@ export default function RandomMatch() {
             <Button title="Exit" onPress={quit} />
           </PopupModal>
         )}
-      </Background>
+      </Layout>
     )
   }
 }

@@ -3,8 +3,7 @@ import { StyleSheet } from "react-native"
 import { LinearGradient } from "expo-linear-gradient"
 import { getStatusBarHeight } from "react-native-status-bar-height"
 
-const statusBar = getStatusBarHeight(true)
-export default function Background({ children }) {
+export default function BlueLayout({ children }) {
   return (
     <LinearGradient colors={["#131935", "#222E58", "#131935"]} style={styles.container}>
       {children}
@@ -18,6 +17,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: `column`,
     alignItems: "stretch",
-    paddingTop: statusBar === 44 ? 44 : 20,
+    paddingTop: getStatusBarHeight(true) === 44 ? 44 : 20,
   },
 })

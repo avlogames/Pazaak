@@ -1,6 +1,6 @@
 import React from "react"
 import { Image } from "react-native-animatable"
-import BackgroundSplash from "src/atoms/BackgroundSplash"
+import Layout from "src/layouts/SpaceLayout"
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native"
 import { rHeight, rWidth, rFont } from "src/helpers/responsive"
 
@@ -9,7 +9,7 @@ export default function ChooseGame({ navigation }) {
   const randomMatch = () => navigation.navigate("random_match")
 
   return (
-    <BackgroundSplash>
+    <Layout>
       <View style={styles.topSpacer} />
       <View style={styles.imageWrapper}>
         <Image
@@ -28,7 +28,7 @@ export default function ChooseGame({ navigation }) {
           <Text style={styles.buttonText}>ONLINE MATCHMAKER</Text>
         </TouchableOpacity>
       </View>
-    </BackgroundSplash>
+    </Layout>
   )
 }
 

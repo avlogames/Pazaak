@@ -1,14 +1,14 @@
 import React from "react"
 import { Button } from "react-native"
-import BackgroundSplash from "src/atoms/BackgroundSplash"
+import Layout from "src/layouts/SpaceLayout"
 import LoadingSpinner from "src/components/LoadingSpinner"
 
 export default function WaitingForOpponent({ message, quit }) {
   return (
-    <BackgroundSplash>
+    <Layout>
       <LoadingSpinner label={message}>
         <Button onPress={quit} title="Go Back" />
       </LoadingSpinner>
-    </BackgroundSplash>
+    </Layout>
   )
 }

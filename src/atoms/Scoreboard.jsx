@@ -15,7 +15,7 @@ export default function Scoreboard({ score = 0, wins = 0 }) {
 
   return (
     <View style={styles.paper(9.6)}>
-      <ImageBackground style={styles.imageBackground} source={score === 20 ? redHex : blueHex}>
+      <ImageBackground style={styles.Layout} source={score === 20 ? redHex : blueHex}>
         <Text style={styles.score}>{score}</Text>
       </ImageBackground>
       <View style={styles.winRow}>
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     marginTop: rHeight(0.5),
     marginBottom: rHeight(0.5),
   }),
-  imageBackground: {
+  Layout: {
     height: rWidth(9),
     width: rWidth(9),
     borderRadius: 20,

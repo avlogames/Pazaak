@@ -1,6 +1,6 @@
 import React from "react"
 import { Image } from "react-native-animatable"
-import BackgroundSplash from "src/atoms/BackgroundSplash"
+import Layout from "src/layouts/SpaceLayout"
 import { StyleSheet, Button, KeyboardAvoidingView, Platform, View } from "react-native"
 import { rWidth, rHeight } from "src/helpers/responsive"
 import RoomCodeInput from "src/components/RoomCodeInput"
@@ -11,7 +11,7 @@ export default function EnterRoomCode({ navigation }) {
   const roomCodeProps = useEnterRoomCode()
 
   return (
-    <BackgroundSplash>
+    <Layout>
       <KeyboardAvoidingView behavior={iOS ? "padding" : null} style={styles.container}>
         <View style={styles.buttonWrapper}>
           <Button title="< back" onPress={() => navigation.navigate("choose_game")} />
@@ -21,7 +21,7 @@ export default function EnterRoomCode({ navigation }) {
           <RoomCodeInput {...roomCodeProps} />
         </View>
       </KeyboardAvoidingView>
-    </BackgroundSplash>
+    </Layout>
   )
 }
 

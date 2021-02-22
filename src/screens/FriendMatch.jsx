@@ -1,7 +1,7 @@
 import React from "react"
 import pathOr from "ramda.pathor"
 import { Button, Text } from "react-native"
-import Background from "src/atoms/Background"
+import Layout from "src/layouts/BlueLayout"
 import TableRing from "src/atoms/TableRing"
 import OpponentSideDeck from "src/components/OpponentSideDeck"
 import OpponentStack from "src/components/OpponentStack"
@@ -37,7 +37,7 @@ export default function CustomMatch() {
     const playCard = (cardIndex) => GameActions.playSideDeckCard(pazaak, cardIndex, uuid, true)
 
     return (
-      <Background>
+      <Layout>
         <OpponentDetails
           turn={opponentTurn}
           name={opponent.name}
@@ -59,7 +59,7 @@ export default function CustomMatch() {
             <Button title="Exit" onPress={quit} />
           </PopupModal>
         )}
-      </Background>
+      </Layout>
     )
   }
 }

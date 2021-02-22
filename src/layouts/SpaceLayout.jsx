@@ -1,9 +1,10 @@
 import React from "react"
 import { StyleSheet, ImageBackground } from "react-native"
+import wallpaper from "src/assets/images/wallpaper.jpg"
 
-export default function BackgroundSplash({ children }) {
+export default function SpaceLayout({ children }) {
   return (
-    <ImageBackground source={require("src/assets/images/wallpaper.jpg")} style={styles.background}>
+    <ImageBackground source={wallpaper} style={styles.background}>
       {children}
     </ImageBackground>
   )

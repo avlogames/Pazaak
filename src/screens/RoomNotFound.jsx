@@ -2,7 +2,7 @@ import React from "react"
 import { useNavigation } from "@react-navigation/native"
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native"
 import { rFont, rHeight, rWidth } from "src/helpers/responsive"
-import Background from "src/atoms/Background"
+import Layout from "src/layouts/BlueLayout"
 import Audio from "src/lib/Audio"
 
 export default function RoomNotFound() {
@@ -14,14 +14,14 @@ export default function RoomNotFound() {
   }
 
   return (
-    <Background>
+    <Layout>
       <View style={styles.container}>
         <Text style={styles.text}>Failed to join room, Please check your room code and try again.</Text>
         <TouchableOpacity style={styles.button} onPress={handlePress}>
           <Text style={styles.buttonText}>GO BACK</Text>
         </TouchableOpacity>
       </View>
-    </Background>
+    </Layout>
   )
 }
 
