@@ -5,15 +5,15 @@ import Input from "react-native-smooth-pincode-input"
 import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import HollowButton from "src/atoms/HollowButton"
 
-export default function RoomCodeInput({ code, onTextChange, onSubmit }) {
+export default function RoomCodeInput({ code, onCodeChange, onSubmitCode }) {
   return (
     <AniView style={styles.container} animation="bounceIn">
       <Text style={styles.title}>ENTER ROOM CODE</Text>
       <Input
         autoFocus
         value={code}
-        onFocus={() => onTextChange("")}
-        onTextChange={onTextChange}
+        onFocus={() => onCodeChange("")}
+        onTextChange={onCodeChange}
         restrictToNumbers={false}
         keyboardType="default"
         cellStyle={styles.cellStyle}
@@ -21,7 +21,7 @@ export default function RoomCodeInput({ code, onTextChange, onSubmit }) {
         textStyle={styles.textStyle}
       />
       <View style={styles.buttonWrapper}>
-        {code.length === 4 && <HollowButton onPress={onSubmit} title="SUBMIT" animation="fadeIn" />}
+        {code.length === 4 && <HollowButton onPress={onSubmitCode} title="SUBMIT" animation="fadeIn" />}
       </View>
     </AniView>
   )

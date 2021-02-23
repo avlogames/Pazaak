@@ -25,7 +25,7 @@ export default function useFriendMatch() {
   /**
    * UseEffect: Code Initialized
    */
-  useEffect(() => {
+  useEffect(function () {
     if (code) {
       // Subscribe To Snapshot And Update Redux
       Firestore.subscribe(code, function (value) {

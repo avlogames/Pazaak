@@ -12,7 +12,7 @@ export default function useEnterRoomCode() {
   }, [])
 
   // Update Room Code Text
-  function onTextChange(c) {
+  function onCodeChange(c) {
     // If Code Is 4 Digits Or Less
     if (c.length < 5) {
       setCode(c.toUpperCase())
@@ -20,7 +20,7 @@ export default function useEnterRoomCode() {
   }
 
   // Submit Room Code
-  async function onSubmit() {
+  async function onSubmitCode() {
     // Try To Create / Join Room And Get Boolean Response
     const roomReady = await Firestore.createJoinRoom(code)
 
@@ -34,5 +34,5 @@ export default function useEnterRoomCode() {
     return navigate("room_not_found")
   }
 
-  return { code, onSubmit, onTextChange }
+  return { code, onSubmitCode, onCodeChange }
 }
