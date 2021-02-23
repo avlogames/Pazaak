@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
 import Storage from "src/lib/Storage"
-import Firestore from "src/lib/Firestore"
+import * as firestore from "src/lib/firestore"
 
 export default function useEnterRoomCode() {
   const { navigate } = useNavigation()
@@ -22,7 +22,7 @@ export default function useEnterRoomCode() {
   // Submit Room Code
   async function onSubmitCode() {
     // Try To Create / Join Room And Get Boolean Response
-    const roomReady = await Firestore.createJoinRoom(code)
+    const roomReady = await firestore.createOrJoinRoom(code)
 
     // Room Is Available
     if (roomReady) {

@@ -1,19 +1,13 @@
 import store from "src/api/redux"
-import Firestore from "src/lib/Firestore"
+import * as firestore from "src/lib/firestore"
 import Pazaak from "src/lib/Pazaak"
 import { PLACEHOLDER } from "src/config"
-import Storage from "src/lib/Storage"
 
 class GameActions {
-  constructor() {
-    this.code = null
-    Storage.get("code").then((code) => (this.code = code))
-  }
-
   /**
    * Check For Player With 3 Wins
    */
-  checkForWinner = (pazaak, useFirestore) => {
+  checkForWinner = (pazaak, online) => {
     const players = pazaak.players
     const playerKeys = Object.keys(players)
     const winner = playerKeys.find((k) => players[k].wins === 3)
@@ -22,7 +16,7 @@ class GameActions {
       const newPazaak = { ...pazaak, gameOver: true, winner }
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
+      if (online) firestore.updateRoomDocument(pazaak.roomCode, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
 
       return false
@@ -32,7 +26,7 @@ class GameActions {
   /**
    * Play Card From Side Deck
    */
-  playSideDeckCard = (pazaak, cardIndex, pid, useFirestore) => {
+  playSideDeckCard = (pazaak, cardIndex, pid, online) => {
     const newPazaak = pazaak
     const player = newPazaak.players[pid]
     const card = player.sideDeck[cardIndex]
@@ -43,7 +37,7 @@ class GameActions {
     player.sideDeck[cardIndex] = PLACEHOLDER
 
     // Add New Pazaak To Firestore Or Redux
-    if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
+    if (online) firestore.updateRoomDocument(pazaak.roomCode, newPazaak)
     else store.dispatch({ type: "hydrate", value: newPazaak })
 
     return false
@@ -52,7 +46,7 @@ class GameActions {
   /**
    * Hit New Card
    */
-  hit = (pazaak, pid, oid, useFirestore) => {
+  hit = (pazaak, pid, oid, online) => {
     try {
       const newPazaak = pazaak
       const player = newPazaak.players[pid]
@@ -64,12 +58,12 @@ class GameActions {
       player.score = stack.reduce((a, v) => (a += v.value), 0)
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
+      if (online) firestore.updateRoomDocument(pazaak.roomCode, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
 
       // Return Auto-Stand (If 9 Cards) Or False
       if (Pazaak.stackLimit(stack)) {
-        this.stand(newPazaak, pid, oid, useFirestore)
+        this.stand(newPazaak, pid, oid, online)
       }
 
       return false
@@ -81,7 +75,7 @@ class GameActions {
   /**
    * Stand At Current Score
    */
-  stand = (pazaak, pid, oid, useFirestore) => {
+  stand = (pazaak, pid, oid, online) => {
     const newPazaak = pazaak
 
     // Player Stands On A Bust
@@ -100,7 +94,7 @@ class GameActions {
       newPazaak.activePlayer = oid
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
+      if (online) firestore.updateRoomDocument(pazaak.roomCode, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
 
       return false
@@ -120,7 +114,7 @@ class GameActions {
       newPazaak.activePlayer = oid
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
+      if (online) firestore.updateRoomDocument(pazaak.roomCode, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
 
       return false
@@ -154,7 +148,7 @@ class GameActions {
       newPazaak.activePlayer = oid
 
       // Add New Pazaak To Firestore Or Redux
-      if (useFirestore) Firestore.updateDocument(this.code, newPazaak)
+      if (online) firestore.updateRoomDocument(pazaak.roomCode, newPazaak)
       else store.dispatch({ type: "hydrate", value: newPazaak })
 
       return false

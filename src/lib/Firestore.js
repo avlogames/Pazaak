@@ -1,81 +1,71 @@
-import firebase from "src/lib/firebase"
+import { firestore } from "src/lib/firebase"
 import Storage from "src/lib/Storage"
 import Room from "src/lib/Room"
 
-class Firestore {
-  unsubscribe = null
-  last = {}
+/**
+ * Update Room Document
+ */
+export async function updateRoomDocument(code, doc) {
+  // Async Update Document
+  await firestore.doc(`ROOMS/${code}`).set(doc, { merge: true })
+}
 
-  /**
-   * Create Room
-   */
-  createJoinRoom = async (code) => {
-    const uuid = await Storage.get("uuid")
-    const roomDoc = await firebase.firestore().doc(`ROOMS/${code}`).get()
+/**
+ * Delete Room Document
+ */
+export async function deleteRoomDocument(code) {
+  // Delete Room Document
+  await db.doc(`ROOMS/${code}`).delete()
+}
 
-    // Room Doesn't Exist
-    if (!roomDoc.exists) {
-      // Create New Room
-      this.updateDocument(code, Room.create(code, uuid))
+/**
+ * Create Or Join Room
+ */
+export async function createOrJoinRoom(code) {
+  const uuid = await Storage.get("uuid")
+  const roomDoc = await firestore.doc(`ROOMS/${code}`).get()
+
+  // Room Doesn't Exist
+  if (!roomDoc.exists) {
+    // Create New Room And Add Instigator
+    updateRoomDocument(code, Room.create(code, uuid))
+    return true
+  }
+
+  // Room Already Exists
+  if (roomDoc.exists) {
+    const room = roomDoc.data()
+
+    // Challenger Already Belongs To Room
+    if (room.players[uuid]) return true
+
+    // If No Challenger In Room
+    if (Object.keys(room.players).length === 1) {
+      // Add Challenger To Room
+      updateRoomDocument(code, Room.addOpponent(room, uuid))
       return true
     }
-
-    // Room Already Exists
-    if (roomDoc.exists) {
-      const room = roomDoc.data()
-
-      // Challenger Already Belongs To Room
-      if (room.players[uuid]) return true
-
-      // If No Opponent - Add Them To Room
-      if (Object.keys(room.players).length === 1) {
-        this.updateDocument(code, Room.addOpponent(room, uuid))
-        return true
-      }
-    }
-  }
-
-  /**
-   * Delete Room From Firestore
-   */
-  deleteRoom = async (code) => {
-    try {
-      await db.doc(`ROOMS/${code}`).delete()
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
-  /**
-   * Subscribe To Room Document
-   */
-  subscribe = (code, callback) => {
-    try {
-      this.unsubscribe = db.doc(`ROOMS/${code}`).onSnapshot((doc) => {
-        const value = doc.data()
-        if (value !== this.last) {
-          this.last = value
-          callback(value)
-        }
-      })
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
-  /**
-   * Unsubscribe From Room
-   */
-  unsubscribe = () => {
-    return this.unsubscribe()
-  }
-
-  /**
-   * Update Document
-   */
-  updateDocument = async (code, doc) => {
-    await db.doc(`ROOMS/${code}`).set(doc, { merge: true })
   }
 }
 
-export default new Firestore()
+/**
+ * Subscribe To Room Snapshots
+ */
+export async function subscribeToRoom(code, callback) {
+  const previous = {}
+
+  // Create And Return Snapshot Listener
+  return firestore.doc(`ROOMS/${code}`).onSnapshot(function (doc) {
+    // Get Doc Data
+    const value = doc.data()
+
+    // If Value Has Changed
+    if (value !== previous) {
+      // Update Previous Value
+      previous = value
+
+      // Run Callback
+      callback(value)
+    }
+  })
+}
