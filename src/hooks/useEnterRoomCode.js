@@ -7,18 +7,32 @@ export default function useEnterRoomCode() {
   const { navigate } = useNavigation()
   const [code, setCode] = useState("")
 
-  useEffect(() => {
+  useEffect(function () {
     Storage.get("code").then((c) => (c ? navigate("friend_match") : null))
   }, [])
 
-  const onTextChange = (c) => (c.length < 5 ? setCode(c.toUpperCase()) : null)
-
-  const onSubmit = async () => {
-    const roomFound = await Firestore.createJoinRoom(code)
-    if (!roomFound) return navigate("room_not_found")
-    Storage.set("code", code)
-    return navigate("friend_match")
+  // Update Room Code Text
+  function onTextChange(c) {
+    // If Code Is 4 Digits Or Less
+    if (c.length < 5) {
+      setCode(c.toUpperCase())
+    }
   }
 
-  return { code, onTextChange, onSubmit }
+  // Submit Room Code
+  async function onSubmit() {
+    // Try To Create / Join Room And Get Boolean Response
+    const roomReady = await Firestore.createJoinRoom(code)
+
+    // Room Is Available
+    if (roomReady) {
+      Storage.set("code", code)
+      return navigate("friend_match")
+    }
+
+    // Room Unavailable
+    return navigate("room_not_found")
+  }
+
+  return { code, onSubmit, onTextChange }
 }

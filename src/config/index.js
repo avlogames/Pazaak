@@ -1,6 +1,7 @@
 export { default as AUDIO } from "src/config/audio"
 export { default as CARDS } from "src/config/cards"
 export { default as IMAGES } from "src/config/images"
+export { default as FIREBASE } from "src/config/firebase"
 
 export const OFFLINE_ROOM_CODE = "OFFLINE"
 export const OFFLINE_OPPONENT = "opponent"

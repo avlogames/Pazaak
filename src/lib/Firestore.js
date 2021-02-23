@@ -1,4 +1,4 @@
-import { db } from "src/api/firebase"
+import firebase from "src/lib/firebase"
 import Storage from "src/lib/Storage"
 import Room from "src/lib/Room"
 
@@ -11,7 +11,7 @@ class Firestore {
    */
   createJoinRoom = async (code) => {
     const uuid = await Storage.get("uuid")
-    const roomDoc = await db.doc(`ROOMS/${code}`).get()
+    const roomDoc = await firebase.firestore().doc(`ROOMS/${code}`).get()
 
     // Room Doesn't Exist
     if (!roomDoc.exists) {
