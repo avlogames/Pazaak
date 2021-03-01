@@ -9,7 +9,11 @@ import { PLACEHOLDER } from "src/config"
 export function checkForWinner(pazaak, online) {
   const players = pazaak.players
   const playerKeys = Object.keys(players)
-  const winner = playerKeys.find((k) => players[k].wins === 3)
+  const winner = playerKeys.find((k) => {
+    const { uuid, wins } = pazaak.players[k]
+    console.log({ uuid, wins })
+    return players[k].wins === 3
+  })
 
   if (typeof winner !== "undefined") {
     const newPazaak = { ...pazaak, gameOver: true, winner }

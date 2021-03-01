@@ -10,7 +10,7 @@ import * as actions from "src/lib/actions"
 export default function Scoreboard({ score = 0, wins = 0 }) {
   const pazaak = useSelector((s) => s.pazaak)
   useEffect(() => {
-    actions.checkForWinner(pazaak, true)
+    actions.checkForWinner(pazaak, pazaak.roomCode !== "OFFLINE")
   }, [wins])
 
   return (

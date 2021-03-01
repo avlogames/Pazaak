@@ -1,4 +1,5 @@
 import React from "react"
+import { Text, Button } from "react-native"
 import { OFFLINE_OPPONENT } from "src/config"
 import useRandomMatch from "src/hooks/useRandomMatch"
 import Layout from "src/layouts/BlueLayout"
