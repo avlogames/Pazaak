@@ -4,13 +4,13 @@ import { createStackNavigator } from "@react-navigation/stack"
 import { AUDIO, CARDS, IMAGES } from "src/config"
 import * as audio from "src/lib/audio"
 import * as storage from "src/lib/storage"
-import SQLite from "src/api/sqlite"
+import * as sqlite from "src/lib/sqlite"
 import uuid from "uuid-random"
 
 export default function useInitializeApp() {
   const { Navigator, Screen } = createStackNavigator()
   const sounds = audio.load(AUDIO)
-  const sqlite = SQLite.load()
+  const database = sqlite.load()
 
   const setUuid = async () => {
     const currentUuid = await storage.get("uuid")
@@ -20,7 +20,7 @@ export default function useInitializeApp() {
   const setCache = async () => {
     const cacheItems = Object.values({ ...CARDS, ...IMAGES })
     const cacheAssets = cacheItems.map((ass) => Asset.fromModule(ass).downloadAsync())
-    return Promise.all([setUuid(), ...cacheAssets, ...sounds, sqlite])
+    return Promise.all([setUuid(), ...cacheAssets, ...sounds, database])
   }
 
   return [NavigationContainer, Navigator, Screen, setCache]

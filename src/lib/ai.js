@@ -1,5 +1,5 @@
-import SQLite from "src/api/sqlite"
 import * as game from "src/lib/game"
+import * as sqlite from "src/lib/sqlite"
 import { OFFLINE_OPPONENT, QUERY } from "src/config"
 
 /**
@@ -7,7 +7,7 @@ import { OFFLINE_OPPONENT, QUERY } from "src/config"
  */
 async function queryDatabase(queryValues) {
   return new Promise((resolve, reject) => {
-    SQLite.db.transaction((tx) => {
+    sqlite.db.transaction((tx) => {
       tx.executeSql(QUERY, [...queryValues], (_, { rows }) => resolve(rows._array[0].action), reject)
     })
   })

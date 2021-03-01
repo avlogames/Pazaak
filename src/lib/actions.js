@@ -1,6 +1,6 @@
-import store from "src/api/redux"
+import { store } from "src/lib/redux"
 import * as firestore from "src/lib/firestore"
-import game from "src/lib/game"
+import * as game from "src/lib/game"
 import { PLACEHOLDER } from "src/config"
 
 /**
@@ -62,7 +62,7 @@ export function hit(pazaak, pid, oid, online) {
 
     // Return Auto-Stand (If 9 Cards) Or False
     if (game.stackLimit(stack)) {
-      this.stand(newPazaak, pid, oid, online)
+      stand(newPazaak, pid, oid, online)
     }
 
     return false

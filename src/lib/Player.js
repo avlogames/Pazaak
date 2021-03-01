@@ -1,4 +1,4 @@
-import game from "src/lib/game"
+import * as game from "src/lib/game"
 
 /**
  * Create New Player

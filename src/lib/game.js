@@ -36,7 +36,7 @@ export function initializeStack(deal = false, stack = []) {
 
   // Deal Card If Required.
   if (deal) {
-    stack.push(this.dealCard())
+    stack.push(dealCard())
   }
 
   // Add Placeholders
