@@ -6,14 +6,14 @@ import EnterRoomCode from "src/screens/EnterRoomCode"
 import FriendMatch from "src/screens/FriendMatch"
 import RandomMatch from "src/screens/RandomMatch"
 import ChooseGame from "src/screens/ChooseGame"
-import Audio from "src/lib/Audio"
+import * as audio from "src/lib/audio"
 
 export default function Router() {
   const [ready, setReady] = useState(false)
   const [Navigation, Navigator, Screen, setCache] = useInitializeApp()
 
   useEffect(() => {
-    // if (ready) setTimeout(() => Audio.playTheme(), 1500)
+    // if (ready) setTimeout(() => audio.playTheme(), 1500)
   }, [ready])
 
   return !ready ? (

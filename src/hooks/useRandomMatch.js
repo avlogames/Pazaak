@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { useNavigation } from "@react-navigation/native"
 import Redux from "src/lib/Redux"
 import Storage from "src/lib/Storage"
-import AiOpponent from "src/lib/AiOpponent"
+import * as ai from "src/lib/ai"
 import GameActions from "src/lib/GameActions"
 import { OFFLINE_OPPONENT } from "src/config"
 
@@ -15,7 +15,7 @@ export default function useRandomMatch() {
   const ready = Object.keys(pazaak).length > 0 && uuid
 
   const aiLoop = async () => {
-    const [move, combo] = await AiOpponent.determineMove(pazaak, uuid)
+    const [move, combo] = await ai.determineMove(pazaak, uuid)
 
     switch (move) {
       case 0:

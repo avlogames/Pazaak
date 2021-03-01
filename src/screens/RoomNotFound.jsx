@@ -3,13 +3,13 @@ import { useNavigation } from "@react-navigation/native"
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native"
 import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import Layout from "src/layouts/BlueLayout"
-import Audio from "src/lib/Audio"
+import * as audio from "src/lib/audio"
 
 export default function RoomNotFound() {
   const { navigate } = useNavigation()
 
   const handlePress = () => {
-    Audio.playSound("buttonPress")
+    audio.playSound("buttonPress")
     return navigate("enter_room_code")
   }
 

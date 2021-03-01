@@ -3,13 +3,13 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { AUDIO, CARDS, IMAGES } from "src/config"
 import Storage from "src/lib/Storage"
-import Audio from "src/lib/Audio"
+import * as audio from "src/lib/audio"
 import SQLite from "src/api/sqlite"
 import uuid from "uuid-random"
 
 export default function useInitializeApp() {
   const { Navigator, Screen } = createStackNavigator()
-  const sounds = Audio.load(AUDIO)
+  const sounds = audio.load(AUDIO)
   const sqlite = SQLite.load()
 
   const setUuid = async () => {
