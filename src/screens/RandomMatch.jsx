@@ -12,7 +12,7 @@ import PlayerDetails from "src/components/PlayerDetails"
 import HitStand from "src/components/HitStand"
 import PopupModal from "src/atoms/PopupModal"
 import WaitingForOpponent from "src/components/WaitingForOpponent"
-import GameActions from "src/lib/GameActions"
+import * as actions from "src/lib/actions"
 
 export default function RandomMatch() {
   const [pazaak, ready, uuid, quit] = useRandomMatch()
@@ -29,10 +29,10 @@ export default function RandomMatch() {
     const opponentTurn = pazaak.activePlayer === opponent.uuid
     const playerStanding = pazaak.standing.includes(uuid)
     const opponentStanding = pazaak.standing.includes(uoid)
-    const stand = () => GameActions.stand(pazaak, uuid, uoid, false)
-    const hit = () => GameActions.hit(pazaak, uuid, uoid, false)
-    const playCard = (cardIndex) => GameActions.playSideDeckCard(pazaak, cardIndex, uuid, false)
-    
+    const stand = () => actions.stand(pazaak, uuid, uoid, false)
+    const hit = () => actions.hit(pazaak, uuid, uoid, false)
+    const playCard = (cardIndex) => actions.playSideDeckCard(pazaak, cardIndex, uuid, false)
+
     return (
       <Layout>
         <OpponentDetails

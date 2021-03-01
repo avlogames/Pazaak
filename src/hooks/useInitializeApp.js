@@ -2,8 +2,8 @@ import { Asset } from "expo-asset"
 import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { AUDIO, CARDS, IMAGES } from "src/config"
-import Storage from "src/lib/Storage"
 import * as audio from "src/lib/audio"
+import * as storage from "src/lib/storage"
 import SQLite from "src/api/sqlite"
 import uuid from "uuid-random"
 
@@ -13,8 +13,8 @@ export default function useInitializeApp() {
   const sqlite = SQLite.load()
 
   const setUuid = async () => {
-    const currentUuid = await Storage.get("uuid")
-    if (!currentUuid) await Storage.set("uuid", uuid())
+    const currentUuid = await storage.get("uuid")
+    if (!currentUuid) await storage.set("uuid", uuid())
   }
 
   const setCache = async () => {

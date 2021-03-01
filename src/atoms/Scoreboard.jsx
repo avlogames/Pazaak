@@ -5,12 +5,12 @@ import { LinearGradient } from "expo-linear-gradient"
 import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import blueHex from "src/assets/images/blue-hex.png"
 import redHex from "src/assets/images/red-hex.png"
-import GameActions from "src/lib/GameActions"
+import * as actions from "src/lib/actions"
 
 export default function Scoreboard({ score = 0, wins = 0 }) {
   const pazaak = useSelector((s) => s.pazaak)
   useEffect(() => {
-    GameActions.checkForWinner(pazaak, true)
+    actions.checkForWinner(pazaak, true)
   }, [wins])
 
   return (

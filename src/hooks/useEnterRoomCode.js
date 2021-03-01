@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { useNavigation } from "@react-navigation/native"
-import Storage from "src/lib/Storage"
 import * as firestore from "src/lib/firestore"
+import * as storage from "src/lib/storage"
 
 export default function useEnterRoomCode() {
   const { navigate } = useNavigation()
   const [code, setCode] = useState("")
 
   useEffect(function () {
-    Storage.get("code").then((c) => (c ? navigate("friend_match") : null))
+    storage.get("code").then((c) => (c ? navigate("friend_match") : null))
   }, [])
 
   // Update Room Code Text
@@ -26,7 +26,7 @@ export default function useEnterRoomCode() {
 
     // Room Is Available
     if (roomReady) {
-      Storage.set("code", code)
+      storage.set("code", code)
       return navigate("friend_match")
     }
 

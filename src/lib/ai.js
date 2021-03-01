@@ -1,5 +1,5 @@
 import SQLite from "src/api/sqlite"
-import Pazaak from "src/lib/Pazaak"
+import * as game from "src/lib/game"
 import { OFFLINE_OPPONENT, QUERY } from "src/config"
 
 /**
@@ -23,7 +23,7 @@ export async function determineMove(pazaak, uuid) {
   const nap_score = pazaak.players[uuid].score
   const ap_sd = pazaak.players[OFFLINE_OPPONENT].sideDeck
   const ap_num_sd_cards = ap_sd.length
-  const smallest_combo = Pazaak.smallestCombo(ap_sd, ap_score, nap_score)
+  const smallest_combo = game.smallestCombo(ap_sd, ap_score, nap_score)
   const num_cards_in_smallest_winning_combo = smallest_combo.total === 0 ? 0 : smallest_combo.length
 
   const action = await queryDatabase([

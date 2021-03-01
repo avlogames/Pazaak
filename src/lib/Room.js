@@ -1,21 +1,21 @@
-import Player from "src/lib/Player"
+import * as player from "src/lib/player"
 
-class Room {
-  static create = (code, uuid) => ({
+export function create(code, uuid) {
+  return {
     activePlayer: uuid,
     gameOver: false,
-    players: { [uuid]: Player.create("man", true, "Dr. Colossus", uuid) },
+    players: { [uuid]: player.create("man", true, "Dr. Colossus", uuid) },
     roomCode: code,
     standing: [],
     waitingForOpponent: true,
     winner: null,
-  })
-
-  static addOpponent = (room, uuid) => ({
-    ...room,
-    players: { ...room.players, [uuid]: Player.create("woman", false, "Nibbler", uuid) },
-    waitingForOpponent: false,
-  })
+  }
 }
 
-export default Room
+export function addOpponent(room, uuid) {
+  return {
+    ...room,
+    players: { ...room.players, [uuid]: player.create("woman", false, "Nibbler", uuid) },
+    waitingForOpponent: false,
+  }
+}

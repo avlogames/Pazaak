@@ -1,15 +1,11 @@
-import Pazaak from "src/lib/Pazaak"
+import game from "src/lib/game"
 
-class Player {
-  /**
-   * Create New Player
-   */
-  static create = (avatar, draw, name, uuid) => {
-    const stack = Pazaak.initializeStack(draw)
-    const score = stack.reduce((a, v) => (a += v.value), 0)
-    const sideDeck = Pazaak.initializeSideDeck()
-    return { avatar, credits: 100, name, score, sideDeck, stack, uuid, wins: 0 }
-  }
+/**
+ * Create New Player
+ */
+export function create(avatar, draw, name, uuid) {
+  const stack = game.initializeStack(draw)
+  const score = stack.reduce((a, v) => (a += v.value), 0)
+  const sideDeck = game.initializeSideDeck()
+  return { avatar, credits: 100, name, score, sideDeck, stack, uuid, wins: 0 }
 }
-
-export default Player

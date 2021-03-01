@@ -13,7 +13,7 @@ import HitStand from "src/components/HitStand"
 import useFriendMatch from "src/hooks/useFriendMatch"
 import PopupModal from "src/atoms/PopupModal"
 import WaitingForOpponent from "src/components/WaitingForOpponent"
-import GameActions from "src/lib/GameActions"
+import * as actions from "src/lib/actions"
 
 export default function CustomMatch() {
   const [code, pazaak, uuid, quit] = useFriendMatch()
@@ -32,9 +32,9 @@ export default function CustomMatch() {
     const opponentTurn = pazaak.activePlayer === opponent.uuid
     const playerStanding = pazaak.standing.includes(uuid)
     const opponentStanding = pazaak.standing.includes(uoid)
-    const stand = () => GameActions.stand(pazaak, uuid, uoid, true)
-    const hit = () => GameActions.hit(pazaak, uuid, uoid, true)
-    const playCard = (cardIndex) => GameActions.playSideDeckCard(pazaak, cardIndex, uuid, true)
+    const stand = () => actions.stand(pazaak, uuid, uoid, true)
+    const hit = () => actions.hit(pazaak, uuid, uoid, true)
+    const playCard = (cardIndex) => actions.playSideDeckCard(pazaak, cardIndex, uuid, true)
 
     return (
       <Layout>
