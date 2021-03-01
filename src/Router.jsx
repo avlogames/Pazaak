@@ -13,7 +13,7 @@ export default function Router() {
   const [Navigation, Navigator, Screen, setCache] = useInitializeApp()
 
   useEffect(() => {
-    if (ready) setTimeout(() => Audio.playTheme(), 1500)
+    // if (ready) setTimeout(() => Audio.playTheme(), 1500)
   }, [ready])
 
   return !ready ? (

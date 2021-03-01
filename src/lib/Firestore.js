@@ -52,10 +52,10 @@ export async function createOrJoinRoom(code) {
  * Subscribe To Room Snapshots
  */
 export async function subscribeToRoom(code, callback) {
-  const previous = {}
+  let previous = {}
 
   // Create And Return Snapshot Listener
-  return firestore.doc(`ROOMS/${code}`).onSnapshot(function (doc) {
+  return firestore.doc(`ROOMS/${code}`).onSnapshot((doc) => {
     // Get Doc Data
     const value = doc.data()
 
