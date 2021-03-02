@@ -2,7 +2,6 @@ import React, { Fragment } from "react"
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { rFont, rHeight, rWidth } from "src/helpers/responsive"
 import { getStatusBarHeight } from "react-native-status-bar-height"
-import { LinearGradient } from "expo-linear-gradient"
 import types from "prop-types"
 
 export default function HitStand({ hit, stand, turn }) {
@@ -11,16 +10,12 @@ export default function HitStand({ hit, stand, turn }) {
       <Fragment>
         {/* Hit Me */}
         <TouchableOpacity style={styles.button} onPress={hit} disabled={!turn}>
-          <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-            <Text style={styles.text}>HIT ME</Text>
-          </LinearGradient>
+          <Text style={styles.text}>HIT ME</Text>
         </TouchableOpacity>
 
         {/* Stand */}
         <TouchableOpacity style={styles.button} onPress={stand} disabled={!turn}>
-          <LinearGradient style={styles.gradient} colors={["#2B336C", "#131B37"]}>
-            <Text style={styles.text}>STAND</Text>
-          </LinearGradient>
+          <Text style={styles.text}>STAND</Text>
         </TouchableOpacity>
       </Fragment>
     </View>
@@ -49,18 +44,18 @@ const styles = StyleSheet.create({
   },
   button: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+    borderColor: "rgba(255, 255, 255, 0.8)",
+    borderWidth: 2,
+    height: rHeight(5),
     marginRight: rWidth(5),
     shadowColor: `#000`,
     borderRadius: rWidth(4),
     shadowOpacity: 0.4,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 2,
-  },
-  gradient: {
-    alignItems: `center`,
-    justifyContent: `center`,
-    borderRadius: rWidth(4),
-    height: `100%`,
   },
   text: {
     color: `#FFF`,

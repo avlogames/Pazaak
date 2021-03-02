@@ -11,7 +11,6 @@ export function checkForWinner(pazaak, online) {
   const playerKeys = Object.keys(players)
   const winner = playerKeys.find((k) => {
     const { uuid, wins } = pazaak.players[k]
-    console.log({ uuid, wins })
     return players[k].wins === 3
   })
 

@@ -1,13 +1,13 @@
 import React from "react"
-import { StyleSheet } from "react-native"
-import { LinearGradient } from "expo-linear-gradient"
+import { StyleSheet, ImageBackground } from "react-native"
 import { getStatusBarHeight } from "react-native-status-bar-height"
+import space from "src/assets/images/space.jpg"
 
-export default function BlueLayout({ children }) {
+export default function SpaceLayout({ children }) {
   return (
-    <LinearGradient colors={["#131935", "#222E58", "#131935"]} style={styles.container}>
+    <ImageBackground source={space} style={styles.container}>
       {children}
-    </LinearGradient>
+    </ImageBackground>
   )
 }
 

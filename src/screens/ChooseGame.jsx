@@ -1,12 +1,20 @@
 import React from "react"
-import { Image } from "react-native-animatable"
-import Layout from "src/layouts/SpaceLayout"
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native"
 import { rHeight, rWidth, rFont } from "src/helpers/responsive"
+import { Image } from "react-native-animatable"
+import Layout from "src/layouts/SpaceLayout"
+import * as audio from 'src/lib/audio'
 
 export default function ChooseGame({ navigation }) {
-  const friendMatch = () => navigation.navigate("enter_room_code")
-  const randomMatch = () => navigation.navigate("random_match")
+  const friendMatch = () => { 
+    audio.playSound("buttonPress")
+    return navigation.navigate("enter_room_code")
+  }
+  
+  const randomMatch = () => { 
+    audio.playSound("buttonPress")
+    return navigation.navigate("random_match")
+  }
 
   return (
     <Layout>
